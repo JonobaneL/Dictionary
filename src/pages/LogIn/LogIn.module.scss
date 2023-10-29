@@ -1,0 +1,65 @@
+@import "../../styles/variables";
+.log-in {
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  .content {
+    width: 100%;
+    max-width: 27rem;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    .logo {
+      align-self: center;
+      width: 80%;
+    }
+    .input-lable,
+    .input {
+      font-family: $ff-primary;
+    }
+    .password-forgot {
+      width: 100%;
+      text-align: right;
+      margin-bottom: 2rem;
+      font-family: $ff-primary;
+      cursor: pointer;
+    }
+    .btn {
+      text-transform: capitalize;
+      font-size: $fs-400;
+      font-family: $ff-primary;
+      height: 3rem;
+    }
+    .sign-up {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      margin-top: 3rem;
+      a {
+        font-size: $fs-300;
+        font-family: $ff-primary;
+      }
+      .btn {
+        font-size: $fs-300;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+@media screen and (width > 425px) {
+  .log-in {
+    background-image: url("../../images/background.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: $clr-surface;
+    .content {
+      padding: 3rem 1.5rem;
+      border-radius: 3px;
+      background: $clr-secondary;
+    }
+  }
+}
