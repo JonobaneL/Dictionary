@@ -1,14 +1,19 @@
 import {
   Button,
-  TextField,
   FormControl,
   InputLabel,
-  OutlinedInput,
+  InputAdornment,
   Input,
+  TextField,
 } from "@mui/material";
+import user from "../../images/user.svg";
+import showIcon from "../../images/passwordField/show.svg";
+import hideIcon from "../../images/passwordField/hide.svg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import logo from "../../images/logo.svg";
 import styles from "./LogIn.module.scss";
+import { useState } from "react";
+import EmailInput from "../../components/EmailInput/EmailInput";
 
 const LogIn = () => {
   const mainTheme = createTheme({
@@ -21,24 +26,16 @@ const LogIn = () => {
       },
     },
   });
+  const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true);
 
   return (
     <div className={styles["log-in"]}>
       <ThemeProvider theme={mainTheme}>
         <div className={styles.content}>
           <img className={styles.logo} src={logo} alt="" />
-          <FormControl>
-            <InputLabel className={styles["input-lable"]} htmlFor="email">
-              Email address
-            </InputLabel>
-            <Input
-              className={styles["input"]}
-              required
-              size="small"
-              id="email"
-            />
-          </FormControl>
-          <FormControl>
+
+          <EmailInput />
+          <FormControl className={styles["input-control"]}>
             <InputLabel className={styles["input-lable"]} htmlFor="password">
               Password
             </InputLabel>
@@ -47,6 +44,26 @@ const LogIn = () => {
               required
               size="small"
               id="password"
+              type={isPasswordHidden ? "password" : "text"}
+              endAdornment={
+                <InputAdornment position="start">
+                  {isPasswordHidden ? (
+                    <img
+                      onClick={() => setIsPasswordHidden(false)}
+                      style={{ width: "25px", cursor: "pointer" }}
+                      src={showIcon}
+                      alt="show password"
+                    />
+                  ) : (
+                    <img
+                      onClick={() => setIsPasswordHidden(true)}
+                      style={{ width: "25px", cursor: "pointer" }}
+                      src={hideIcon}
+                      alt="show password"
+                    />
+                  )}
+                </InputAdornment>
+              }
             />
           </FormControl>
           <div className={styles["password-forgot"]}>
@@ -56,8 +73,8 @@ const LogIn = () => {
             Log in
           </Button>
           <div className={styles["sign-up"]}>
-            <a>Don’t have an account?</a>
-            <Button className={styles.btn} variant="text">
+            <p>Don’t have an account?</p>
+            <Button className={styles["sign-up__button"]} variant="text">
               Sign up now
             </Button>
           </div>

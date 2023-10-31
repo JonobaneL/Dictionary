@@ -1,6 +1,6 @@
 @import "../../styles/variables";
 .log-in {
-  padding: 20px;
+  padding: 1.5rem 2rem;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -19,18 +19,24 @@
     .input {
       font-family: $ff-primary;
     }
+    // .input-control {
+    //   width: 80%;
+    // }
     .password-forgot {
       width: 100%;
       text-align: right;
       margin-bottom: 2rem;
       font-family: $ff-primary;
+      font-size: $fs-400;
+      color: $clr-primary;
       cursor: pointer;
     }
     .btn {
-      text-transform: capitalize;
+      align-items: center;
       font-size: $fs-400;
       font-family: $ff-primary;
       height: 3rem;
+      // width: 80%;
     }
     .sign-up {
       display: flex;
@@ -38,13 +44,12 @@
       align-items: center;
       gap: 5px;
       margin-top: 3rem;
-      a {
+      p {
         font-size: $fs-300;
         font-family: $ff-primary;
       }
-      .btn {
+      &__button {
         font-size: $fs-300;
-        text-transform: uppercase;
       }
     }
   }
@@ -57,7 +62,7 @@
     background-size: cover;
     background-color: $clr-surface;
     .content {
-      padding: 3rem 1.5rem;
+      padding: 3rem 3rem 1.5rem 3rem;
       border-radius: 3px;
       background: $clr-secondary;
     }

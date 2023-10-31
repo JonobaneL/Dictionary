@@ -1,10 +1,13 @@
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import LogIn from "./pages/LogIn/LogIn";
+import DictioanryRoutes from "./routes/Routes";
 
 function App() {
   return (
     <>
-      <LogIn />
+      <BrowserRouter>
+        <DictioanryRoutes />
+      </BrowserRouter>
     </>
   );
 }
