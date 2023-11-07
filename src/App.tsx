@@ -4,11 +4,11 @@ import DictioanryRoutes from "./routes/Routes";
 
 function App() {
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <DictioanryRoutes />
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

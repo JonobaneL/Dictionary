@@ -5,15 +5,53 @@ $clr-primary: #3f707d;
 $clr-secondary: #dadfec;
 $clr-accent: #54a68d;
 
-$ff-primary: "Inter";
+$ff-primary: "Montserrat", sans-serif;
+$ff-accent: "Barlow Condensed", sans-serif;
 
-$fs-200: clamp(0.63rem, calc(0.6rem + 0.1vw), 0.73rem);
-$fs-300: clamp(0.75rem, calc(0.73rem + 0.13vw), 0.88rem);
-$fs-400: clamp(0.9rem, calc(0.87rem + 0.15vw), 1.05rem);
-$fs-500: clamp(1.08rem, calc(1.04rem + 0.18vw), 1.26rem);
-$fs-600: clamp(1.3rem, calc(1.25rem + 0.22vw), 1.51rem);
-$fs-700: clamp(1.56rem, calc(1.5rem + 0.26vw), 1.81rem);
-$fs-800: clamp(1.87rem, calc(1.8rem + 0.31vw), 2.18rem);
-$fs-850: clamp(2.69rem, calc(2.6rem + 0.45vw), 3.14rem);
-$fs-900: clamp(3.23rem, calc(3.12rem + 0.54vw), 3.76rem);
-$fs-950: clamp(3.87rem, calc(3.74rem + 0.64vw), 4.51rem);
+// /* Step -1: 11.67px → 13.33px */
+// $fs-300: clamp(0.7294rem, 0.7086rem + 0.1038vw, 0.8331rem);
+
+// /* Step 0: 14.00px → 16.00px */
+// $fs-400: clamp(0.875rem, 0.85rem + 0.125vw, 1rem);
+
+// /* Step 1: 16.80px → 19.20px */
+// $fs-500: clamp(1.05rem, 1.02rem + 0.15vw, 1.2rem);
+
+// /* Step 2: 20.16px → 23.04px */
+// $fs-600: clamp(1.26rem, 1.224rem + 0.18vw, 1.44rem);
+
+// /* Step 3: 24.19px → 27.65px */
+// $fs-700: clamp(1.5119rem, 1.4686rem + 0.2163vw, 1.7281rem);
+
+// /* Step 4: 29.03px → 33.18px */
+// $fs-800: clamp(1.8144rem, 1.7625rem + 0.2594vw, 2.0738rem);
+
+// /* Step 5: 34.84px → 39.81px */
+// $fs-900: clamp(2.1775rem, 2.1154rem + 0.3106vw, 2.4881rem);
+
+/* Step -1: 10.00px → 11.67px */
+$fs-300: clamp(0.625rem, 0.5952rem + 0.1491vw, 0.7294rem);
+
+/* Step 0: 12.00px → 14.00px */
+$fs-400: clamp(0.75rem, 0.7143rem + 0.1786vw, 0.875rem);
+
+/* Step 1: 14.40px → 16.80px */
+$fs-500: clamp(0.86rem, 0.8565rem + 0.214vw, 1rem);
+
+/* Step 2: 17.28px → 20.16px */
+$fs-600: clamp(1.08rem, 1.0286rem + 0.2571vw, 1.26rem);
+
+/* Step 3: 20.74px → 24.19px */
+$fs-700: clamp(1.2963rem, 1.2346rem + 0.308vw, 1.5119rem);
+
+/* Step 4: 24.88px → 29.03px */
+$fs-800: clamp(1.555rem, 1.4809rem + 0.3705vw, 1.8144rem);
+
+/* Step 5: 29.86px → 34.84px */
+$fs-850: clamp(1.8663rem, 1.7773rem + 0.4446vw, 2.1775rem);
+
+/* Step 6: 35.83px → 41.80px */
+$fs-900: clamp(2.2394rem, 2.1328rem + 0.533vw, 2.6125rem);
+
+/* Step 7: 43.00px → 50.16px */
+$fs-950: clamp(2.6875rem, 2.5596rem + 0.6393vw, 3.135rem);
