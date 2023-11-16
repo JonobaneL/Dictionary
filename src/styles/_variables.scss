@@ -8,27 +8,6 @@ $clr-accent: #54a68d;
 $ff-primary: "Montserrat", sans-serif;
 $ff-accent: "Barlow Condensed", sans-serif;
 
-// /* Step -1: 11.67px → 13.33px */
-// $fs-300: clamp(0.7294rem, 0.7086rem + 0.1038vw, 0.8331rem);
-
-// /* Step 0: 14.00px → 16.00px */
-// $fs-400: clamp(0.875rem, 0.85rem + 0.125vw, 1rem);
-
-// /* Step 1: 16.80px → 19.20px */
-// $fs-500: clamp(1.05rem, 1.02rem + 0.15vw, 1.2rem);
-
-// /* Step 2: 20.16px → 23.04px */
-// $fs-600: clamp(1.26rem, 1.224rem + 0.18vw, 1.44rem);
-
-// /* Step 3: 24.19px → 27.65px */
-// $fs-700: clamp(1.5119rem, 1.4686rem + 0.2163vw, 1.7281rem);
-
-// /* Step 4: 29.03px → 33.18px */
-// $fs-800: clamp(1.8144rem, 1.7625rem + 0.2594vw, 2.0738rem);
-
-// /* Step 5: 34.84px → 39.81px */
-// $fs-900: clamp(2.1775rem, 2.1154rem + 0.3106vw, 2.4881rem);
-
 /* Step -1: 10.00px → 11.67px */
 $fs-300: clamp(0.625rem, 0.5952rem + 0.1491vw, 0.7294rem);
 
