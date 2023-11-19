@@ -1,19 +1,19 @@
+@use "../../styles/mixins";
 @import "../../styles/variables";
+
 .log-in {
-  padding: 1.5rem;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
+  @include mixins.background;
   .content {
-    width: 100%;
-    max-width: 27rem;
-    margin: 0 auto;
+    @include mixins.content;
     display: flex;
     gap: 1rem;
     flex-direction: column;
+    justify-content: center;
+    height: 100dvh;
+    padding-inline: 1.6rem;
     .logo {
       align-self: center;
-      width: 80%;
+      width: 60%;
     }
     .password-forgot {
       width: 100%;
@@ -46,22 +46,22 @@
     }
   }
 }
-@media screen and (width > 375px) {
-  .log-in {
-    padding: 1.5rem 2rem;
-  }
-}
-@media screen and (width > 500px) {
-  .log-in {
-    background-image: url("../../images/background.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-color: $clr-surface;
-    .content {
-      padding: 3rem 3rem 1.5rem 3rem;
-      border-radius: 3px;
-      background: $clr-secondary;
-    }
-  }
-}
+// @media screen and (width > 375px) {
+//   .log-in {
+//     padding: 1.5rem 2rem;
+//   }
+// }
+// @media screen and (width > 500px) {
+//   .log-in {
+//     background-image: url("../../images/background.svg");
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     background-size: cover;
+//     background-color: $clr-surface;
+//     .content {
+//       padding: 3rem 3rem 1.5rem 3rem;
+//       border-radius: 3px;
+//       background: $clr-secondary;
+//     }
+//   }
+// }

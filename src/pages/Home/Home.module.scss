@@ -1,27 +1,23 @@
+@use "../../styles/mixins";
 @import "../../styles/variables";
 
-$fs-standart: clamp(0.6rem, 2vw + 1rem, 1.25rem);
-$fs-standart1: clamp(0.25rem, 2vw + 1rem, 1rem);
 .home {
-  background: $clr-primary;
-  min-height: 100dvh;
+  @include mixins.background;
   .content {
-    max-width: 28rem;
-    margin: 0 auto;
-    background: $clr-surface;
-
+    @include mixins.content;
     .main-section {
       padding: 2rem 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 1rem;
       .logo {
         width: 200px;
       }
       .slogan {
         font-size: $fs-800;
         width: 100%;
-        margin: 3rem 0 0.6rem 0;
+        margin: 2rem 0 0 0;
         line-height: 120%;
         font-weight: 500;
         color: $clr-text;
@@ -31,76 +27,15 @@ $fs-standart1: clamp(0.25rem, 2vw + 1rem, 1rem);
           color: $clr-primary;
         }
       }
-      .text1,
-      .advantage2 {
+      .details {
         font-size: $fs-500;
         line-height: 140%;
-
         span {
           color: $clr-primary;
         }
       }
-      .advantage2 {
-        margin-top: 2rem;
-      }
-    }
-
-    .advantage1 {
-      width: 100%;
-      padding: 2rem 20px;
-      background: $clr-primary;
-      .advantage {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        &__img {
-          width: 6.7rem;
-        }
-        &__head {
-          padding-top: 10px;
-          color: #fff;
-          font-family: $ff-accent;
-          font-size: $fs-800;
-          text-wrap: balance;
-          text-align: center;
-        }
-        &__text {
-          color: #fff;
-          font-size: $fs-500;
-          font-weight: 300;
-          text-wrap: balance;
-          text-align: center;
-        }
-      }
-    }
-    .advantage2 {
-      width: 100%;
-      padding: 2rem 20px;
-      // background: $clr-primary;
-      .advantage {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        &__img {
-          width: 6.7rem;
-        }
-        &__head {
-          padding-top: 10px;
-          color: $clr-primary;
-          font-family: $ff-accent;
-          font-size: $fs-800;
-          text-wrap: balance;
-          text-align: center;
-        }
-        &__text {
-          color: $clr-text;
-          font-size: $fs-500;
-          font-weight: 300;
-          text-wrap: balance;
-          text-align: center;
-        }
+      .searching-img {
+        width: 12.5rem;
       }
     }
   }

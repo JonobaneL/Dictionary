@@ -1,57 +1,72 @@
 import { useState, forwardRef } from "react";
-import { InputAdornment, TextField } from "@mui/material";
 import showIcon from "../../images/passwordField/show.svg";
 import hideIcon from "../../images/passwordField/hide.svg";
 import key from "../../images/passwordField/key.svg";
+import styled from "styled-components";
+import { styles } from "../../styles/variables";
+
+const Div = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+`;
+const Input = styled.input`
+  background: ${styles.clrSurface};
+  width: 100%;
+  height: 2.8rem;
+  border: none;
+  border-bottom: 0.1rem solid ${styles.clrPrimary};
+  outline: none;
+  font-size: 0.9rem;
+  padding-left: 0.2rem;
+  padding-right: 1.8rem;
+  -webkit-text-security: square;
+  &:placeholder {
+    font-family: ${styles.ffPrimary};
+  }
+`;
+const Img = styled.img`
+  width: 1.6rem;
+  height: 1.6rem;
+`;
+const PasswordIcon = styled.img`
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+`;
 
 const PasswordInput = forwardRef<HTMLInputElement>((_, ref) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true);
   return (
-    <div style={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
-      <img
-        style={{ width: "24px", marginBottom: "3px" }}
-        src={key}
-        alt="password"
-      />
-      <TextField
-        id="user_password"
-        variant="standard"
+    <Div>
+      <Img src={key} alt="password" />
+      <Input
+        ref={ref}
         type={isPasswordHidden ? "password" : "text"}
-        fullWidth
-        inputRef={ref}
-        style={{ fontFamily: "Inter" }}
-        InputLabelProps={{
-          style: {
-            fontFamily: "Inter",
-          },
-        }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="start">
-              {isPasswordHidden ? (
-                <img
-                  onClick={() => setIsPasswordHidden(false)}
-                  style={{ width: "25px", cursor: "pointer" }}
-                  src={showIcon}
-                  alt="show password"
-                />
-              ) : (
-                <img
-                  onClick={() => setIsPasswordHidden(true)}
-                  style={{ width: "25px", cursor: "pointer" }}
-                  src={hideIcon}
-                  alt="hide password"
-                />
-              )}
-            </InputAdornment>
-          ),
-          style: {
-            fontFamily: "Inter",
-          },
-        }}
-        label="Password"
+        placeholder="Password"
       />
-    </div>
+      {isPasswordHidden ? (
+        <PasswordIcon
+          onClick={() => {
+            setIsPasswordHidden(false);
+          }}
+          src={hideIcon}
+          alt="hide"
+        />
+      ) : (
+        <PasswordIcon
+          onClick={() => {
+            setIsPasswordHidden(true);
+          }}
+          src={showIcon}
+          alt="show"
+        />
+      )}
+    </Div>
   );
 });
 

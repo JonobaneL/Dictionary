@@ -1,37 +1,38 @@
 import { forwardRef } from "react";
-import { TextField } from "@mui/material";
 import user from "../../images/user.svg";
+import styled from "styled-components";
+import { styles } from "../../styles/variables";
+
+const Input = styled.input`
+  background: ${styles.clrSurface};
+  width: 100%;
+  height: 2.8rem;
+  border: none;
+  border-bottom: 0.1rem solid ${styles.clrPrimary};
+  outline: none;
+  font-size: 0.9rem;
+  padding-left: 0.2rem;
+  &:placeholder {
+    font-family: ${styles.ffPrimary};
+  }
+`;
+const Div = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+`;
+const Img = styled.img`
+  width: 1.6rem;
+  height: 1.6rem;
+`;
 
 const EmailInput = forwardRef<HTMLInputElement>((_, ref) => {
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        alignItems: "flex-end",
-        gap: "8px",
-      }}
-    >
-      <img src={user} style={{ width: "24px", marginBottom: "3px" }} alt="" />
-      <TextField
-        id="user_email"
-        size="small"
-        fullWidth
-        label="Email address"
-        variant="standard"
-        inputRef={ref}
-        InputLabelProps={{
-          style: {
-            fontFamily: "Inter",
-          },
-        }}
-        InputProps={{
-          style: {
-            fontFamily: "Inter",
-          },
-        }}
-      />
-    </div>
+    <Div>
+      <Img src={user} alt="userIcon" />
+      <Input ref={ref} type="text" placeholder="Email address" />
+    </Div>
   );
 });
 
