@@ -34,12 +34,13 @@ const SignUp = styled.div`
 const SignUpButton = styled.button`
   color: ${styles.clrPrimary};
   background: transparent;
-  padding: 0.4rem 0.7rem;
+  padding: 0.5rem 0.8rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background 0.2s ease-in-out;
   &:hover {
-    background: ${styles.clrAccent};
+    background: rgba(84, 166, 141, 0.2);
   }
 `;
 const LogIn = () => {
@@ -62,7 +63,7 @@ const LogIn = () => {
           </Button>
         </Form>
         <SignUp>
-          <p>Don't have an account</p>
+          <p>Don't have an account?</p>
           <SignUpButton>Sign Up</SignUpButton>
         </SignUp>
       </div>
