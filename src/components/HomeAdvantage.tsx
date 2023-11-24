@@ -1,8 +1,8 @@
 import { useRef } from "react";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import styles from "./HomeAdvantage.module.scss";
-import arrowPrimary from "../../images/advantages/arrow-primary.svg";
-import arrowWhite from "../../images/advantages/arrow-white.svg";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import styles from "../assets/styles/components/HomeAdvantage.module.scss";
+import arrowPrimary from "../assets/images/advantages/arrow-primary.svg";
+import arrowWhite from "../assets/images/advantages/arrow-white.svg";
 
 type advantageProps = {
   advantage: {

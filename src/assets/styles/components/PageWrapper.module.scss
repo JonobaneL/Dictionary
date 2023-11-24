@@ -1,0 +1,8 @@
+@use "../mixins";
+
+.wrapper {
+  @include mixins.wrapper;
+  .content {
+    @include mixins.content;
+  }
+}

@@ -1,9 +1,9 @@
 import { useState, forwardRef } from "react";
-import showIcon from "../../images/passwordField/show.svg";
-import hideIcon from "../../images/passwordField/hide.svg";
-import key from "../../images/passwordField/key.svg";
+import showIcon from "../assets/images/passwordField/show.svg";
+import hideIcon from "../assets/images/passwordField/hide.svg";
+import key from "../assets/images/passwordField/key.svg";
 import styled from "styled-components";
-import { styles } from "../../styles/variables";
+import { styles } from "../assets/styles/variables";
 
 const Div = styled.div`
   width: 100%;
@@ -22,7 +22,6 @@ const Input = styled.input`
   font-size: 0.9rem;
   padding-left: 0.2rem;
   padding-right: 1.8rem;
-  -webkit-text-security: square;
   &:placeholder {
     font-family: ${styles.ffPrimary};
   }

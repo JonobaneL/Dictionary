@@ -1,7 +1,7 @@
-import quiz from "../../images/advantages/quiz.svg";
-import difference from "../../images/advantages/difference.svg";
-import notification from "../../images/advantages/notifications.svg";
-import HomeAdvantage from "../HomeAdvantage/HomeAdvantage";
+import quiz from "../assets/images/advantages/quiz.svg";
+import difference from "../assets/images/advantages/difference.svg";
+import notification from "../assets/images/advantages/notifications.svg";
+import HomeAdvantage from "./HomeAdvantage";
 
 const HomeAdvantages = () => {
   const advantages = [

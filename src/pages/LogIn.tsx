@@ -1,11 +1,11 @@
 import { useRef } from "react";
-import logo from "../../images/logo.svg";
-import standartStyles from "./LogIn.module.scss";
-import { styles } from "../../styles/variables";
-import EmailInput from "../../components/EmailInput/EmailInput";
-import PasswordInput from "../../components/PasswordInput/PasswordInput";
+import logo from "../assets/images/logo.svg";
+import standartStyles from "../assets/styles/pages/LogIn.module.scss";
+import { styles } from "../assets/styles/variables";
+import EmailInput from "../components/EmailInput";
+import PasswordInput from "../components/PasswordInput";
 import styled from "styled-components";
-import Button from "../../components/UI/Button/Button";
+import Button from "../components/UI/Button";
 
 const Form = styled.form`
   display: flex;
@@ -52,21 +52,19 @@ const LogIn = () => {
   };
   return (
     <div className={standartStyles["log-in"]}>
-      <div className={standartStyles.content}>
-        <img className={standartStyles.logo} src={logo} alt="" />
-        <Form onSubmit={submitHandler}>
-          <EmailInput ref={emailRef} />
-          <PasswordInput ref={passwordRef} />
-          <Span>Forgot Password?</Span>
-          <Button mode="primary" width="60%">
-            Log In
-          </Button>
-        </Form>
-        <SignUp>
-          <p>Don't have an account?</p>
-          <SignUpButton>Sign Up</SignUpButton>
-        </SignUp>
-      </div>
+      <img className={standartStyles.logo} src={logo} alt="" />
+      <Form onSubmit={submitHandler}>
+        <EmailInput ref={emailRef} />
+        <PasswordInput ref={passwordRef} />
+        <Span>Forgot Password?</Span>
+        <Button mode="primary" width="60%">
+          Log In
+        </Button>
+      </Form>
+      <SignUp>
+        <p>Don't have an account?</p>
+        <SignUpButton>Sign Up</SignUpButton>
+      </SignUp>
     </div>
   );
 };

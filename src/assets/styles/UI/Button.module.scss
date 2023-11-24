@@ -1,4 +1,4 @@
-@import "../../../styles/variables";
+@import "../variables";
 
 .button {
   width: 100%;
@@ -8,19 +8,19 @@
   border-radius: 12px;
   font-weight: 500;
   cursor: pointer;
-  transition: translate 0.2s ease-out;
+  transition: translate 0.2s ease-in-out;
   &.primary {
     background: $clr-primary;
     color: #fff;
     &:hover {
-      translate: 0 -1px;
+      translate: 0 -3px;
     }
   }
   &.secondary {
     background: $clr-secondary;
     color: $clr-text;
     &:hover {
-      translate: 0 -1px;
+      translate: 0 -3px;
     }
   }
 }

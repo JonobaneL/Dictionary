@@ -1,0 +1,17 @@
+@use "../mixins";
+@import "../variables";
+
+.log-in {
+  align-self: center;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  .logo {
+    align-self: center;
+    width: 60%;
+  }
+}

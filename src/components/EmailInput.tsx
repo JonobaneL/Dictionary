@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
-import user from "../../images/user.svg";
+import user from "../assets/images/user.svg";
 import styled from "styled-components";
-import { styles } from "../../styles/variables";
+import { styles } from "../assets/styles/variables";
 
 const Input = styled.input`
   background: ${styles.clrSurface};

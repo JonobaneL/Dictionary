@@ -1,18 +1,26 @@
 import React from "react";
-import styles from "./Button.module.scss";
+import styles from "../../assets/styles/UI/Button.module.scss";
 
 type ButtonProps = {
   mode: "primary" | "secondary";
   width?: string;
   height?: string;
+  align?: string;
   children: React.ReactNode;
 } & React.ComponentPropsWithoutRef<"button">;
 
-const Button = ({ mode, height, width, children, ...props }: ButtonProps) => {
+const Button = ({
+  mode,
+  height,
+  width,
+  align = "left",
+  children,
+  ...props
+}: ButtonProps) => {
   return (
     <button
       {...props}
-      style={{ height: height, width: width }}
+      style={{ height: height, width: width, justifySelf: align }}
       className={`${styles.button} ${styles[mode]}`}
     >
       {children}
