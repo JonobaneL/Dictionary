@@ -10,12 +10,13 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-src/assets/images
 *.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+src/assets/images
+images*
 .idea
 .DS_Store
 *.suo
