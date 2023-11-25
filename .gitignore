@@ -24,3 +24,6 @@ images*
 *.njsproj
 *.sln
 *.sw?
+*.svg
+*.png
+*.jpg
