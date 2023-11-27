@@ -9,8 +9,10 @@
   grid-template-columns: 100%;
   color: $clr-text;
   h3 {
+    font-family: $ff-accent;
     margin-bottom: 0.5rem;
-    font-size: $fs-500;
+    font-size: $fs-600;
+    letter-spacing: 0.015rem;
     font-weight: 500;
   }
   .word {
