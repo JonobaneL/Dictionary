@@ -1,91 +1,80 @@
+import { useState } from "react";
 import styles from "../assets/styles/pages/Dashboard.module.scss";
 import logo from "../assets/images/logo.svg";
 import RandomWord from "../components/RandomWord";
 import DashboardSearch from "../components/DashboardSearch";
-import food from "../assets/images/categories/food.svg";
-import sport from "../assets/images/categories/sport.svg";
-import animal from "../assets/images/categories/animal.svg";
+import Button from "../components/UI/Button";
 
 const Dashboard = () => {
+  const [categoryIndex, setCategoryIndex] = useState(0);
+  const itemsToShow = 6;
   const categories = [
     {
-      name: "Food and Cooking",
-      icon: food,
+      name: "Food & Cooking",
+      icon: "../src/assets/images/categories/food.jpg",
     },
     {
-      name: "Sports and Recreation",
-      icon: sport,
+      name: "Sports & Recreation",
+      icon: "../src/assets/images/categories/sport.jpg",
     },
     {
-      name: "Animals and Nature",
-      icon: animal,
+      name: "Animals & Nature",
+      icon: "../src/assets/images/categories/animal.jpg",
     },
     {
-      name: "Travel and Places",
-      icon: "",
+      name: "Travel & Places",
+      icon: "../src/assets/images/categories/travel.jpg",
     },
     {
-      name: "Technology and Gadgets",
-      icon: "",
+      name: "Technology & Gadgets",
+      icon: "../src/assets/images/categories/tech.jpg",
     },
     {
-      name: "Health and Fitness",
-      icon: "",
+      name: "Health & Fitness",
+      icon: "../src/assets/images/categories/health.jpg",
     },
     {
-      name: "Hobbies and Interests",
-      icon: "",
+      name: "Hobbies & Interests",
+      icon: "../src/assets/images/categories/hobbi.jpg",
     },
     {
-      name: "Family and Relationships",
-      icon: "",
+      name: "Family & Relationships",
+      icon: "../src/assets/images/categories/family.jpg",
     },
     {
-      name: "Home and Everyday Items",
-      icon: "",
+      name: "Home & Everyday Items",
+      icon: "../src/assets/images/categories/home.jpg",
     },
     {
-      name: "Weather and Seasons",
-      icon: "",
+      name: "Weather & Seasons",
+      icon: "../src/assets/images/categories/weather.jpg",
     },
     {
-      name: "Colors and Art",
-      icon: "",
+      name: "Colors & Art",
+      icon: "../src/assets/images/categories/art.jpg",
     },
     {
-      name: "Numbers and Mathematics",
-      icon: "",
+      name: "Clothing & Fashion",
+      icon: "../src/assets/images/categories/clothes.jpg",
     },
     {
-      name: "Clothing and Fashion",
-      icon: "",
-    },
-    {
-      name: "Jobs and Occupations",
-      icon: "",
+      name: "Jobs & Occupations",
+      icon: "../src/assets/images/categories/job.jpg",
     },
     {
       name: "Transportation",
-      icon: "",
+      icon: "../src/assets/images/categories/taxi.jpg",
     },
     {
-      name: "Music and Instruments",
-      icon: "",
+      name: "Music & Instruments",
+      icon: "../src/assets/images/categories/music.jpg",
     },
     {
-      name: "Movies and Entertainment",
-      icon: "",
+      name: "School & Education",
+      icon: "../src/assets/images/categories/education.jpg",
     },
     {
-      name: "School and Education",
-      icon: "",
-    },
-    {
-      name: "Celebrations and Holidays",
-      icon: "",
-    },
-    {
-      name: "Colors and Shapes",
+      name: "Colors & Shapes",
       icon: "",
     },
   ] as const;
@@ -100,21 +89,38 @@ const Dashboard = () => {
           Explore by Themes: Navigate Words through Categories
         </h3>
         <div className={styles["categories-list"]}>
-          {/* <div className={styles.category}></div>
-          <div className={styles.category}></div>
-          <div className={styles.category}></div>
-          <div className={styles.category}></div>
-          <div className={styles.category}></div>
-          <div className={styles.category}></div>
-          <div className={styles.category}></div>
-          <div className={styles.category}></div>
-          <div className={styles.category}></div> */}
-          {categories.map((item, index) => (
-            <div className={styles.category} key={index}>
-              <img src={item.icon} alt={item.name} />
-              {/* <p>{item.name}</p> */}
-            </div>
-          ))}
+          {categories.map((item, index) => {
+            if (index >= categoryIndex && index < categoryIndex + itemsToShow)
+              return (
+                <div
+                  className={styles.category}
+                  style={{
+                    backgroundImage: `linear-gradient(0deg, rgba(63,112,125,0.85) 30%, rgba(255,255,255,0.3) 100%), url(${item.icon})`,
+                  }}
+                  key={index}
+                >
+                  <p>{item.name}</p>
+                </div>
+              );
+          })}
+        </div>
+        <div className={styles["categories-nav"]}>
+          <Button
+            width="50%"
+            onClick={() => setCategoryIndex((p) => p - itemsToShow)}
+            height="3rem"
+            mode="primary"
+          >
+            Prev
+          </Button>
+          <Button
+            onClick={() => setCategoryIndex((p) => p + itemsToShow)}
+            width="50%"
+            height="3rem"
+            mode="primary"
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>
