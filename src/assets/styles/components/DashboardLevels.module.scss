@@ -1,0 +1,36 @@
+@import "../variables";
+.english-levels {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  .title {
+    text-wrap: balance;
+    font-size: $fs-700;
+    color: $clr-primary;
+    font-family: $ff-accent;
+    font-weight: 500;
+    letter-spacing: 0.015rem;
+  }
+  .levels-list {
+    display: grid;
+    margin-top: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    .level {
+      font-weight: 900;
+      font-size: 4.8rem;
+      font-family: $ff-accent;
+      color: $clr-surface;
+      -webkit-text-stroke: 0.15rem $clr-accent;
+      text-stroke: 0.15rem $clr-accent;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (width < 360px) {
+  .english-levels .levels-list .level {
+    font-size: 4.5rem;
+    -webkit-text-stroke: 0.13rem $clr-accent;
+    text-stroke: 0.13rem $clr-accent;
+  }
+}

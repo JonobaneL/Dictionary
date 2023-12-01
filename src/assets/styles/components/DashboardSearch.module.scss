@@ -46,7 +46,8 @@
       .item {
         position: absolute;
         color: #828482;
-        translate: 0 50%;
+        top: 50%;
+        translate: 0 -50%;
         opacity: 0;
         transition: opacity 0.4s;
         &.active {

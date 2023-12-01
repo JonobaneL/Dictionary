@@ -1,8 +1,78 @@
 @use "../mixins";
+@import "../variables";
 
 .wrapper {
   @include mixins.wrapper;
+  position: relative;
   .content {
     @include mixins.content;
+  }
+  .navbar {
+    width: 100%;
+    height: 4rem;
+    position: fixed;
+    bottom: 0.5rem;
+    z-index: 1000;
+
+    .navbar-content {
+      margin: 0 auto;
+      background: $clr-primary;
+      width: 100%;
+      height: inherit;
+      max-width: 30rem;
+      border-top-right-radius: 0.7rem;
+      border-top-left-radius: 0.7rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      padding-inline: 2rem;
+      .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        img {
+          width: 2rem;
+          cursor: pointer;
+        }
+        p {
+          color: #fff;
+          cursor: pointer;
+
+          font-size: $fs-300;
+        }
+      }
+    }
+    .navbar-content-rounded {
+      margin: 0 auto;
+      background: $clr-primary;
+      width: 80%;
+      height: inherit;
+      max-width: 22rem;
+      border-radius: 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      align-items: center;
+      justify-items: center;
+      // padding-inline: 0.8rem;
+      padding: 0.2rem 0.8rem;
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // background-color: $clr-surface;
+        width: 3rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        img {
+          width: 2rem;
+          cursor: pointer;
+        }
+        &.active {
+          background-color: #fff;
+        }
+      }
+    }
   }
 }

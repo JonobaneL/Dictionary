@@ -8,46 +8,4 @@
     width: 60%;
     margin: 0 auto 2rem auto;
   }
-  .word-categories {
-    .title {
-      text-wrap: balance;
-      font-size: $fs-700;
-      color: $clr-primary;
-      font-family: $ff-accent;
-      font-weight: 500;
-      letter-spacing: 0.015rem;
-      margin-top: 2rem;
-    }
-    .categories-list {
-      margin-top: 1rem;
-      display: grid;
-      gap: 0.6rem;
-      grid-template-columns: 1fr 1fr;
-      .category {
-        width: 100%;
-        aspect-ratio: 1/1;
-        border-radius: 0.3rem;
-        cursor: pointer;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-        p {
-          text-align: center;
-          font-weight: 600;
-          font-size: $fs-800;
-          color: $clr-surface;
-          font-family: $ff-accent;
-        }
-      }
-    }
-    .categories-nav {
-      margin-top: 1rem;
-      display: flex;
-      gap: 0.2rem;
-    }
-  }
 }
