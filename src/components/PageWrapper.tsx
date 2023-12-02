@@ -1,48 +1,74 @@
 import { ReactNode } from "react";
 import styles from "../assets/styles/components/PageWrapper.module.scss";
-import home from "../assets/images/navbar/home.svg";
-import bell from "../assets/images/navbar/bell.svg";
-import quiz from "../assets/images/navbar/quiz.svg";
-import user from "../assets/images/navbar/user.svg";
+import Navbar from "./Navbar";
 
 type PageWrapperProps = {
   children: ReactNode;
 };
 
 const PageWrapper = ({ children }: PageWrapperProps) => {
+  const iconColor = "#fff";
+  const iconActiveColor = "#3f707d";
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>{children}</div>
-      <div className={styles.navbar}>
-        {/* <div className={styles["navbar-content"]}>
-          <div className={styles.nav}>
-            <img src={home} alt="Home" />
-          </div>
-          <div className={styles.nav}>
-            <img src={quiz} alt="Quizzes" />
-          </div>
-          <div className={styles.nav}>
-            <img src={bell} alt="Remind" />
-          </div>
-          <div className={styles.nav}>
-            <img src={user} alt="User" />
-          </div>
-        </div> */}
-        <div className={styles["navbar-content-rounded"]}>
-          <div className={`${styles.nav} ${styles.active}`}>
-            <img src={home} alt="Home" />
-          </div>
-          <div className={styles.nav}>
-            <img src={quiz} alt="Quizzes" />
-          </div>
-          <div className={styles.nav}>
-            <img src={bell} alt="Remind" />
-          </div>
-          <div className={styles.nav}>
-            <img src={user} alt="User" />
-          </div>
+      {/* <div className={styles.navbar}>
+        <div className={styles["nav-list"]}>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              [isActive ? styles.active : "", styles.nav].join(" ")
+            }
+          >
+            {({ isActive }) => (
+              <RiHome5Line
+                size="1.5rem"
+                color={isActive ? iconActiveColor : iconColor}
+              />
+            )}
+          </NavLink>
+          <NavLink
+            to="/quizzes"
+            className={({ isActive }) =>
+              [isActive ? styles.active : "", styles.nav].join(" ")
+            }
+          >
+            {({ isActive }) => (
+              <RiFileList2Line
+                size="1.5rem"
+                color={isActive ? iconActiveColor : iconColor}
+              />
+            )}
+          </NavLink>
+          <NavLink
+            to="/remind"
+            className={({ isActive }) =>
+              [isActive ? styles.active : "", styles.nav].join(" ")
+            }
+          >
+            {({ isActive }) => (
+              <LuBell
+                size="1.5rem"
+                color={isActive ? iconActiveColor : iconColor}
+              />
+            )}
+          </NavLink>
+          <NavLink
+            to="/user-info"
+            className={({ isActive }) =>
+              [isActive ? styles.active : "", styles.nav].join(" ")
+            }
+          >
+            {({ isActive }) => (
+              <LuUser
+                size="1.5rem"
+                color={isActive ? iconActiveColor : iconColor}
+              />
+            )}
+          </NavLink>
         </div>
-      </div>
+      </div> */}
+      <Navbar />
     </div>
   );
 };
