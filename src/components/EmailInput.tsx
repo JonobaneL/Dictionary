@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
-import user from "../assets/images/user.svg";
 import styled from "styled-components";
 import { styles } from "../assets/styles/variables";
+import { LuUserCircle } from "react-icons/lu";
 
 const Input = styled.input`
   background: ${styles.clrSurface};
@@ -22,15 +22,11 @@ const Div = styled.div`
   align-items: center;
   gap: 0.4rem;
 `;
-const Img = styled.img`
-  width: 1.6rem;
-  height: 1.6rem;
-`;
 
 const EmailInput = forwardRef<HTMLInputElement>((_, ref) => {
   return (
     <Div>
-      <Img src={user} alt="userIcon" />
+      <LuUserCircle size="1.6rem" color={styles.clrPrimary} />
       <Input ref={ref} type="text" placeholder="Email address" />
     </Div>
   );

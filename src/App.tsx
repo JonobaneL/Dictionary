@@ -6,9 +6,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <PageWrapper>
-        <DictioanryRoutes />
-      </PageWrapper>
+        <PageWrapper>
+          <DictioanryRoutes />
+        </PageWrapper>
       </BrowserRouter>
     </div>
   );

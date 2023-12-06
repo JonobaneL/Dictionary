@@ -1,9 +1,10 @@
-import { useState, forwardRef } from "react";
-import showIcon from "../assets/images/passwordField/show.svg";
-import hideIcon from "../assets/images/passwordField/hide.svg";
-import key from "../assets/images/passwordField/key.svg";
+import { useState } from "react";
 import styled from "styled-components";
 import { styles } from "../assets/styles/variables";
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
+import { CgKeyhole } from "react-icons/cg";
+import Field from "./UI/Field";
 
 const Div = styled.div`
   width: 100%;
@@ -12,61 +13,61 @@ const Div = styled.div`
   gap: 0.4rem;
   position: relative;
 `;
-const Input = styled.input`
-  background: ${styles.clrSurface};
-  width: 100%;
-  height: 2.8rem;
-  border: none;
-  border-bottom: 0.1rem solid ${styles.clrPrimary};
-  outline: none;
-  font-size: 0.9rem;
-  padding-left: 0.2rem;
-  padding-right: 1.8rem;
-  &:placeholder {
-    font-family: ${styles.ffPrimary};
-  }
-`;
-const Img = styled.img`
-  width: 1.6rem;
-  height: 1.6rem;
-`;
-const PasswordIcon = styled.img`
-  width: 1.6rem;
-  height: 1.6rem;
+
+const Icon = styled.div`
   position: absolute;
+  height: 1.5rem;
   right: 0;
+  top: 50%;
+  translate: 0 -50%;
   cursor: pointer;
 `;
+type PasswordProps = {
+  password: {
+    validathionMessages: string[];
+    isValid: boolean;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur: () => void;
+    isDurty: boolean;
+  };
+};
 
-const PasswordInput = forwardRef<HTMLInputElement>((_, ref) => {
+const PasswordInput = ({ password }: PasswordProps) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true);
   return (
     <Div>
-      <Img src={key} alt="password" />
-      <Input
-        ref={ref}
-        type={isPasswordHidden ? "password" : "text"}
+      <Field
+        value={password.value}
+        onChange={(e) => password.onChange(e)}
+        onBlur={() => password.onBlur()}
+        fieldIcon={<CgKeyhole size="1.5rem" color="#3f707d" />}
         placeholder="Password"
+        type={isPasswordHidden ? "password" : "text"}
       />
       {isPasswordHidden ? (
-        <PasswordIcon
-          onClick={() => {
-            setIsPasswordHidden(false);
-          }}
-          src={hideIcon}
-          alt="hide"
-        />
+        <Icon>
+          <IoEyeOutline
+            size="1.5rem"
+            color={styles.clrPrimary}
+            onClick={() => {
+              setIsPasswordHidden(false);
+            }}
+          />
+        </Icon>
       ) : (
-        <PasswordIcon
-          onClick={() => {
-            setIsPasswordHidden(true);
-          }}
-          src={showIcon}
-          alt="show"
-        />
+        <Icon>
+          <IoEyeOffOutline
+            size="1.5rem"
+            color={styles.clrPrimary}
+            onClick={() => {
+              setIsPasswordHidden(true);
+            }}
+          />
+        </Icon>
       )}
     </Div>
   );
-});
+};
 
 export default PasswordInput;

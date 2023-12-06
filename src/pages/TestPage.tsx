@@ -1,55 +1,83 @@
 import styles from "../assets/styles/pages/TestPage.module.scss";
-import { RiHome5Line } from "react-icons/ri";
-import { LuUser } from "react-icons/lu";
-import { LuBell } from "react-icons/lu";
-import { RiFileList2Line } from "react-icons/ri";
-import { useState } from "react";
+import { LuUserCircle } from "react-icons/lu";
+import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
+import Button from "../components/UI/Button";
+import {
+  logInUser,
+  setUser,
+  signOutUser,
+  signUpUser,
+} from "../store/reducers/userSlice";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
+import Field from "../components/UI/Field";
+import { useInput } from "../hooks/useInput";
+import ValidathioMessage from "../components/UI/ValidathionMessage";
 
 const TestPage = () => {
-  const [index, setIndex] = useState(1);
-  const iconColor = "#fff";
-
-  const iconActiveColor = "#3f707d";
+  const userEmail = "signUptest@mail.com";
+  const userPassword = "123456";
+  const emailInput = useInput(
+    "",
+    { isEmpty: true, isEmail: true, minLength: 6 },
+    "Email"
+  );
+  const dispatch = useTypeDispatch();
+  const handler = () => {
+    dispatch(logInUser({ email: userEmail, password: userPassword }));
+  };
+  const handler1 = () => {
+    dispatch(signOutUser());
+  };
+  const userInfo = useTypeSelector((state) => state.userReducer);
+  //code to get current log-ined user, move somewhere else
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          setUser({
+            isLoading: false,
+            error: null,
+            email: user.email,
+            uid: user.uid,
+          })
+        );
+      }
+      dispatch(
+        setUser({
+          isLoading: false,
+          error: null,
+          email: null,
+          uid: null,
+        })
+      );
+    });
+    return unsubscribe;
+  }, []);
+  // console.log(userInfo);
   return (
     <div className={styles["test-page"]}>
-      <div className={styles.navbar}>
-        <div
-          className={`${styles.nav} ${index == 1 ? styles.active : ""}`}
-          onClick={() => setIndex(1)}
-        >
-          <RiHome5Line
-            size="1.5rem"
-            color={index == 1 ? iconActiveColor : iconColor}
-          />
-        </div>
-        <div
-          className={`${styles.nav} ${index == 2 ? styles.active : ""}`}
-          onClick={() => setIndex(2)}
-        >
-          <RiFileList2Line
-            size="1.5rem"
-            color={index == 2 ? iconActiveColor : iconColor}
-          />
-        </div>
-        <div
-          className={`${styles.nav} ${index == 3 ? styles.active : ""}`}
-          onClick={() => setIndex(3)}
-        >
-          <LuBell
-            size="1.5rem"
-            color={index == 3 ? iconActiveColor : iconColor}
-          />
-        </div>
-        <div
-          className={`${styles.nav} ${index == 4 ? styles.active : ""}`}
-          onClick={() => setIndex(4)}
-        >
-          <LuUser
-            size="1.5rem"
-            color={index == 4 ? iconActiveColor : iconColor}
-          />
-        </div>
-      </div>
+      <LuUserCircle size="1.5rem" color="#3f707d" />
+      <Button mode="primary" height="3.5rem" onClick={() => handler()}>
+        Log In
+      </Button>
+      <Button mode="primary" height="3.5rem" onClick={() => handler1()}>
+        Log Out
+      </Button>
+      <ValidathioMessage
+        durty={emailInput.isDurty}
+        validathionMessages={emailInput.validathionMessages}
+      >
+        <Field
+          fieldIcon={
+            <LuUserCircle size="1.5rem" color="#3f707d" placeholder="Email" />
+          }
+          onBlur={() => emailInput.onBlur()}
+          value={emailInput.value}
+          onChange={(e) => emailInput.onChange(e)}
+        />
+      </ValidathioMessage>
     </div>
   );
 };
