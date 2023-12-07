@@ -1,4 +1,7 @@
 import styles from "../assets/styles/components/DashboardLevels.module.scss";
+import { motion } from "framer-motion";
+import { levelVariants } from "../motionVariants/levelVariants";
+
 const DashboardLevels = () => {
   const english_levels = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
@@ -9,9 +12,17 @@ const DashboardLevels = () => {
       </h3>
       <div className={styles["levels-list"]}>
         {english_levels.map((item, index) => (
-          <div key={index} className={styles.level}>
+          <motion.div
+            key={index}
+            className={styles.level}
+            initial="hidden"
+            whileInView="visible"
+            variants={levelVariants}
+            viewport={{ once: true }}
+            custom={index}
+          >
             {item}
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

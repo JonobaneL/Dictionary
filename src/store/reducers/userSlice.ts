@@ -5,6 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase";
+import { addNewUser } from "../../firebase/userAPI";
 
 type User = {
   uid: string | null;
@@ -18,6 +19,7 @@ type initialStateProps = {
 type UserProps = {
   email: string;
   password: string;
+  name?: string;
 };
 
 const initialState: initialStateProps = {
@@ -38,15 +40,15 @@ export const logInUser = createAsyncThunk<User, UserProps>(
     if (!res.user) return rejectWithValue("no such user");
     const userEmail = res.user.email || null;
     return { email: userEmail, uid: res.user.uid };
-    // return res.user as User;
   }
 );
 
 export const signUpUser = createAsyncThunk<void, UserProps>(
   "user/sign-up",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password, name }, { rejectWithValue }) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      await addNewUser({ uid: res.user.uid, email, name: name || "" });
     } catch (err) {
       rejectWithValue("user isnt created");
     }

@@ -6,5 +6,6 @@
   position: relative;
   .content {
     @include mixins.content;
+    overflow-x: hidden;
   }
 }

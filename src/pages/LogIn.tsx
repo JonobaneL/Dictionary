@@ -1,17 +1,26 @@
 import logo from "../assets/images/logo.svg";
 import styles from "../assets/styles/pages/LogIn.module.scss";
 import LogInForm from "../components/LogInForm";
+import { motion } from "framer-motion";
+import { routesVariants } from "../motionVariants/RoutesVariants";
 
 const LogIn = () => {
   return (
-    <div className={styles["log-in"]}>
+    <motion.div
+      className={styles["log-in"]}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.2 }}
+      variants={routesVariants}
+    >
       <img className={styles.logo} src={logo} alt="" />
       <LogInForm />
       <div className={styles["sign-up"]}>
         <p>Don't have an account?</p>
         <button>Sign Up</button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

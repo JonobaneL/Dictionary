@@ -10,11 +10,6 @@
     gap: 10px;
   }
 
-  &__img {
-    translate: -3rem 0;
-    opacity: 0;
-    transition: all 0.4s ease-in-out 0.2s;
-  }
   &__title {
     padding-top: 10px;
     color: $clr-primary;
@@ -22,8 +17,6 @@
     font-size: $fs-800;
     text-wrap: balance;
     text-align: center;
-    opacity: 0;
-    transition: all 0.4s ease-in-out 0.4s;
   }
   &__description {
     color: $clr-text;
@@ -31,8 +24,6 @@
     font-weight: 300;
     text-wrap: balance;
     text-align: center;
-    opacity: 0;
-    transition: all 0.4s ease-in-out 0.4s;
   }
   .learn-more {
     width: fit-content;
@@ -41,8 +32,6 @@
     flex-direction: column;
     margin-top: 1rem;
     gap: 2px;
-    translate: 0 3rem;
-    transition: all 0.3s ease-in-out 0.4s;
     cursor: pointer;
     p {
       font-size: $fs-300;
@@ -51,7 +40,6 @@
       translate: 0 3px;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease-in-out;
     }
     .arrow {
       width: 20px;
@@ -72,20 +60,6 @@
     }
     advantage__title .learn-more p {
       color: #fff;
-    }
-  }
-  &.visible {
-    .advantage__img {
-      translate: 0 0;
-      opacity: 1;
-    }
-    .advantage__title,
-    .advantage__description {
-      opacity: 1;
-    }
-    .learn-more {
-      translate: 0 0;
-      opacity: 1;
     }
   }
 }

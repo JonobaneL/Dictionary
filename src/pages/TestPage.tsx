@@ -1,16 +1,9 @@
 import styles from "../assets/styles/pages/TestPage.module.scss";
 import { LuUserCircle } from "react-icons/lu";
-import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
+import { useTypeDispatch } from "../hooks/useTypeReduxHooks";
 import Button from "../components/UI/Button";
-import {
-  logInUser,
-  setUser,
-  signOutUser,
-  signUpUser,
-} from "../store/reducers/userSlice";
-import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase";
+import { logInUser, signOutUser } from "../store/reducers/userSlice";
+
 import Field from "../components/UI/Field";
 import { useInput } from "../hooks/useInput";
 import ValidathioMessage from "../components/UI/ValidathionMessage";
@@ -30,31 +23,8 @@ const TestPage = () => {
   const handler1 = () => {
     dispatch(signOutUser());
   };
-  const userInfo = useTypeSelector((state) => state.userReducer);
   //code to get current log-ined user, move somewhere else
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(
-          setUser({
-            isLoading: false,
-            error: null,
-            email: user.email,
-            uid: user.uid,
-          })
-        );
-      }
-      dispatch(
-        setUser({
-          isLoading: false,
-          error: null,
-          email: null,
-          uid: null,
-        })
-      );
-    });
-    return unsubscribe;
-  }, []);
+
   // console.log(userInfo);
   return (
     <div className={styles["test-page"]}>

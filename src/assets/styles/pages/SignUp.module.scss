@@ -12,38 +12,6 @@
       display: block;
       margin: 0 auto 2rem auto;
     }
-    .title {
-      font-size: $fs-700;
-      text-align: center;
-      color: $clr-primary;
-      font-family: $ff-accent;
-      margin-bottom: 2rem;
-    }
-    .sign-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      .field {
-        width: 100%;
-        height: 2.8rem;
-        padding-inline: 0.5rem;
-        background: $clr-secondary;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        border-radius: 0.3rem;
-        font-size: $fs-400;
-        &::placeholder {
-          font-size: $fs-400;
-          color: $clr-primary;
-          opacity: 0.8;
-        }
-      }
-      .submit {
-        display: block;
-        margin: 2rem auto 0 auto;
-        width: 60%;
-      }
-    }
     .log-in {
       margin-top: 2.4rem;
       text-align: center;

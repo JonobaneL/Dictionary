@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import styles from "../assets/styles/components/HomeAdvantage.module.scss";
 import arrowPrimary from "../assets/images/advantages/arrow-primary.svg";
 import arrowWhite from "../assets/images/advantages/arrow-white.svg";
@@ -14,15 +12,8 @@ type advantageProps = {
   };
 };
 const HomeAdvantage = ({ advantage }: advantageProps) => {
-  const advantageRef = useRef<HTMLDivElement | null>(null);
-  const entry = useIntersectionObserver(advantageRef, {});
-  const isVisible = !!entry?.isIntersecting;
   return (
-    <div
-      ref={advantageRef}
-      className={`${styles.advantage} ${isVisible ? styles.visible : ""}`}
-      data-type={advantage.type}
-    >
+    <div className={styles.advantage} data-type={advantage.type}>
       <div className={styles.content}>
         <img
           style={{ width: advantage.imgWidth }}

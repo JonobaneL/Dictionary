@@ -33,7 +33,11 @@ const Home = () => {
           unlock the world of language.
         </p>
 
-        <Button onClick={() => navigate("log-in")} mode="primary" width="15rem">
+        <Button
+          onClick={() => navigate("/dashboard")}
+          mode="primary"
+          width="15rem"
+        >
           Get Started
         </Button>
       </div>
