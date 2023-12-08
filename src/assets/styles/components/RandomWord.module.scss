@@ -14,11 +14,13 @@
     font-size: $fs-600;
     letter-spacing: 0.015rem;
     font-weight: 500;
+    color: $clr-primary;
   }
   .word {
     font-weight: 600;
     color: $clr-primary;
     font-size: $fs-800;
+    text-transform: capitalize;
     cursor: pointer;
   }
   .transcription {

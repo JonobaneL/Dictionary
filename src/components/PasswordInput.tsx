@@ -37,7 +37,7 @@ const PasswordInput = ({ password }: PasswordProps) => {
           {isPasswordHidden ? (
             <IoEyeOutline
               size="1.5rem"
-              color={styles.clrPrimary}
+              color="#3f707d"
               onClick={() => {
                 setIsPasswordHidden(false);
               }}
@@ -45,7 +45,7 @@ const PasswordInput = ({ password }: PasswordProps) => {
           ) : (
             <IoEyeOffOutline
               size="1.5rem"
-              color={styles.clrPrimary}
+              color="#3f707d"
               onClick={() => {
                 setIsPasswordHidden(true);
               }}

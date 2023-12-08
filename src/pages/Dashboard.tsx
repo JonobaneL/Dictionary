@@ -6,8 +6,11 @@ import DashboardCategories from "../components/DashboardCategories";
 import DashboardLevels from "../components/DashboardLevels";
 import { motion } from "framer-motion";
 import { routesVariants } from "../motionVariants/RoutesVariants";
+import { useState } from "react";
+import { logoVariants } from "../motionVariants/logoVariants";
 
 const Dashboard = () => {
+  const [isSearchActive, setIsSearchActive] = useState(false);
   return (
     <motion.div
       className={styles.dashboard}
@@ -16,10 +19,17 @@ const Dashboard = () => {
       exit="exit"
       transition={{ duration: 0.2 }}
       variants={routesVariants}
+      layout
     >
-      <img className={styles.logo} src={logo} alt="logo" />
+      <motion.img
+        animate={isSearchActive ? "hidden" : "visible"}
+        className={styles.logo}
+        variants={logoVariants}
+        src={logo}
+        alt="logo"
+      />
 
-      <DashboardSearch />
+      <DashboardSearch setSearchStatus={setIsSearchActive} />
       <RandomWord />
       <DashboardCategories />
       <DashboardLevels />

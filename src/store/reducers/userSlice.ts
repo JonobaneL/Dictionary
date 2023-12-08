@@ -24,7 +24,7 @@ type UserProps = {
 
 const initialState: initialStateProps = {
   user: { email: null, uid: null },
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 

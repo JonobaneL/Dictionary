@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const UserInfo = () => {
   const dispatch = useTypeDispatch();
 
-  const { user } = useTypeSelector((state) => state.userReducer);
+  const { user, isLoading } = useTypeSelector((state) => state.userReducer);
   const logOutHandler = () => {
     dispatch(signOutUser());
   };
@@ -20,8 +20,15 @@ const UserInfo = () => {
       transition={{ duration: 0.2 }}
       variants={routesVariants}
     >
-      <p>{user.email}</p>
-      <p>{user.uid}</p>
+      {!isLoading ? (
+        <>
+          <p>{user.email}</p>
+          <p>{user.uid}</p>
+        </>
+      ) : (
+        <h1>Loading...</h1>
+      )}
+
       <Button mode="secondary" onClick={() => logOutHandler()}>
         Log Out
       </Button>

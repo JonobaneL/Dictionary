@@ -20,10 +20,10 @@ const DictioanryRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          {/* <Route element={<PrivateRoutes />}> */}
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/user-info" element={<UserInfo />} />
-          {/* </Route> */}
+          <Route element={<PrivateRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/user-info" element={<UserInfo />} />
+          </Route>
           <Route path="/test" element={<TestPage />} />
         </Routes>
       </AnimatePresence>

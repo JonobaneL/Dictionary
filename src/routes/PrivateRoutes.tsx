@@ -1,10 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useTypeSelector } from "../hooks/useTypeReduxHooks";
+import Loader from "../components/UI/Loader";
 
 const PrivateRoutes = () => {
-  const { user } = useTypeSelector((state) => state.userReducer);
-  console.log(user);
-  return user.uid ? <Outlet /> : <Navigate to="/log-in" />;
+  const { user, isLoading } = useTypeSelector((state) => state.userReducer);
+
+  if (isLoading === false)
+    return user.uid ? <Outlet /> : <Navigate to="/log-in" />;
+
+  return <Loader />;
 };
 
 export default PrivateRoutes;
