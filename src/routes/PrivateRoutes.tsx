@@ -8,7 +8,7 @@ const PrivateRoutes = () => {
   if (isLoading === false)
     return user.uid ? <Outlet /> : <Navigate to="/log-in" />;
 
-  return <Loader />;
+  return <Loader type="standart" />;
 };
 
 export default PrivateRoutes;

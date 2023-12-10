@@ -14,7 +14,7 @@ const TestPage = lazy(() => import("../pages/TestPage"));
 const DictioanryRoutes = () => {
   const location = useLocation();
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader type="standart" />}>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />

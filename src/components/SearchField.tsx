@@ -13,24 +13,9 @@ const SearchField = ({
   const words = ["Example", "Apple", "Tree", "Understand", "Happy"];
   const [wordIndex, setWordIndex] = useState(0);
   const indexHandler = () => {
-    console.log(wordIndex);
-    // if (wordIndex < words.length - 1) {
-    //   setWordIndex((p) => p + 1);
-    //   return;
-    // } else {
-    //   setWordIndex(0);
-    //   console.log("func");
-    // }
-    // setWordIndex(0);
-    setWordIndex((p) => p + 1);
+    setWordIndex((p) => (p < words.length - 1 ? p + 1 : 0));
   };
-  //   useEffect(() => {
-  //     const interval = setInterval(() => {
-  //         indexHandler();
-  //     //
-  //     }, 1000);
-  //     return () => clearInterval(interval);
-  //   }, []);
+  const interval = useInterval(indexHandler, 3000, []);
   return (
     <div className={styles.search}>
       <input
@@ -42,6 +27,7 @@ const SearchField = ({
         }}
         onBlur={() => {
           setIsFocused(false);
+          onChange("");
           setSearchStatus(false);
         }}
         className={styles.search__field}

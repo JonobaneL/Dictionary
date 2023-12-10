@@ -1,27 +1,38 @@
-import { useEffect, useState } from "react";
 import styles from "../assets/styles/components/RandomWord.module.scss";
+import { WordProps } from "../models/RandomWordProps";
 import { getRandomWord } from "../utils/getRandomWord";
+import Loader from "./UI/Loader";
 
 const RandomWord = () => {
-  //to turn on the fuctionality,uncoment useEffect in this method
-  const randomWord = getRandomWord();
-  console.log(randomWord);
+  //uncoment code below to exit test mode
+  // const { isLoading, randomWord } = getRandomWord();
+  const isLoading = false;
+  const randomWord: WordProps = { word: "Test Mode" };
   return (
     <div className={styles["random-word"]}>
       <h3>Random Word</h3>
-      <p className={styles.word}>{randomWord?.word}</p>
-      {randomWord?.results ? (
+      {isLoading ? (
+        <Loader type="small" />
+      ) : (
         <>
-          <p className={styles.transcription}>
-            <i>{randomWord?.results[0]?.partOfSpeech}</i> [
-            {typeof randomWord?.pronunciation !== "string"
-              ? randomWord.pronunciation?.all
-              : randomWord.pronunciation}
-            ]
-          </p>
-          <i>{randomWord?.results[0]?.definition || ""}</i>
+          <p className={styles.word}>{randomWord?.word}</p>
+          {randomWord?.results ? (
+            <>
+              <p className={styles.transcription}>
+                <i>{randomWord?.results[0]?.partOfSpeech} </i>
+                {randomWord?.pronunciation ? (
+                  typeof randomWord?.pronunciation !== "string" ? (
+                    <>&#91;{randomWord.pronunciation?.all}&#93;</>
+                  ) : (
+                    <>&#91;{randomWord.pronunciation}&#93;</>
+                  )
+                ) : null}
+              </p>
+              <i>{randomWord?.results[0]?.definition || ""}</i>
+            </>
+          ) : null}
         </>
-      ) : null}
+      )}
     </div>
   );
 };

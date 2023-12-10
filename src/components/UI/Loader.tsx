@@ -1,5 +1,11 @@
 import loader from "../../assets/images/loader.svg";
-const Loader = () => {
+import smallLoader from "../../assets/images/small-loader.svg";
+
+type LoaderProps = {
+  type: "standart" | "small";
+};
+
+const Loader = ({ type }: LoaderProps) => {
   return (
     <div
       style={{
@@ -8,7 +14,11 @@ const Loader = () => {
         justifyContent: "center",
       }}
     >
-      <img src={loader} alt="Loading..." />
+      {type == "standart" ? (
+        <img src={loader} alt="Loading..." />
+      ) : (
+        <img src={smallLoader} alt="Loading..." />
+      )}
     </div>
   );
 };

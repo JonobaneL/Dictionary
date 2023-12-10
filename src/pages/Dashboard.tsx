@@ -17,7 +17,7 @@ const Dashboard = () => {
       initial="initial"
       animate="visible"
       exit="exit"
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.25 }}
       variants={routesVariants}
       layout
     >
@@ -29,7 +29,10 @@ const Dashboard = () => {
         alt="logo"
       />
 
-      <DashboardSearch setSearchStatus={setIsSearchActive} />
+      <DashboardSearch
+        searchStatus={isSearchActive}
+        setSearchStatus={setIsSearchActive}
+      />
       <RandomWord />
       <DashboardCategories />
       <DashboardLevels />
