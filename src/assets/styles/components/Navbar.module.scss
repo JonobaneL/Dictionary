@@ -4,7 +4,7 @@
   height: 4rem;
   position: fixed;
   bottom: 0.1rem;
-  z-index: 1000;
+  z-index: 100;
   .nav-list {
     margin: 0 auto;
     width: 70%;
@@ -41,5 +41,10 @@
         }
       }
     }
+  }
+}
+@media screen and (width < 425px) {
+  .navbar .nav-list {
+    width: 80%;
   }
 }

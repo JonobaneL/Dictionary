@@ -1,0 +1,25 @@
+@import "../variables";
+.tabs {
+  width: 100%;
+  .tabs-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    .tab {
+      display: block;
+      position: relative;
+      text-align: center;
+      .link {
+        line-height: 2.5rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-family: $ff-accent;
+        letter-spacing: 0.05rem;
+        color: $clr-primary;
+      }
+    }
+  }
+  .tab-content {
+    margin-top: 1rem;
+  }
+}

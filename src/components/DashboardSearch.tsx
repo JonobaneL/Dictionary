@@ -4,7 +4,7 @@ import SearchField from "./SearchField";
 import { useSearchWord } from "../hooks/useSearchWord";
 import { useReques } from "../hooks/useRequest";
 import { AnimatePresence } from "framer-motion";
-import WordSearchResults from "./WordSearchResults";
+import WordsSearchResult from "./WordsSearchResult";
 
 type DashboardSearchProps = {
   searchStatus: boolean;
@@ -18,18 +18,20 @@ const DashboardSearch = ({
   const [query, setQuery] = useState("");
   const request = useReques(query);
   const { isLoading, words } = useSearchWord(request);
-  console.log(words);
+
   return (
     <div className={styles["dashboard-search"]}>
       <h3>Journey Through Language: Find, Understand, and Learn</h3>
-      <SearchField
-        value={query}
-        onChange={setQuery}
-        setSearchStatus={setSearchStatus}
-      />
+      <div className={styles["search-wrapper"]}>
+        <SearchField
+          value={query}
+          onChange={setQuery}
+          setSearchStatus={setSearchStatus}
+        />
+      </div>
       <AnimatePresence mode="sync">
         {searchStatus && (
-          <WordSearchResults isLoading={isLoading} words={words} />
+          <WordsSearchResult words={words} state={searchStatus} />
         )}
       </AnimatePresence>
     </div>
