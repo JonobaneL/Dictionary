@@ -1,5 +1,6 @@
 @import "../variables";
 .word-details {
+  margin-bottom: 2rem;
   .word-section {
     display: flex;
     align-items: center;
@@ -19,6 +20,9 @@
       align-items: flex-end;
       gap: 0.5rem;
       flex: 0 1 10%;
+      .icon {
+        cursor: pointer;
+      }
     }
   }
   .nav {

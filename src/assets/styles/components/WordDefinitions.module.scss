@@ -1,0 +1,39 @@
+@import "../variables";
+
+.loader {
+  padding: 3rem 0;
+}
+
+.word-definitions {
+  padding-top: 0.3rem;
+  .title {
+    color: $clr-primary;
+  }
+  .meaning {
+    margin-top: 1.4rem;
+    .definitions {
+      margin-top: 1rem;
+      padding-left: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      li {
+        list-style-type: decimal;
+        text-wrap: balance;
+        &::marker {
+          color: $clr-primary;
+          font-weight: 600;
+        }
+        p {
+          line-height: 130%;
+        }
+        .example {
+          display: block;
+          font-weight: 500;
+          margin-top: 0.5rem;
+          color: $clr-primary;
+        }
+      }
+    }
+  }
+}

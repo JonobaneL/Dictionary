@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Loader from "../components/UI/Loader";
 import PrivateRoutes from "./PrivateRoutes";
 import WordDefinitions from "../components/WordDefinitions";
+import WordThesaurus from "../components/WordThesaurus";
 
 const LogIn = lazy(() => import("../pages/LogIn"));
 const SignUp = lazy(() => import("../pages/SignUp"));
@@ -28,7 +29,7 @@ const DictioanryRoutes = () => {
             <Route path="/user-info" element={<UserInfo />} />
             <Route path="word/:word/" element={<WordDetails />}>
               <Route path="definitions" element={<WordDefinitions />} />
-              <Route path="thesaurus" element={<p>thesaurus</p>} />
+              <Route path="thesaurus" element={<WordThesaurus />} />
               <Route path="exmples" element={<p>exmples</p>} />
             </Route>
           </Route>
