@@ -1,0 +1,20 @@
+@import "../variables";
+
+.word-examples {
+  .title {
+    color: $clr-primary;
+  }
+  .examples {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    .example {
+      font-style: italic;
+      font-size: $fs-500;
+    }
+    .example::first-letter {
+      text-transform: capitalize;
+    }
+  }
+}

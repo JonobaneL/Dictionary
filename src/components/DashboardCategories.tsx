@@ -1,16 +1,17 @@
 import { useState } from "react";
-import arrow from "../assets/images/advantages/arrow-primary.svg";
 import styles from "../assets/styles/components/DashboardCategories.module.scss";
 import { categories } from "../data/categories";
+import { motion, progress } from "framer-motion";
+import { MdArrowBackIosNew } from "react-icons/md";
+import { MdArrowForwardIos } from "react-icons/md";
+import { categoryVariants } from "../motionVariants/categoryVariants";
 
 const DashboardCategories = () => {
-  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [categoryIndex, setCategoryIndex] = useState(6);
   const itemsToShow = 6;
-
+  const categoryProgress = progress(0, itemsToShow, categoryIndex);
   const navHandler = (index: number) => {
-    setCategoryIndex((p) => {
-      return p + itemsToShow * index;
-    });
+    setCategoryIndex((p) => p + itemsToShow * index);
   };
   return (
     <div className={styles["word-categories"]}>
@@ -19,36 +20,37 @@ const DashboardCategories = () => {
       </h3>
       <div className={styles["categories-list"]}>
         {categories.map((item, index) => {
-          if (index >= categoryIndex && index < categoryIndex + itemsToShow)
+          const delayIndex = itemsToShow * (categoryProgress - 1);
+          if (index < categoryIndex && index >= categoryIndex - itemsToShow)
             return (
-              <div
-                className={styles.category}
+              <motion.div
+                key={index}
                 style={{
                   backgroundImage: `linear-gradient(0deg, rgba(63,112,125,0.85) 30%, rgba(255,255,255,0.3) 100%), url(${item.icon})`,
                 }}
-                key={index}
+                className={styles.category}
+                initial="hidden"
+                animate="visible"
+                custom={{ index, delayIndex }}
+                variants={categoryVariants}
               >
                 <p>{item.name}</p>
-              </div>
+              </motion.div>
             );
         })}
       </div>
       <div className={styles["categories-nav"]}>
-        <img
-          onClick={() => (categoryIndex > 0 ? navHandler(-1) : null)}
-          className={styles["left-arrow"]}
-          src={arrow}
-          alt="arrow"
+        <MdArrowBackIosNew
+          size="1.3rem"
+          color="#3f707d"
+          className={styles.arrow}
+          onClick={() => categoryIndex > 6 && navHandler(-1)}
         />
-        <img
-          onClick={() =>
-            categoryIndex < categories.length - itemsToShow
-              ? navHandler(1)
-              : null
-          }
-          className={styles["right-arrow"]}
-          src={arrow}
-          alt="arrow"
+        <MdArrowForwardIos
+          size="1.3rem"
+          color="#3f707d"
+          className={styles.arrow}
+          onClick={() => categoryIndex < categories.length && navHandler(1)}
         />
       </div>
     </div>

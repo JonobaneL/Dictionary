@@ -27,11 +27,7 @@ const DictioanryRoutes = () => {
           <Route element={<PrivateRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/user-info" element={<UserInfo />} />
-            <Route path="word/:word/" element={<WordDetails />}>
-              <Route path="definitions" element={<WordDefinitions />} />
-              <Route path="thesaurus" element={<WordThesaurus />} />
-              <Route path="exmples" element={<p>exmples</p>} />
-            </Route>
+            <Route path="word/:word/" element={<WordDetails />} />
           </Route>
           <Route path="/test" element={<TestPage />} />
         </Routes>

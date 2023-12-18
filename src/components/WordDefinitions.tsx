@@ -1,23 +1,11 @@
-import { useParams } from "react-router-dom";
 import styles from "../assets/styles/components/WordDefinitions.module.scss";
-import { getWordDetails } from "../API/wordAPI";
-import Loader from "./UI/Loader";
+import { WordResponse } from "../models/WordTypes";
 
-const WordDefinitions = () => {
-  const { word } = useParams();
-
-  const { isLoading, wordDetails } = getWordDetails(word);
-  console.log(wordDetails);
-  if (isLoading)
-    return (
-      <div className={styles.loader}>
-        <Loader type="small" />
-      </div>
-    );
+const WordDefinitions = ({ word }: { word: WordResponse | undefined }) => {
   return (
     <div className={styles["word-definitions"]}>
-      <h3 className={styles.title}>Definitions for {wordDetails?.word}</h3>
-      {wordDetails?.meanings.map((item, index) => (
+      <h3 className={styles.title}>Definitions for {word?.word}</h3>
+      {word?.meanings.map((item, index) => (
         <div key={index} className={styles.meaning}>
           <i className={styles.partOfSpeech}>{item.partOfSpeech}</i>
           <ol className={styles.definitions}>

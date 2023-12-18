@@ -1,22 +1,22 @@
-export const navbarMenu = [
+import { RiHome5Line } from "react-icons/ri";
+import { LuUser } from "react-icons/lu";
+import { LuBell } from "react-icons/lu";
+import { RiFileList2Line } from "react-icons/ri";
+export const nav = [
   {
-    title: "Home",
-    icon: "../src/assets/images/navbar/home.svg",
+    icon: <RiHome5Line />,
     link: "/dashboard",
   },
   {
-    title: "Quizzes",
-    icon: "../src/assets/images/navbar/quiz.svg",
-    link: "/dashboard",
+    icon: <RiFileList2Line />,
+    link: "/quizes",
   },
   {
-    title: "Remind",
-    icon: "../src/assets/images/navbar/bell.svg",
-    link: "/dashboard",
+    icon: <LuBell />,
+    link: "/remind",
   },
   {
-    title: "John",
-    icon: "../src/assets/images/navbar/user.svg",
-    link: "/dashboard",
+    icon: <LuUser />,
+    link: "/user-info",
   },
 ];

@@ -8,7 +8,7 @@ export const wordDetailsTabs = [
     link: "thesaurus",
   },
   {
-    title: "Exmples",
-    link: "exmples",
+    title: "Examples",
+    link: "examples",
   },
 ];

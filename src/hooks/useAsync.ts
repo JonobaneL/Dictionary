@@ -6,7 +6,7 @@ type AsyncHookResponse<T> = [boolean, Error | undefined, T | undefined];
 export const useAsync = <T>(
   callback: () => Promise<any>,
   dependencies: any[] = [],
-  type: string = "standart"
+  type: "standart" | "firebase"
 ): AsyncHookResponse<T> => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | undefined>();

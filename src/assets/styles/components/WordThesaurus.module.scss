@@ -1,0 +1,42 @@
+@import "../variables";
+
+.word-thesaurus {
+  .synonyms,
+  .antonyms {
+    .title {
+      color: $clr-primary;
+    }
+  }
+  .antonyms {
+    margin-top: 1.2rem;
+  }
+}
+
+.words {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+  .word {
+    height: fit-content;
+    flex: 0 1 fit-content;
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+    background-color: $clr-primary;
+    color: $clr-surface;
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
+  }
+}
+.btn {
+  height: 2.8rem;
+  width: 50%;
+  background: $clr-secondary;
+  color: $clr-primary;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  font-size: $fs-500;
+  display: block;
+  margin: 1rem auto 0 auto;
+}

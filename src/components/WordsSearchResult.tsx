@@ -1,18 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/components/WordsSearchResult.module.scss";
+import { WordsSearchResultProps } from "../models/WordTypes";
 import {
   searchResultsVariants,
   searchResultWrapperVariants,
 } from "../motionVariants/searchResultsVariants";
 import { motion } from "framer-motion";
-type WordsSearchResultProps = {
-  words:
-    | {
-        data: string[];
-        total: number;
-      }
-    | undefined;
-  state: boolean;
-};
 
 const WordsSearchResult = ({ words, state }: WordsSearchResultProps) => {
   if (state == false) {
@@ -20,6 +13,7 @@ const WordsSearchResult = ({ words, state }: WordsSearchResultProps) => {
   } else {
     document.body.style.overflow = "hidden";
   }
+  const navigate = useNavigate();
   return (
     <motion.div
       initial="hidden"
@@ -40,7 +34,9 @@ const WordsSearchResult = ({ words, state }: WordsSearchResultProps) => {
         >
           <ul className={styles["words-list"]}>
             {words?.data.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index} onClick={() => navigate(`/word/${item}`)}>
+                {item}
+              </li>
             ))}
           </ul>
           {words?.total == 0 ? (

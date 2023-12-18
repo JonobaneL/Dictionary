@@ -1,19 +1,24 @@
 @import "../variables";
 
 .test-page {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  // gap: 1rem;
-  padding-inline: 2rem;
-  .valid {
-    color: #cf000f;
-    font-size: 0.8rem;
-    letter-spacing: 0.02rem;
-    text-align: left;
-    width: 100%;
-    padding-left: 2.5rem;
-    margin-top: 0.3rem;
+  padding: 2rem 1.3rem;
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    .category {
+      background: $clr-primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      text-align: center;
+      aspect-ratio: 1/1;
+      p {
+        font-size: $fs-700;
+        font-family: $ff-accent;
+        color: #fff;
+      }
+    }
   }
 }
