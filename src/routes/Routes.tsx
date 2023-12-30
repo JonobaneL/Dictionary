@@ -4,14 +4,13 @@ import { AnimatePresence } from "framer-motion";
 import Home from "../pages/Home";
 import Loader from "../components/UI/Loader";
 import PrivateRoutes from "./PrivateRoutes";
-import WordDefinitions from "../components/WordDefinitions";
-import WordThesaurus from "../components/WordThesaurus";
 
 const LogIn = lazy(() => import("../pages/LogIn"));
 const SignUp = lazy(() => import("../pages/SignUp"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const UserInfo = lazy(() => import("../pages/UserInfo"));
 const WordDetails = lazy(() => import("../pages/WordDetails"));
+const WordPuzzle = lazy(() => import("../pages/WordPuzzle"));
 
 const TestPage = lazy(() => import("../pages/TestPage"));
 
@@ -28,6 +27,7 @@ const DictioanryRoutes = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/user-info" element={<UserInfo />} />
             <Route path="word/:word/" element={<WordDetails />} />
+            <Route path="word-puzzle" element={<WordPuzzle />} />
           </Route>
           <Route path="/test" element={<TestPage />} />
         </Routes>

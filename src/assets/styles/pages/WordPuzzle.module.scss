@@ -1,9 +1,37 @@
 @import "../variables";
 
-.test-page {
+.word-puzzle {
   padding: 2rem 1.3rem;
+  .logo {
+    display: block;
+    width: 60%;
+    margin: 0 auto 1.3rem auto;
+  }
+  .title {
+    color: $clr-primary;
+    text-align: center;
+  }
+  .progress {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    margin-bottom: 1.2rem;
+    .indicator {
+      width: 100%;
+      height: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: $clr-secondary;
+      &::-webkit-progress-bar {
+        background: $clr-primary;
+      }
+      &::-moz-progress-bar {
+        background: $clr-primary;
+      }
+    }
+  }
   .quiz {
-    // background: $clr-primary;
     margin: 0 auto;
     width: 65%;
     border-radius: 1.2rem;
@@ -22,13 +50,6 @@
         color: $clr-primary;
         font-size: 1.2em;
         cursor: default;
-        // &::placeholder {
-        //   font-weight: 700 !important;
-        //   text-transform: uppercase;
-        //   text-align: center;
-        //   color: $clr-primary;
-        //   font-size: 1.2em;
-        // }
       }
     }
     .list {
@@ -85,19 +106,5 @@
         font-weight: 600;
       }
     }
-  }
-}
-
-.progress {
-  width: 100%;
-  height: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: $clr-secondary;
-  &::-webkit-progress-bar {
-    background: $clr-primary;
-  }
-  &::-moz-progress-bar {
-    background: $clr-primary;
   }
 }

@@ -1,14 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import styles from "../assets/styles/pages/TestPage.module.scss";
-
-import { AnimatePresence, mix, motion, progress, wrap } from "framer-motion";
-import { categories } from "../data/categories";
-import Button from "../components/UI/Button";
-
+import styles from "../assets/styles/pages/WordPuzzle.module.scss";
+import logo from "../assets/images/logo.svg";
+import { useState } from "react";
 import { TiArrowShuffle } from "react-icons/ti";
 import { IoArrowBack } from "react-icons/io5";
 
-const TestPage = () => {
+const WordPuzzle = () => {
   const [letters, setLetters] = useState([
     "q",
     "p",
@@ -79,19 +75,20 @@ const TestPage = () => {
   };
 
   return (
-    <div className={styles["test-page"]}>
-      <h2>Word Puzzle</h2>
-      <h4>
-        Progress {progress.length}/{words.length}
-      </h4>
-      <progress
-        className={styles.progress}
-        max={words.length}
-        value={progress.length}
-      >
-        70%
-      </progress>
-      <br />
+    <div className={styles["word-puzzle"]}>
+      <img src={logo} className={styles.logo} alt="logo" />
+      <h2 className={styles.title}>Word Puzzle</h2>
+      <div className={styles.progress}>
+        <h4>
+          {progress.length}/{words.length}
+        </h4>
+        <progress
+          className={styles.indicator}
+          max={words.length}
+          value={progress.length}
+        />
+      </div>
+
       <div className={styles.quiz}>
         <div className={styles.letters}>
           <div className={styles.word}>
@@ -131,4 +128,4 @@ const TestPage = () => {
   );
 };
 
-export default TestPage;
+export default WordPuzzle;
