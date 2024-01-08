@@ -3,6 +3,7 @@ import logo from "../assets/images/logo.svg";
 import { useState } from "react";
 import { TiArrowShuffle } from "react-icons/ti";
 import { IoArrowBack } from "react-icons/io5";
+import ProgressBar from "../components/UI/ProgressBar";
 
 const WordPuzzle = () => {
   const [letters, setLetters] = useState([
@@ -82,11 +83,7 @@ const WordPuzzle = () => {
         <h4>
           {progress.length}/{words.length}
         </h4>
-        <progress
-          className={styles.indicator}
-          max={words.length}
-          value={progress.length}
-        />
+        <ProgressBar maxValue={words.length} progress={progress.length} />
       </div>
 
       <div className={styles.quiz}>

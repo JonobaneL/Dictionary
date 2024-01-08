@@ -1,0 +1,15 @@
+@import "../variables";
+
+.progress {
+  width: 100%;
+  height: 1rem;
+  background: $clr-secondary;
+  border-radius: 1rem;
+  padding: 3px;
+  .indicator {
+    height: 100%;
+    background-color: $clr-primary;
+    border-radius: 1rem;
+    transition: width 0.3s ease-in-out;
+  }
+}

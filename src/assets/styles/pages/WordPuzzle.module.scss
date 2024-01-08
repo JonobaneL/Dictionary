@@ -24,10 +24,12 @@
       border-radius: 5px;
       background-color: $clr-secondary;
       &::-webkit-progress-bar {
-        background: $clr-primary;
+        // background: $clr-primary;
+        background: red;
       }
       &::-moz-progress-bar {
-        background: $clr-primary;
+        // background: $clr-primary;
+        background: red;
       }
     }
   }
