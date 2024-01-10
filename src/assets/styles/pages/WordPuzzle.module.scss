@@ -17,21 +17,6 @@
     justify-content: flex-end;
     gap: 0.4rem;
     margin-bottom: 1.2rem;
-    .indicator {
-      width: 100%;
-      height: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: $clr-secondary;
-      &::-webkit-progress-bar {
-        // background: $clr-primary;
-        background: red;
-      }
-      &::-moz-progress-bar {
-        // background: $clr-primary;
-        background: red;
-      }
-    }
   }
   .quiz {
     margin: 0 auto;
