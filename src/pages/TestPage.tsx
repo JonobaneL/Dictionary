@@ -8,107 +8,32 @@ import Button from "../components/UI/Button";
 import { TiArrowShuffle } from "react-icons/ti";
 import { IoArrowBack } from "react-icons/io5";
 import ProgressBar from "../components/UI/ProgressBar";
+import Notification from "../components/UI/Notification";
 
 const TestPage = () => {
-  // const [letters, setLetters] = useState([
-  //   "q",
-  //   "p",
-  //   "m",
-  //   "x",
-  //   "u",
-  //   "f",
-  //   "e",
-  //   "a",
-  // ]);
-  // const words = [
-  //   "qaf",
-  //   "faux",
-  //   "exam",
-  //   "fax",
-  //   "apex",
-  //   "muxe",
-  //   "pax",
-  //   "qua",
-  //   "max",
-  //   "aux",
-  //   "axe",
-  //   "fame",
-  //   "fume",
-  //   "ex",
-  //   "fupa",
-  //   "emf",
-  //   "fem",
-  //   "fam",
-  //   "puma",
-  //   "pam",
-  //   "map",
-  //   "ump",
-  //   "amp",
-  //   "emu",
-  //   "mae",
-  //   "ape",
-  //   "pea",
-  //   "up",
-  //   "um",
-  //   "am",
-  // ];
-  // const [progress, setProgress] = useState<string[]>([]);
-  // const [word, setWord] = useState<string[]>([]);
-  // const wordHandler = (letter: string) => {
-  //   setWord((p) => {
-  //     if (p.find((item) => item == letter)) {
-  //       return p.filter((item) => item !== letter);
-  //     }
-  //     return [...p, letter];
-  //   });
-  // };
-  // const shuffleLetters = () => {
-  //   const res = letters
-  //     .map((value) => ({ value, sort: Math.random() }))
-  //     .sort((a, b) => a.sort - b.sort)
-  //     .map(({ value }) => value);
-  //   setLetters(res);
-  // };
-  // const checkWord = () => {
-  //   const currentWord = word.join("");
-  //   const wordExist = words.find((item) => item == currentWord);
-  //   const progressExist = progress.find((item) => item == currentWord);
-  //   if (wordExist && !progressExist) {
-  //     setProgress((p) => [...p, currentWord]);
-  //   }
-  //   setWord([]);
-  // };
-  const [progress, setProgress] = useState(0);
-  const progressMax = 30;
-  const currentProgress =
-    progress <= progressMax ? (progress / progressMax) * 100 : 100;
+  const [notification, setNotification] = useState<string | null>(null);
+  const notifications1 = ["Way to go!", "Already found", "Not on the list"];
 
   return (
     <div className={styles["test-page"]}>
-      <h2>Word Puzzle</h2>
-      <br />
-      <br />
-      {/* <div className={styles.progress}>
-        <div
-          className={styles.indicator}
-          style={{
-            width: `${currentProgress}%`,
-          }}
-        />
-      </div> */}
-      <ProgressBar maxValue={100} progress={progress} />
-      <br />
-      <br />
-      <button onClick={() => setProgress(5)}>5</button>
-      <br />
-
-      <button onClick={() => setProgress(10)}>10</button>
-      <br />
-
-      <button onClick={() => setProgress(15)}>15</button>
-      <br />
-
-      <button onClick={() => setProgress(30)}>30</button>
+      <h1>Lorem ipsum</h1>
+      <h2> Lorem ipsum dolor sit amet</h2>
+      <p className={styles.text}>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi quae
+        exercitationem sunt fugit aperiam voluptatibus excepturi animi
+        explicabo, saepe qui laborum officia expedita consequatur quos
+        repellendus. Consectetur maxime atque architecto?
+      </p>
+      <button onClick={() => setNotification("Way to go!")}>
+        Add someting
+      </button>
+      <button onClick={() => setNotification("Already found")}>
+        Add someting
+      </button>
+      <button onClick={() => setNotification("Not on the list")}>
+        Add someting
+      </button>
+      <Notification notification={notification} handler={setNotification} />
     </div>
   );
 };

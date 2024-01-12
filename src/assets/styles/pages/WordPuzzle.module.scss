@@ -2,6 +2,7 @@
 
 .word-puzzle {
   padding: 2rem 1.3rem;
+  overflow: hidden;
   .logo {
     display: block;
     width: 60%;
@@ -18,80 +19,59 @@
     gap: 0.4rem;
     margin-bottom: 1.2rem;
   }
-  .quiz {
-    margin: 0 auto;
-    width: 65%;
-    border-radius: 1.2rem;
-    overflow: hidden;
-    .word {
-      height: 3.6rem;
-      background: $clr-secondary;
-      padding: 0 0.5rem;
-      input {
-        height: 100%;
-        width: 100%;
-        background: transparent;
-        font-weight: 700;
-        text-transform: uppercase;
-        text-align: center;
-        color: $clr-primary;
-        font-size: 1.2em;
-        cursor: default;
-      }
-    }
-    .list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.3rem;
-      margin: 0.3rem 0;
-      .letter {
-        width: 100%;
-        aspect-ratio: 1/1;
-        background: $clr-secondary;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  .end {
+    margin: 1rem 7rem;
+  }
+  .words-found {
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h4 {
         cursor: pointer;
-        &.active {
-          background-color: $clr-primary;
-          p {
-            color: $clr-surface;
-          }
-          &:hover {
-            background: $clr-primary;
-          }
-        }
-        &:hover {
-          background: #cdd3e5;
-        }
-        p {
-          text-transform: uppercase;
+        color: $clr-primary;
+      }
+      button {
+        background: none;
+      }
+    }
+  }
+  .rules {
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h4 {
+        cursor: pointer;
+        color: $clr-primary;
+      }
+      button {
+        background: none;
+      }
+    }
+    .rules__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      li {
+        margin-left: 0.5rem;
+        display: flex;
+
+        &::before {
+          content: "• ";
           color: $clr-primary;
-          font-size: $fs-700;
-          font-weight: 600;
+          display: block;
+          width: 1rem;
+          font-weight: bold;
         }
       }
     }
-    &-nav {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 0.3rem;
-      button {
-        background: $clr-secondary;
-        &:hover {
-          background: #cdd3e5;
-        }
-        &:first-child {
-          width: 100%;
-          aspect-ratio: 1/1;
-        }
-      }
-      .submit {
-        text-transform: uppercase;
-        color: $clr-primary;
-        font-size: $fs-500;
-        font-weight: 600;
-      }
+  }
+}
+@media screen and (width < 768px) {
+  .word-puzzle {
+    .end {
+      margin: 1rem 5rem;
     }
   }
 }

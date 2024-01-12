@@ -76,3 +76,18 @@
     }
   }
 }
+@media screen and (width < 480px) {
+  .quiz {
+    width: 80%;
+  }
+}
+@media screen and (width < 425px) {
+  .quiz {
+    width: 90%;
+    .word {
+      input {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

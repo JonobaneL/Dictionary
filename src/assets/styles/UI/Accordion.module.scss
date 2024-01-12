@@ -1,0 +1,13 @@
+@import "../variables";
+.accordion {
+  width: 100%;
+  .head {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $clr-secondary;
+  }
+  .body {
+    margin-top: 1rem;
+    overflow: hidden;
+  }
+}
