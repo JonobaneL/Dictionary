@@ -4,13 +4,14 @@ import { TiArrowShuffle } from "react-icons/ti";
 import { IoArrowBack } from "react-icons/io5";
 import Notification from "./UI/Notification";
 import { shuffleLetters } from "../utils/wordPuzzleEvents";
+import { useTypeSelector } from "../hooks/useTypeReduxHooks";
 
 type PanelProps = {
-  progress: string[];
   progressHandler: React.Dispatch<React.SetStateAction<string[]>>;
 };
 //split component
-const PuzzlePanel = ({ progress, progressHandler }: PanelProps) => {
+const PuzzlePanel = ({ progressHandler }: PanelProps) => {
+  const { progress, words } = useTypeSelector((state) => state.puzzleReducer);
   const [letters, setLetters] = useState([
     "x",
     "p",
@@ -21,35 +22,35 @@ const PuzzlePanel = ({ progress, progressHandler }: PanelProps) => {
     "e",
     "a",
   ]);
-  const words = [
-    "faux",
-    "exam",
-    "fax",
-    "apex",
-    "qua",
-    "max",
-    "aux",
-    "axe",
-    "fame",
-    "fume",
-    "ex",
-    "fupa",
-    "emf",
-    "fem",
-    "fam",
-    "puma",
-    "pam",
-    "map",
-    "ump",
-    "amp",
-    "emu",
-    "mae",
-    "ape",
-    "pea",
-    "up",
-    "um",
-    "am",
-  ];
+  // const words = [
+  //   "faux",
+  //   "exam",
+  //   "fax",
+  //   "apex",
+  //   "qua",
+  //   "max",
+  //   "aux",
+  //   "axe",
+  //   "fame",
+  //   "fume",
+  //   "ex",
+  //   "fupa",
+  //   "emf",
+  //   "fem",
+  //   "fam",
+  //   "puma",
+  //   "pam",
+  //   "map",
+  //   "ump",
+  //   "amp",
+  //   "emu",
+  //   "mae",
+  //   "ape",
+  //   "pea",
+  //   "up",
+  //   "um",
+  //   "am",
+  // ];
   const [wordLetters, setWordLetters] = useState<number[]>([]);
   const word = wordLetters.reduce((prev, item) => prev + letters[item], "");
   const [notification, setNotificaton] = useState<string | null>(null);
@@ -70,8 +71,11 @@ const PuzzlePanel = ({ progress, progressHandler }: PanelProps) => {
   //     .map(({ value }) => value);
   //   setLetters(res);
   // };
+  const shuffleEvent = () => {
+    shuffleLetters(letters, setLetters, setWordLetters);
+  };
   const checkWord = () => {
-    const wordExist = words.find((item) => item == word);
+    const wordExist = words?.find((item) => item == word);
     const progressExist = progress.find((item) => item == word);
     if (progressExist) {
       setNotificaton("Already found");
@@ -104,9 +108,7 @@ const PuzzlePanel = ({ progress, progressHandler }: PanelProps) => {
         ))}
       </ul>
       <div className={styles["quiz-nav"]}>
-        <button
-          onClick={() => shuffleLetters(letters, setLetters, setWordLetters)}
-        >
+        <button onClick={shuffleEvent}>
           <TiArrowShuffle size="1.5rem" color="#3f707d" />
         </button>
         <button className={styles.submit} onClick={checkWord}>
