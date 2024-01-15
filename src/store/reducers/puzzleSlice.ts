@@ -3,10 +3,10 @@ import { getPuzzleConditions } from "../../firebase/puzzleAPI";
 
 type initialStateProps = {
   isLoading: boolean;
-  letters: string[] | null;
+  letters: string[];
   words: string[] | null;
   progress: string[];
-  wordLetters: number[] | null;
+  wordLetters: number[];
 };
 type PuzzleConditions = {
   words: string[];
@@ -14,10 +14,10 @@ type PuzzleConditions = {
 };
 const initialState: initialStateProps = {
   isLoading: false,
-  letters: null,
+  letters: [],
   words: null,
   progress: [],
-  wordLetters: null,
+  wordLetters: [],
 };
 
 export const setPuzzleConditions = createAsyncThunk<
@@ -39,14 +39,33 @@ const puzzleSlice = createSlice({
       state.words = action.payload.words;
     },
     setPuzzleProgress(state, action) {
-      state.progress = state.progress
-        ? [...state.progress, action.payload]
-        : [action.payload];
+      state.progress = [...state.progress, action.payload];
     },
-    setWordLetters(state, action) {
-      state.wordLetters = state.wordLetters
-        ? [...state.wordLetters, action.payload]
-        : [action.payload];
+    addWordLetter(state, action) {
+      const letter = action.payload;
+      if (!state.wordLetters.find((item) => item == letter)) {
+        state.wordLetters = [...state.wordLetters, letter];
+      }
+    },
+    removeWordLetter(state) {
+      state.wordLetters = state.wordLetters.slice(0, -1);
+    },
+    shuffleLetters(state) {
+      const shuffled = state.letters
+        ?.map((value) => ({ value, sort: Math.random() }))
+        ?.sort((a, b) => a.sort - b.sort)
+        ?.map(({ value }) => value);
+      state.letters = shuffled || null;
+    },
+    checkPuzzleWord(state, action) {
+      const word = action.payload;
+      const wordExist = state.words?.find((item) => item == word);
+      const progressExist = state.progress.find((item) => item == word);
+      if (wordExist && !progressExist) {
+        console.log("exist");
+        state.progress = [...state.progress, action.payload];
+      }
+      state.wordLetters = [];
     },
   },
   extraReducers: (builder) => {
@@ -61,7 +80,13 @@ const puzzleSlice = createSlice({
       });
   },
 });
-export const { setPuzzle, setPuzzleProgress, setWordLetters } =
-  puzzleSlice.actions;
+export const {
+  setPuzzle,
+  setPuzzleProgress,
+  addWordLetter,
+  removeWordLetter,
+  shuffleLetters,
+  checkPuzzleWord,
+} = puzzleSlice.actions;
 
 export default puzzleSlice.reducer;

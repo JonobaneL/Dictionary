@@ -12,30 +12,11 @@
     color: $clr-primary;
     text-align: center;
   }
-  .progress {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.4rem;
-    margin-bottom: 1.2rem;
-  }
+
   .end {
     margin: 1rem 7rem;
   }
-  .words-found {
-    .head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      h4 {
-        cursor: pointer;
-        color: $clr-primary;
-      }
-      button {
-        background: none;
-      }
-    }
-  }
+
   .rules {
     .head {
       display: flex;
@@ -68,6 +49,7 @@
     }
   }
 }
+
 @media screen and (width < 768px) {
   .word-puzzle {
     .end {

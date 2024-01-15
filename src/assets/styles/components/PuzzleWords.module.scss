@@ -1,0 +1,16 @@
+@import "../variables";
+
+.words-found {
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h4 {
+      cursor: pointer;
+      color: $clr-primary;
+    }
+    button {
+      background: none;
+    }
+  }
+}
