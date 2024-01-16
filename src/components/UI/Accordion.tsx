@@ -10,12 +10,16 @@ type AccordionProps = {
 const Accordion = ({ header, children }: AccordionProps) => {
   const [isOpened, setOpened] = useState(false);
   return (
-    <motion.div layout className={styles.accordion}>
+    <div className={styles.accordion}>
       <div className={styles.head} onClick={() => setOpened((p) => !p)}>
         {header}
       </div>
       <motion.div
-        className={styles.body}
+        className={styles["body-wrapper"]}
+        initial={{
+          height: 0,
+          opacity: 0,
+        }}
         animate={
           !isOpened
             ? {
@@ -28,9 +32,9 @@ const Accordion = ({ header, children }: AccordionProps) => {
               }
         }
       >
-        {children}
+        <div className={styles.body}>{children}</div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

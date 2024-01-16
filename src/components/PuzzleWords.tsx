@@ -21,8 +21,8 @@ const PuzzleWords = () => {
       >
         <ul className={styles["words"]}>
           {progress.map((item, index) => (
-            <li key={index} onClick={() => navigate(`word/${item}`)}>
-              {item}
+            <li key={index}>
+              <p onClick={() => navigate(`/word/${item}`)}>{item}</p>
             </li>
           ))}
         </ul>

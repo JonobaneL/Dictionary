@@ -12,41 +12,14 @@
     color: $clr-primary;
     text-align: center;
   }
-
+  .loader {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .end {
     margin: 1rem 7rem;
-  }
-
-  .rules {
-    .head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      h4 {
-        cursor: pointer;
-        color: $clr-primary;
-      }
-      button {
-        background: none;
-      }
-    }
-    .rules__list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-      li {
-        margin-left: 0.5rem;
-        display: flex;
-
-        &::before {
-          content: "• ";
-          color: $clr-primary;
-          display: block;
-          width: 1rem;
-          font-weight: bold;
-        }
-      }
-    }
   }
 }
 

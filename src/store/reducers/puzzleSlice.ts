@@ -6,6 +6,7 @@ type initialStateProps = {
   letters: string[];
   words: string[] | null;
   progress: string[];
+  puzzleLevel: number;
   wordLetters: number[];
 };
 type PuzzleConditions = {
@@ -17,6 +18,7 @@ const initialState: initialStateProps = {
   letters: [],
   words: null,
   progress: [],
+  puzzleLevel: 0,
   wordLetters: [],
 };
 
@@ -43,8 +45,10 @@ const puzzleSlice = createSlice({
     },
     addWordLetter(state, action) {
       const letter = action.payload;
-      if (!state.wordLetters.find((item) => item == letter)) {
-        state.wordLetters = [...state.wordLetters, letter];
+      const check = state.wordLetters.find((item) => item == letter);
+      state.wordLetters = [...state.wordLetters, letter];
+      if (check != undefined) {
+        state.wordLetters = state.wordLetters.filter((item) => item !== letter);
       }
     },
     removeWordLetter(state) {
@@ -62,7 +66,6 @@ const puzzleSlice = createSlice({
       const wordExist = state.words?.find((item) => item == word);
       const progressExist = state.progress.find((item) => item == word);
       if (wordExist && !progressExist) {
-        console.log("exist");
         state.progress = [...state.progress, action.payload];
       }
       state.wordLetters = [];
@@ -75,8 +78,11 @@ const puzzleSlice = createSlice({
       })
       .addCase(setPuzzleConditions.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.letters = action.payload.letters;
-        state.words = action.payload.words;
+        const { words, letters } = action.payload;
+        state.letters = letters;
+        state.words = words;
+        const level = words ? Math.floor(words.length / 2) : 0;
+        state.puzzleLevel = level > 30 ? 30 : level;
       });
   },
 });

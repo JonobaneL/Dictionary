@@ -1,6 +1,6 @@
 @import "../variables";
 
-.words-found {
+.rules {
   .head {
     display: flex;
     align-items: center;
@@ -13,16 +13,20 @@
       background: none;
     }
   }
-  .words {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    p {
-      width: fit-content;
-      color: $clr-text;
-      font-weight: 600;
-      cursor: default;
-      &:hover {
+  .rules__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    li {
+      margin-left: 0.5rem;
+      display: flex;
+
+      &::before {
+        content: "• ";
         color: $clr-primary;
+        display: block;
+        width: 1rem;
+        font-weight: bold;
       }
     }
   }
