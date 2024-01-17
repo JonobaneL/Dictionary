@@ -3,6 +3,7 @@ import styles from "../assets/styles/components/PuzzleWords.module.scss";
 import Accordion from "./UI/Accordion";
 import { useTypeSelector } from "../hooks/useTypeReduxHooks";
 import { useNavigate } from "react-router-dom";
+import WordsList from "./UI/WordsList";
 
 const PuzzleWords = () => {
   const { progress } = useTypeSelector((state) => state.puzzleReducer);
@@ -19,13 +20,7 @@ const PuzzleWords = () => {
           </div>
         }
       >
-        <ul className={styles["words"]}>
-          {progress.map((item, index) => (
-            <li key={index}>
-              <p onClick={() => navigate(`/word/${item}`)}>{item}</p>
-            </li>
-          ))}
-        </ul>
+        <WordsList words={progress} />
       </Accordion>
     </div>
   );

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getPuzzleConditions } from "../../firebase/puzzleAPI";
 
 type initialStateProps = {
+  puzzleID: string | null;
   isLoading: boolean;
   letters: string[];
   words: string[] | null;
@@ -12,8 +13,10 @@ type initialStateProps = {
 type PuzzleConditions = {
   words: string[];
   letters: string[];
+  puzzleID: string;
 };
 const initialState: initialStateProps = {
+  puzzleID: null,
   isLoading: false,
   letters: [],
   words: null,
@@ -29,7 +32,7 @@ export const setPuzzleConditions = createAsyncThunk<
   const res = await getPuzzleConditions();
   const condions = res.data();
   if (!condions) return rejectWithValue("no such puzzle");
-  return { words: condions.words, letters: condions.letters };
+  return { words: condions.words, letters: condions.letters, puzzleID: res.id };
 });
 
 const puzzleSlice = createSlice({
@@ -40,14 +43,14 @@ const puzzleSlice = createSlice({
       state.letters = action.payload.letters;
       state.words = action.payload.words;
     },
-    setPuzzleProgress(state, action) {
-      state.progress = [...state.progress, action.payload];
+    clearPuzzleProgress(state) {
+      state.progress = [];
     },
     addWordLetter(state, action) {
       const letter = action.payload;
-      const check = state.wordLetters.find((item) => item == letter);
+      const check = state.wordLetters.includes(letter);
       state.wordLetters = [...state.wordLetters, letter];
-      if (check != undefined) {
+      if (check) {
         state.wordLetters = state.wordLetters.filter((item) => item !== letter);
       }
     },
@@ -63,8 +66,8 @@ const puzzleSlice = createSlice({
     },
     checkPuzzleWord(state, action) {
       const word = action.payload;
-      const wordExist = state.words?.find((item) => item == word);
-      const progressExist = state.progress.find((item) => item == word);
+      const wordExist = state.words?.includes(word);
+      const progressExist = state.progress.includes(word);
       if (wordExist && !progressExist) {
         state.progress = [...state.progress, action.payload];
       }
@@ -77,10 +80,11 @@ const puzzleSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(setPuzzleConditions.fulfilled, (state, action) => {
+        const { words, letters, puzzleID } = action.payload;
         state.isLoading = false;
-        const { words, letters } = action.payload;
         state.letters = letters;
         state.words = words;
+        state.puzzleID = puzzleID;
         const level = words ? Math.floor(words.length / 2) : 0;
         state.puzzleLevel = level > 30 ? 30 : level;
       });
@@ -88,7 +92,7 @@ const puzzleSlice = createSlice({
 });
 export const {
   setPuzzle,
-  setPuzzleProgress,
+  clearPuzzleProgress,
   addWordLetter,
   removeWordLetter,
   shuffleLetters,

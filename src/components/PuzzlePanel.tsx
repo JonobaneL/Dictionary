@@ -17,7 +17,7 @@ const PuzzlePanel = () => {
   );
   const dispatch = useTypeDispatch();
   const word = wordLetters.reduce((prev, item) => prev + letters[item], "");
-  const [notification, setNotificaton] = useState<string | null>(null);
+  const [notification, setNotification] = useState<string | null>(null);
   const wordHandler = (letter: number) => {
     dispatch(addWordLetter(letter));
   };
@@ -25,17 +25,14 @@ const PuzzlePanel = () => {
     dispatch(shuffleLetters());
   };
   const checkWord = () => {
-    const wordExist = words?.find((item) => item == word);
-    const progressExist = progress.find((item) => item == word);
-    if (progressExist) {
-      setNotificaton("Already found");
-    }
-    if (!wordExist) {
-      setNotificaton("Not on the list");
-    }
-    if (wordExist && !progressExist) {
-      setNotificaton("Way to go!");
-    }
+    const wordExist = words?.includes(word);
+    const progressExist = progress.includes(word);
+    const notificationMessage = progressExist
+      ? "Already found"
+      : !wordExist
+      ? "Not on the list"
+      : "Way to go!";
+    setNotification(notificationMessage);
     dispatch(checkPuzzleWord(word));
   };
   const removeLetter = () => {
@@ -72,7 +69,7 @@ const PuzzlePanel = () => {
       </div>
       <Notification
         notification={notification}
-        handler={setNotificaton}
+        handler={setNotification}
         closeTime={1}
       />
     </div>
