@@ -9,31 +9,26 @@ import { TiArrowShuffle } from "react-icons/ti";
 import { IoArrowBack } from "react-icons/io5";
 import ProgressBar from "../components/UI/ProgressBar";
 import Notification from "../components/UI/Notification";
+import { getAllPuzzles } from "../firebase/puzzleAPI";
+
+type PuzzleProps = {
+  puzzleID: string;
+  letters: string[];
+  words: string[];
+};
 
 const TestPage = () => {
-  const [notification, setNotification] = useState<string | null>(null);
-  const notifications1 = ["Way to go!", "Already found", "Not on the list"];
+  const generateRandomID = (currentID: string, completedID: string) => {
+    let id = "";
+    while (currentID) {}
+  };
+  const getPuzzleID = () => {
+    const puzzles = [{ id: "1" }, { id: "2" }, { id: "3" }];
+  };
 
   return (
     <div className={styles["test-page"]}>
       <h1>Lorem ipsum</h1>
-      <h2> Lorem ipsum dolor sit amet</h2>
-      <p className={styles.text}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi quae
-        exercitationem sunt fugit aperiam voluptatibus excepturi animi
-        explicabo, saepe qui laborum officia expedita consequatur quos
-        repellendus. Consectetur maxime atque architecto?
-      </p>
-      <button onClick={() => setNotification("Way to go!")}>
-        Add someting
-      </button>
-      <button onClick={() => setNotification("Already found")}>
-        Add someting
-      </button>
-      <button onClick={() => setNotification("Not on the list")}>
-        Add someting
-      </button>
-      <Notification notification={notification} handler={setNotification} />
     </div>
   );
 };

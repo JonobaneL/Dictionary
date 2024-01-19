@@ -9,7 +9,7 @@ import Loader from "../components/UI/Loader";
 import PuzzleProgress from "../components/PuzzleProgress";
 import PuzzleWords from "../components/PuzzleWords";
 import PuzzleRules from "../components/PuzzleRules";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const WordPuzzle = () => {
   const dispatch = useTypeDispatch();
@@ -17,9 +17,12 @@ const WordPuzzle = () => {
     (state) => state.puzzleReducer
   );
   const navigate = useNavigate();
+  const location = useLocation();
+  const puzzleID = location.state ? location.state.puzzleID : undefined;
+  console.log(puzzleID);
 
   useEffect(() => {
-    dispatch(setPuzzleConditions());
+    dispatch(setPuzzleConditions(puzzleID));
   }, []);
 
   return (
@@ -38,7 +41,11 @@ const WordPuzzle = () => {
             <Button
               mode="primary"
               align="center"
-              onClick={() => navigate("/puzzle-results")}
+              onClick={() => {
+                //add puzzleID to localStorage
+                window.scrollTo(0, 0);
+                navigate("/puzzle-results");
+              }}
             >
               End Game
             </Button>

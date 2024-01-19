@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getPuzzleConditions } from "../../firebase/puzzleAPI";
+import { getRandomPuzzleID } from "../../utils/getRandomPuzzleID";
 
 type initialStateProps = {
   puzzleID: string | null;
@@ -24,15 +25,20 @@ const initialState: initialStateProps = {
   puzzleLevel: 0,
   wordLetters: [],
 };
-
+//also we have to put data in local storage
 export const setPuzzleConditions = createAsyncThunk<
   PuzzleConditions,
-  undefined
->("puzzle/getConditions", async (_, { rejectWithValue }) => {
-  const res = await getPuzzleConditions();
+  string | undefined
+>("puzzle/getConditions", async (puzzleID, { rejectWithValue }) => {
+  const rand = await getRandomPuzzleID(puzzleID);
+  const res = await getPuzzleConditions(rand);
   const condions = res.data();
   if (!condions) return rejectWithValue("no such puzzle");
-  return { words: condions.words, letters: condions.letters, puzzleID: res.id };
+  return {
+    words: condions.words,
+    letters: condions.letters,
+    puzzleID: res.id,
+  };
 });
 
 const puzzleSlice = createSlice({
@@ -45,6 +51,7 @@ const puzzleSlice = createSlice({
     },
     clearPuzzleProgress(state) {
       state.progress = [];
+      state.wordLetters = [];
     },
     addWordLetter(state, action) {
       const letter = action.payload;
@@ -87,6 +94,9 @@ const puzzleSlice = createSlice({
         state.puzzleID = puzzleID;
         const level = words ? Math.floor(words.length / 2) : 0;
         state.puzzleLevel = level > 30 ? 30 : level;
+      })
+      .addCase(setPuzzleConditions.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });

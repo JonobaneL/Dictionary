@@ -10,7 +10,6 @@ import {
   removeWordLetter,
   shuffleLetters,
 } from "../store/reducers/puzzleSlice";
-//split component
 const PuzzlePanel = () => {
   const { progress, words, letters, wordLetters } = useTypeSelector(
     (state) => state.puzzleReducer
@@ -18,12 +17,8 @@ const PuzzlePanel = () => {
   const dispatch = useTypeDispatch();
   const word = wordLetters.reduce((prev, item) => prev + letters[item], "");
   const [notification, setNotification] = useState<string | null>(null);
-  const wordHandler = (letter: number) => {
-    dispatch(addWordLetter(letter));
-  };
-  const shuffleEvent = () => {
-    dispatch(shuffleLetters());
-  };
+  const wordHandler = (letter: number) => dispatch(addWordLetter(letter));
+  const shuffleEvent = () => dispatch(shuffleLetters());
   const checkWord = () => {
     const wordExist = words?.includes(word);
     const progressExist = progress.includes(word);

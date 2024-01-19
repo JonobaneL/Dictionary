@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
 
 const PuzzleResults = () => {
-  const { progress, puzzleLevel, words } = useTypeSelector(
+  const { progress, puzzleLevel, words, puzzleID } = useTypeSelector(
     (state) => state.puzzleReducer
   );
   const phrase = puzzlePhrase(progress, puzzleLevel);
@@ -19,7 +19,11 @@ const PuzzleResults = () => {
   //split component
   const retakeHandler = () => {
     dispatch(clearPuzzleProgress());
-    navigate("/word-puzzle");
+    navigate("/word-puzzle", { state: { puzzleID: puzzleID } });
+  };
+  const gameHandler = () => {
+    dispatch(clearPuzzleProgress());
+    navigate("/word-puzzle", { state: undefined });
   };
   return (
     <div className={styles["puzzle-results"]}>
@@ -47,7 +51,9 @@ const PuzzleResults = () => {
       </Accordion>
 
       <div className={styles["new-game"]}>
-        <Button mode="primary">Play New Game</Button>
+        <Button mode="secondary" onClick={gameHandler}>
+          Play New Game
+        </Button>
       </div>
     </div>
   );
