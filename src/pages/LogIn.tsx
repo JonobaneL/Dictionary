@@ -1,8 +1,8 @@
-import logo from "../assets/images/logo.svg";
 import styles from "../assets/styles/pages/LogIn.module.scss";
 import LogInForm from "../components/LogInForm";
 import { motion } from "framer-motion";
 import { routesVariants } from "../motionVariants/RoutesVariants";
+import Logo from "../components/UI/Logo";
 
 const LogIn = () => {
   return (
@@ -14,7 +14,7 @@ const LogIn = () => {
       transition={{ duration: 0.2 }}
       variants={routesVariants}
     >
-      <img className={styles.logo} src={logo} alt="" />
+      <Logo />
       <LogInForm />
       <div className={styles["sign-up"]}>
         <p>Don't have an account?</p>

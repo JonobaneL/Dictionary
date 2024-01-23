@@ -11,21 +11,7 @@ import ProgressBar from "../components/UI/ProgressBar";
 import Notification from "../components/UI/Notification";
 import { getAllPuzzles } from "../firebase/puzzleAPI";
 
-type PuzzleProps = {
-  puzzleID: string;
-  letters: string[];
-  words: string[];
-};
-
 const TestPage = () => {
-  const generateRandomID = (currentID: string, completedID: string) => {
-    let id = "";
-    while (currentID) {}
-  };
-  const getPuzzleID = () => {
-    const puzzles = [{ id: "1" }, { id: "2" }, { id: "3" }];
-  };
-
   return (
     <div className={styles["test-page"]}>
       <h1>Lorem ipsum</h1>

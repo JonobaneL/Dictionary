@@ -1,0 +1,44 @@
+@import "../variables";
+
+.quizzes {
+  padding: 2rem 1.3rem;
+  .title {
+    text-align: center;
+  }
+  .categories {
+    display: flex;
+    justify-content: right;
+    margin-top: 1.5rem;
+    button {
+      background: none;
+      display: flex;
+      align-items: center;
+      border: 2px solid $clr-accent;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+
+      p {
+        color: $clr-primary;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .quizzes-list {
+    margin-top: 2rem;
+    .quizzes-title {
+      margin-bottom: 0.5rem;
+      color: $clr-primary;
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      .quiz {
+        border-bottom: 1px solid rgba($color: #54a68d, $alpha: 0.3);
+        padding: 0.5rem 0.2rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

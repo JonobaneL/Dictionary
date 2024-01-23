@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { routesVariants } from "../motionVariants/RoutesVariants";
 import { useState } from "react";
 import { logoVariants } from "../motionVariants/logoVariants";
+import Button from "../components/UI/Button";
+import DashboardPuzzle from "../components/DashboardPuzzle";
 
 const Dashboard = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -34,6 +36,7 @@ const Dashboard = () => {
         setSearchStatus={setIsSearchActive}
       />
       <RandomWord />
+      <DashboardPuzzle />
       <DashboardCategories />
       <DashboardLevels />
     </motion.div>

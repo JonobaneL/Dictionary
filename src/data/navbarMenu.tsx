@@ -9,7 +9,7 @@ export const nav = [
   },
   {
     icon: <RiFileList2Line />,
-    link: "/quizes",
+    link: "/quizzes",
   },
   {
     icon: <LuBell />,

@@ -1,0 +1,18 @@
+import logo from "../../assets/images/logo.svg";
+
+const Logo = () => {
+  return (
+    <img
+      style={{
+        display: "block",
+        width: "60%",
+        marginInline: "auto",
+        marginBottom: "1.3rem",
+      }}
+      src={logo}
+      alt="logo"
+    />
+  );
+};
+
+export default Logo;

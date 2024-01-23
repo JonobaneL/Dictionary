@@ -1,5 +1,4 @@
 import styles from "../assets/styles/pages/WordPuzzle.module.scss";
-import logo from "../assets/images/logo.svg";
 import { useEffect } from "react";
 import PuzzlePanel from "../components/PuzzlePanel";
 import Button from "../components/UI/Button";
@@ -10,24 +9,24 @@ import PuzzleProgress from "../components/PuzzleProgress";
 import PuzzleWords from "../components/PuzzleWords";
 import PuzzleRules from "../components/PuzzleRules";
 import { useLocation, useNavigate } from "react-router-dom";
+import Logo from "../components/UI/Logo";
 
 const WordPuzzle = () => {
   const dispatch = useTypeDispatch();
-  const { isLoading, progress } = useTypeSelector(
+  const { isLoading, progress, puzzleID } = useTypeSelector(
     (state) => state.puzzleReducer
   );
   const navigate = useNavigate();
   const location = useLocation();
-  const puzzleID = location.state ? location.state.puzzleID : undefined;
-  console.log(puzzleID);
+  const currentID = location.state ? location.state.puzzleID : undefined;
 
   useEffect(() => {
-    dispatch(setPuzzleConditions(puzzleID));
+    dispatch(setPuzzleConditions({ currentID, puzzleID }));
   }, []);
 
   return (
     <div className={styles["word-puzzle"]}>
-      <img src={logo} className={styles.logo} alt="logo" />
+      <Logo />
       <h2 className={styles.title}>Word Puzzle</h2>
       {isLoading ? (
         <div className={styles.loader}>
@@ -42,7 +41,6 @@ const WordPuzzle = () => {
               mode="primary"
               align="center"
               onClick={() => {
-                //add puzzleID to localStorage
                 window.scrollTo(0, 0);
                 navigate("/puzzle-results");
               }}

@@ -1,10 +1,10 @@
 import styles from "../assets/styles/pages/SignUp.module.scss";
-import logo from "../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import SignUpForm from "../components/SignUpForm";
 import { motion } from "framer-motion";
 import { routesVariants } from "../motionVariants/RoutesVariants";
+import Logo from "../components/UI/Logo";
 
 const SignUp = () => {
   return (
@@ -18,7 +18,7 @@ const SignUp = () => {
         variants={routesVariants}
       >
         <div className={styles.content}>
-          <img className={styles.logo} src={logo} alt="Logo" />
+          <Logo />
           <SignUpForm />
           <div className={styles["log-in"]}>
             Already have an account? <Link to="/log-in">Log In</Link>

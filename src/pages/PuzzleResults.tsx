@@ -1,33 +1,28 @@
 import styles from "../assets/styles/pages/PuzzleResults.module.scss";
-import logo from "../assets/images/logo.svg";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import Button from "../components/UI/Button";
-import { HiMiniArrowPath } from "react-icons/hi2";
-import { puzzlePhrase } from "../utils/puzzlePhrase";
 import Accordion from "../components/UI/Accordion";
 import WordsList from "../components/UI/WordsList";
 import { useNavigate } from "react-router-dom";
 import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
+import PuzzleRetake from "../components/PuzzleRetake";
+import Logo from "../components/UI/Logo";
 
 const PuzzleResults = () => {
   const { progress, puzzleLevel, words, puzzleID } = useTypeSelector(
     (state) => state.puzzleReducer
   );
-  const phrase = puzzlePhrase(progress, puzzleLevel);
   const navigate = useNavigate();
   const dispatch = useTypeDispatch();
   //split component
-  const retakeHandler = () => {
-    dispatch(clearPuzzleProgress());
-    navigate("/word-puzzle", { state: { puzzleID: puzzleID } });
-  };
+
   const gameHandler = () => {
     dispatch(clearPuzzleProgress());
     navigate("/word-puzzle", { state: undefined });
   };
   return (
     <div className={styles["puzzle-results"]}>
-      <img className={styles.logo} src={logo} alt="logo" />
+      <Logo />
       <h2 className={styles.title}>Your Results</h2>
 
       <div className={styles["progress-wrapper"]}>
@@ -35,13 +30,11 @@ const PuzzleResults = () => {
           {progress.length}/{puzzleLevel}
         </div>
       </div>
-      <div className={styles.retake}>
-        <p className={styles.phrase}>{phrase}</p>
-        <button className={styles.btn} onClick={retakeHandler}>
-          <p>Retake</p>
-          <HiMiniArrowPath size="1.5rem" color="#3f707d" />
-        </button>
-      </div>
+      <PuzzleRetake
+        puzzleID={puzzleID}
+        progress={progress}
+        puzzleLevel={puzzleLevel}
+      />
       <Accordion
         header={
           <div className={styles.answers}>Show Answers ({words?.length})</div>
