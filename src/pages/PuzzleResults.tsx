@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
 import PuzzleRetake from "../components/PuzzleRetake";
 import Logo from "../components/UI/Logo";
+import CircleProgress from "../components/UI/CircleProgress";
 
 const PuzzleResults = () => {
   const { progress, puzzleLevel, words, puzzleID } = useTypeSelector(
@@ -14,7 +15,7 @@ const PuzzleResults = () => {
   );
   const navigate = useNavigate();
   const dispatch = useTypeDispatch();
-  //split component
+  //split component!!
 
   const gameHandler = () => {
     dispatch(clearPuzzleProgress());
@@ -26,9 +27,15 @@ const PuzzleResults = () => {
       <h2 className={styles.title}>Your Results</h2>
 
       <div className={styles["progress-wrapper"]}>
-        <div className={styles.progress}>
-          {progress.length}/{puzzleLevel}
-        </div>
+        <CircleProgress
+          width="40%"
+          maxValue={puzzleLevel}
+          progress={progress.length}
+        >
+          <div className={styles.progress}>
+            {progress.length}/{puzzleLevel}
+          </div>
+        </CircleProgress>
       </div>
       <PuzzleRetake
         puzzleID={puzzleID}

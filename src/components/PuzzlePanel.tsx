@@ -10,6 +10,7 @@ import {
   removeWordLetter,
   shuffleLetters,
 } from "../store/reducers/puzzleSlice";
+//split component
 const PuzzlePanel = () => {
   const { progress, words, letters, wordLetters } = useTypeSelector(
     (state) => state.puzzleReducer

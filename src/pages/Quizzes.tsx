@@ -1,6 +1,10 @@
 import { CgOptions } from "react-icons/cg";
 import styles from "../assets/styles/pages/Quizzes.module.scss";
 import Logo from "../components/UI/Logo";
+import Button from "../components/UI/Button";
+import { useState } from "react";
+import ModalWindow from "../components/UI/ModalWindow";
+import QuizzesCategories from "../components/QuizzesCategories";
 
 const quizzes = [
   `The Word Of The Day Weekly Quiz: Basically Bespoke!`,
@@ -25,12 +29,7 @@ const Quizzes = () => {
         Discover, Learn, and Challenge Yourself: Explore Our Exciting Quizzes
         Across Various Topics!
       </p>
-      <div className={styles.categories}>
-        <button>
-          <CgOptions size="1.3rem" color="#3f707d" />
-          <p>Categories</p>
-        </button>
-      </div>
+      <QuizzesCategories />
       <div className={styles["quizzes-list"]}>
         <h4 className={styles["quizzes-title"]}>All Quizzes</h4>
         <ul className={styles.list}>
@@ -40,6 +39,7 @@ const Quizzes = () => {
             </li>
           ))}
         </ul>
+        button
       </div>
     </div>
   );

@@ -1,0 +1,13 @@
+@import "../variables";
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  .category {
+    cursor: pointer;
+    border: 2px solid $clr-primary;
+    padding: 0.4rem;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+}
