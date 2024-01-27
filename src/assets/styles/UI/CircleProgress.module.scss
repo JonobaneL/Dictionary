@@ -1,3 +1,5 @@
+@import "../variables";
+
 .circle-progress {
   aspect-ratio: 1/1;
   position: relative;
@@ -18,5 +20,7 @@
     top: 50%;
     left: 50%;
     translate: -50% -50%;
+    font-size: $fs-700;
+    font-weight: 600;
   }
 }

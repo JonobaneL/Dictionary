@@ -13,6 +13,7 @@ const WordDetails = lazy(() => import("../pages/WordDetails"));
 const WordPuzzle = lazy(() => import("../pages/WordPuzzle"));
 const PuzzleResults = lazy(() => import("../pages/PuzzleResults"));
 const Quizzes = lazy(() => import("../pages/Quizzes"));
+const Quiz = lazy(() => import("../pages/Quiz"));
 
 const TestPage = lazy(() => import("../pages/TestPage"));
 
@@ -32,6 +33,7 @@ const DictioanryRoutes = () => {
             <Route path="/word-puzzle" element={<WordPuzzle />} />
             <Route path="/puzzle-results" element={<PuzzleResults />} />
             <Route path="/quizzes" element={<Quizzes />} />
+            <Route path="/quizzes/:quizID" element={<Quiz />} />
           </Route>
           <Route path="/test" element={<TestPage />} />
         </Routes>

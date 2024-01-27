@@ -4,7 +4,9 @@
   display: flex;
   justify-content: right;
   margin-top: 1.5rem;
-  button {
+  gap: 0.5rem;
+  button,
+  .clear {
     background: none;
     display: flex;
     align-items: center;
@@ -16,5 +18,10 @@
       color: $clr-primary;
       font-weight: 600;
     }
+  }
+  .clear {
+    background: $clr-accent;
+    color: $clr-surface;
+    font-weight: 600;
   }
 }

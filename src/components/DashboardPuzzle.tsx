@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/components/DashboardPuzzle.module.scss";
 import Button from "./UI/Button";
+import { useTypeDispatch } from "../hooks/useTypeReduxHooks";
+import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
 
 const DashboardPuzzle = () => {
   const navigate = useNavigate();
-
+  const dispatch = useTypeDispatch();
+  const readyHandler = () => {
+    dispatch(clearPuzzleProgress());
+    navigate("/word-puzzle");
+  };
   return (
     <div className={styles.puzzle}>
       <h3 className={styles.title}>Elevate Your Vocabulary!</h3>
@@ -18,7 +24,7 @@ const DashboardPuzzle = () => {
           mode="primary"
           width="8rem"
           height="2.4rem"
-          onClick={() => navigate("/word-puzzle")}
+          onClick={readyHandler}
         >
           Yes, I am
         </Button>

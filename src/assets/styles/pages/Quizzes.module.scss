@@ -5,22 +5,11 @@
   .title {
     text-align: center;
   }
-
   .quizzes-list {
     margin-top: 2rem;
     .quizzes-title {
       margin-bottom: 0.5rem;
       color: $clr-primary;
-    }
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      .quiz {
-        border-bottom: 1px solid rgba($color: #54a68d, $alpha: 0.3);
-        padding: 0.5rem 0.2rem;
-        cursor: pointer;
-      }
     }
   }
 }

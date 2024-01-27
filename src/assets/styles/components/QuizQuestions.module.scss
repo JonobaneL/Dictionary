@@ -1,0 +1,16 @@
+.quiz-questions {
+  .question {
+    .options {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .option {
+        padding: 0.6rem 0.5rem;
+        border: 1px solid rgba($color: #3f707d, $alpha: 0.5);
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    }
+  }
+}

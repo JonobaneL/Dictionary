@@ -6,14 +6,8 @@ type CircleProps = {
   width: string;
   maxValue: number;
   progress: number;
-  children: React.ReactNode;
 };
-const CircleProgress = ({
-  width,
-  maxValue,
-  progress,
-  children,
-}: CircleProps) => {
+const CircleProgress = ({ width, maxValue, progress }: CircleProps) => {
   const actualProgress = progress / maxValue;
   return (
     <div className={styles["circle-progress"]} style={{ width: width }}>
@@ -30,12 +24,14 @@ const CircleProgress = ({
           cx="100"
           cy="100"
           r="80"
-          stroke="#54a68d"
+          stroke={progress > 0 ? "#54a68d" : "#dadfec"}
           variants={drawCircle}
           custom={actualProgress}
         />
       </motion.svg>
-      <div className={styles.progress}>{children}</div>
+      <div className={styles.progress}>
+        {progress}/{maxValue}
+      </div>
     </div>
   );
 };

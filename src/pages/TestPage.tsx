@@ -12,9 +12,17 @@ import Notification from "../components/UI/Notification";
 import { getAllPuzzles } from "../firebase/puzzleAPI";
 import CircleProgress from "../components/UI/CircleProgress";
 import ModalWindow from "../components/UI/ModalWindow";
+import { addQuiz } from "../firebase/quizzesAPI";
 
 const TestPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    // const handler = async () => {
+    //   const res = await addQuiz();
+    // };
+    // handler();
+  }, []);
+  // console.log(quiz);
   return (
     <div className={styles["test-page"]}>
       <h1 onClick={() => setIsOpen(true)}>Lorem ipsum</h1>

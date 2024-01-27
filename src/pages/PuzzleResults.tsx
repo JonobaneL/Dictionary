@@ -15,7 +15,6 @@ const PuzzleResults = () => {
   );
   const navigate = useNavigate();
   const dispatch = useTypeDispatch();
-  //split component!!
 
   const gameHandler = () => {
     dispatch(clearPuzzleProgress());
@@ -31,11 +30,7 @@ const PuzzleResults = () => {
           width="40%"
           maxValue={puzzleLevel}
           progress={progress.length}
-        >
-          <div className={styles.progress}>
-            {progress.length}/{puzzleLevel}
-          </div>
-        </CircleProgress>
+        />
       </div>
       <PuzzleRetake
         puzzleID={puzzleID}

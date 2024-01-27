@@ -1,0 +1,27 @@
+@import "../variables";
+
+.quiz {
+  padding: 2rem 1.3rem;
+  &-name {
+    font-family: $ff-accent;
+    padding-bottom: 0.5rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba($color: #54a68d, $alpha: 0.3);
+  }
+  .progress {
+    margin-top: 1rem;
+    width: 100%;
+    height: 0.4rem;
+    display: flex;
+    gap: 2px;
+    .indicator {
+      width: 100%;
+      background: $clr-secondary;
+      &.active {
+        background-color: rgb(188, 192, 204);
+        // background: $clr-accent; right
+        // background: #b11a21; wrong
+      }
+    }
+  }
+}

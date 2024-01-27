@@ -13,6 +13,7 @@ import storage from "redux-persist/lib/storage";
 
 import userReducer from "./reducers/userSlice";
 import puzzleReducer from "./reducers/puzzleSlice";
+import quizReducer from "./reducers/QuizSlice";
 
 const puzzlePersistConfig = {
   key: "puzzle",
@@ -22,6 +23,7 @@ const puzzlePersistConfig = {
 const rootReducer = combineReducers({
   userReducer: userReducer,
   puzzleReducer: persistReducer(puzzlePersistConfig, puzzleReducer),
+  quizReducer: quizReducer,
 });
 
 const store = configureStore({

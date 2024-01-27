@@ -28,7 +28,6 @@ const initialState: initialStateProps = {
   error: null,
 };
 
-//change this code to final version
 export const logInUser = createAsyncThunk<User, UserProps>(
   "user/log-in",
   async (props, { rejectWithValue }) => {

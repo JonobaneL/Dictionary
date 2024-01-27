@@ -2,23 +2,16 @@
 
 .puzzle-results {
   padding: 2rem 1.3rem;
-
   .title {
     color: $clr-primary;
     text-align: center;
   }
-
   .progress-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-    .progress {
-      font-size: $fs-700;
-      color: $clr-text;
-      font-weight: 600;
-    }
   }
   .answers {
     width: fit-content;
@@ -27,12 +20,11 @@
     cursor: pointer;
     font-weight: 600;
     color: $clr-text;
-    transition: 0.2s ease-in-out;
+    transition: 0.1s ease-in-out;
     &:hover {
       color: $clr-primary;
     }
   }
-
   .new-game {
     display: block;
     width: 80%;

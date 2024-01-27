@@ -10,6 +10,8 @@ type RetakeProps = {
   progress: string[];
   puzzleLevel: number;
 };
+
+//make this component universal for quizzes and puzzles
 const PuzzleRetake = ({ puzzleID, progress, puzzleLevel }: RetakeProps) => {
   const navigate = useNavigate();
   const dispatch = useTypeDispatch();
