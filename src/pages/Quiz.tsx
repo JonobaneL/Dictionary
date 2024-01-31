@@ -5,7 +5,6 @@ import { useAsync } from "../hooks/useAsync";
 import { getQuiz } from "../firebase/quizzesAPI";
 import Loader from "../components/UI/Loader";
 import { QuizType } from "../models/QuizTypes";
-import { useState } from "react";
 import QuizQuestions from "../components/QuizQuestions";
 import QuizProgress from "../components/QuizProgress";
 
@@ -16,7 +15,6 @@ const Quiz = () => {
     [],
     "firebase"
   );
-  const [question, setQuestion] = useState(0);
   return (
     <div className={styles.quiz}>
       <Logo />
@@ -25,8 +23,15 @@ const Quiz = () => {
       ) : (
         <>
           <h2 className={styles["quiz-name"]}>{quiz?.name}</h2>
-          <QuizProgress size={quiz?.questions.length || 0} />
-          <QuizQuestions questions={quiz?.questions || []} />
+          <QuizProgress
+            size={quiz?.questions.length || 0}
+            //I can't get why it isn't rigth
+            answers={quiz?.answers || []}
+          />
+          <QuizQuestions
+            questions={quiz?.questions || []}
+            quizName={quiz?.name || ""}
+          />
         </>
       )}
     </div>

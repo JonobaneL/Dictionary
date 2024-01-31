@@ -1,0 +1,14 @@
+@import "../variables";
+.indicator {
+  width: 100%;
+  background: $clr-secondary;
+  &.active {
+    background-color: rgb(188, 192, 204);
+  }
+  &.right {
+    background: $clr-accent;
+  }
+  &.wrong {
+    background: #b11a21;
+  }
+}
