@@ -1,0 +1,17 @@
+.quiz-answers {
+  .questions {
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem 0;
+      border-bottom: 2px solid rgba($color: #54a68d, $alpha: 0.3);
+      .answer {
+        margin-inline: 0.4rem;
+        .head {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ import Accordion from "../components/UI/Accordion";
 import WordsList from "../components/UI/WordsList";
 import { useNavigate } from "react-router-dom";
 import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
-import PuzzleRetake from "../components/PuzzleRetake";
+import TaskRetake from "../components/TaskRetake";
 import Logo from "../components/UI/Logo";
 import CircleProgress from "../components/UI/CircleProgress";
 
@@ -32,10 +32,12 @@ const PuzzleResults = () => {
           progress={progress.length}
         />
       </div>
-      <PuzzleRetake
-        puzzleID={puzzleID}
-        progress={progress}
-        puzzleLevel={puzzleLevel}
+      <TaskRetake
+        progress={progress.length}
+        maxValue={puzzleLevel}
+        callback={() =>
+          navigate("/word-puzzle", { state: { puzzleID: puzzleID } })
+        }
       />
       <Accordion
         header={

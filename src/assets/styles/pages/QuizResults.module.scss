@@ -1,0 +1,28 @@
+@import "../variables";
+
+.quiz-results {
+  padding: 2rem 1.3rem;
+  .quiz-name {
+    font-family: $ff-accent;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba($color: #54a68d, $alpha: 0.3);
+  }
+  .progress {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
+  .answers {
+    // width: fit-content;
+    // display: block;
+    cursor: pointer;
+    font-weight: 600;
+    color: $clr-text;
+    transition: 0.1s ease-in-out;
+    &:hover {
+      color: $clr-primary;
+    }
+  }
+}

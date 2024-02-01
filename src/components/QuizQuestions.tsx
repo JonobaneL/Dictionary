@@ -1,16 +1,12 @@
 import styles from "../assets/styles/components/QuizQuestions.module.scss";
-import { QuestionType } from "../models/QuizTypes";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTypeSelector } from "../hooks/useTypeReduxHooks";
 import QuestionOption from "./QuestionOption";
 
-type QuestionsProps = {
-  questions: QuestionType[];
-  quizName: string;
-};
-//подумати де запхати івент який буде довати правильну відповідь до загальної кількості відповідей
-const QuizQuestions = ({ questions, quizName }: QuestionsProps) => {
-  const { question_index } = useTypeSelector((state) => state.quizReducer);
+const QuizQuestions = () => {
+  const { question_index, questions } = useTypeSelector(
+    (state) => state.quizReducer
+  );
   return (
     <div className={styles["quiz-questions"]}>
       <AnimatePresence initial={false} mode="wait">
@@ -22,15 +18,10 @@ const QuizQuestions = ({ questions, quizName }: QuestionsProps) => {
           exit={{ x: -500 }}
           transition={{ duration: 0.2 }}
         >
-          <h4>{questions[question_index].question}</h4>
+          <h4>{questions[question_index]?.question}</h4>
           <ul className={styles.options}>
-            {questions[question_index].options.map((option, optionIndex) => (
-              <QuestionOption
-                key={optionIndex}
-                option={option}
-                questionsLength={questions.length}
-                quizName={quizName}
-              />
+            {questions[question_index]?.options.map((option, optionIndex) => (
+              <QuestionOption key={optionIndex} option={option} />
             ))}
           </ul>
         </motion.div>

@@ -6,6 +6,7 @@ import { useAsync } from "../hooks/useAsync";
 import { getQuizzes } from "../firebase/quizzesAPI";
 import QuizzesList from "../components/QuizzesList";
 import { QuizType } from "../models/QuizTypes";
+import Loader from "../components/UI/Loader";
 
 const Quizzes = () => {
   const [searchParam] = useSearchParams();
@@ -29,7 +30,11 @@ const Quizzes = () => {
         <h4 className={styles["quizzes-title"]}>
           {category == null ? "All Quizzes" : category}
         </h4>
-        <QuizzesList isLoading={isLoading} quizzes={quizzes} />
+        {isLoading ? (
+          <Loader type="small" />
+        ) : (
+          <QuizzesList isLoading={isLoading} quizzes={quizzes} />
+        )}
       </div>
     </div>
   );

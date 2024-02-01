@@ -1,22 +1,22 @@
+import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/components/QuizQuestions.module.scss";
-import { useFinishQuiz } from "../hooks/useFinishQuiz";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import { addUserAnswer, nextQuestion } from "../store/reducers/QuizSlice";
 
 type OptionProps = {
   option: string;
-  questionsLength: number;
-  quizName: string;
 };
 
-const QuestionOption = ({ option, questionsLength, quizName }: OptionProps) => {
-  const { question_index } = useTypeSelector((state) => state.quizReducer);
+const QuestionOption = ({ option }: OptionProps) => {
+  const { question_index, questions } = useTypeSelector(
+    (state) => state.quizReducer
+  );
   const dispatch = useTypeDispatch();
-  const finishEvent = useFinishQuiz();
+  const navigate = useNavigate();
   const optionHandler = (answer: string) => {
     dispatch(addUserAnswer(answer));
-    if (question_index == questionsLength - 1) {
-      finishEvent(quizName);
+    if (question_index == questions.length - 1) {
+      navigate("/quiz-results");
     } else {
       dispatch(nextQuestion());
     }

@@ -3,10 +3,9 @@ import { useTypeSelector } from "../../hooks/useTypeReduxHooks";
 
 type IndicatorProps = {
   index: number;
-  answers: string[];
 };
-const ProgressIndicator = ({ index, answers }: IndicatorProps) => {
-  const { question_index, user_answers } = useTypeSelector(
+const ProgressIndicator = ({ index }: IndicatorProps) => {
+  const { question_index, user_answers, answers } = useTypeSelector(
     (state) => state.quizReducer
   );
   if (user_answers[index])

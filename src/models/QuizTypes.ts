@@ -7,5 +7,5 @@ export type QuizType = {
   name: string;
   category: string;
   questions: QuestionType[];
-  answers: string;
+  answers: string[];
 };

@@ -3,15 +3,14 @@ import ProgressIndicator from "./UI/ProgressIndicator";
 
 type ProgressProps = {
   size: number;
-  answers: string[];
 };
 
-const QuizProgress = ({ size, answers }: ProgressProps) => {
+const QuizProgress = ({ size }: ProgressProps) => {
   return (
     <div>
       <ul className={styles.progress}>
         {[...Array(size)].map((_, index) => (
-          <ProgressIndicator key={index} index={index} answers={answers} />
+          <ProgressIndicator key={index} index={index} />
         ))}
       </ul>
     </div>

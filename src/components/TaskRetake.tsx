@@ -1,25 +1,23 @@
-import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/components/PuzzleRetake.module.scss";
 import { useTypeDispatch } from "../hooks/useTypeReduxHooks";
 import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
 import { HiMiniArrowPath } from "react-icons/hi2";
-import { puzzlePhrase } from "../utils/puzzlePhrase";
+import { retakePhrase } from "../utils/retakePhrase";
 
 type RetakeProps = {
-  puzzleID: string | null;
-  progress: string[];
-  puzzleLevel: number;
+  progress: number;
+  maxValue: number;
+  callback: () => void;
+  type: "quiz" | "puzzle";
 };
 
-//make this component universal for quizzes and puzzles
-const PuzzleRetake = ({ puzzleID, progress, puzzleLevel }: RetakeProps) => {
-  const navigate = useNavigate();
+const TaskRetake = ({ progress, maxValue, callback, type }: RetakeProps) => {
   const dispatch = useTypeDispatch();
-  const phrase = puzzlePhrase(progress, puzzleLevel);
+  const phrase = retakePhrase(progress, maxValue, type);
 
   const retakeHandler = () => {
     dispatch(clearPuzzleProgress());
-    navigate("/word-puzzle", { state: { puzzleID: puzzleID } });
+    callback();
   };
   return (
     <div className={styles.retake}>
@@ -32,4 +30,4 @@ const PuzzleRetake = ({ puzzleID, progress, puzzleLevel }: RetakeProps) => {
   );
 };
 
-export default PuzzleRetake;
+export default TaskRetake;
