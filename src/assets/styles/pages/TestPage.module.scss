@@ -7,4 +7,28 @@
     line-height: 130%;
     letter-spacing: 0.1rem;
   }
+
+  .nav {
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 23rem;
+    height: 3.2rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 2rem;
+    justify-content: space-between;
+    background-color: $clr-primary;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+      rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+      rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    .link {
+      height: 1.5rem;
+      aspect-ratio: 1/1;
+      position: relative;
+      z-index: 2;
+    }
+  }
 }

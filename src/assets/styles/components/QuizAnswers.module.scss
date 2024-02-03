@@ -6,10 +6,31 @@
       gap: 0.5rem;
       padding: 1rem 0;
       border-bottom: 2px solid rgba($color: #54a68d, $alpha: 0.3);
-      .answer {
-        margin-inline: 0.4rem;
-        .head {
-          font-weight: 600;
+      .answers {
+        display: grid;
+        grid-template-columns: 1fr 2rem;
+        grid-template-rows: auto auto;
+        row-gap: 0.4rem;
+        grid-template-areas:
+          "correct icon"
+          "user icon";
+        .correct-answer,
+        .user-answer {
+          margin-left: 0.4rem;
+          .head {
+            font-weight: 600;
+          }
+        }
+        .correct-answer {
+          grid-area: correct;
+        }
+        .user-answer {
+          grid-area: user;
+        }
+        .icon {
+          grid-area: icon;
+          display: flex;
+          align-items: flex-end;
         }
       }
     }

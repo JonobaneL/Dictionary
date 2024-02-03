@@ -30,31 +30,38 @@ export const getQuiz = (quizID: string | undefined) => {
 //finish quiz
 export const addQuiz = () => {
   const quiz = {
-    name: "",
-    category: "",
+    name: `Quiz Yourself On Can Vs. Could!`,
+    category: "Commonly Confused Words",
     questions: [
       {
-        question: "",
-        opitons: ["", ""],
+        question: "True or False? COULD is the past tense form of CAN.",
+        options: ["True", "False"],
       },
       {
-        question: "",
-        opitons: ["", ""],
+        question:
+          "Fill in the blank: Cheetahs ______ run faster than lions can.",
+        options: ["can", "could"],
       },
       {
-        question: "",
-        opitons: ["", ""],
+        question: "Which form is used for the subjunctive mood?",
+        options: ["can", "could"],
       },
       {
-        question: "",
-        opitons: ["", ""],
+        question: "When asking for permission, which is more formal?",
+        options: ["can", "could"],
       },
       {
-        question: "",
-        opitons: ["", ""],
+        question:
+          "Fill in the blank: Do you think Batman ________ beat Superman in basketball if they were real?",
+        options: ["can", "could"],
+      },
+      {
+        question:
+          "Which of the following auxiliary verbs have similar conjugations to CAN?",
+        options: ["will", "shall", "all the of above"],
       },
     ],
-    answers: ["", "", "", "", ""],
+    answers: ["true", "can", "could", "could", "could", "all the of above"],
   };
   const collectionRef = collection(firestoreDB, "quizzes");
   return addDoc(collectionRef, quiz);

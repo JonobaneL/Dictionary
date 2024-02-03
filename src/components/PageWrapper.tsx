@@ -10,10 +10,11 @@ type PageWrapperProps = {
 
 const PageWrapper = ({ children }: PageWrapperProps) => {
   const location = useLocation();
+  const routeCheck = checkRoute(location.pathname);
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>{children}</div>
-      {checkRoute(location.pathname) ? null : <Navbar />}
+      {routeCheck ? null : <Navbar />}
     </div>
   );
 };
