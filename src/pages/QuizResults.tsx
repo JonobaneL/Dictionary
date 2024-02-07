@@ -4,14 +4,21 @@ import TaskRetake from "../components/TaskRetake";
 import Accordion from "../components/UI/Accordion";
 import CircleProgress from "../components/UI/CircleProgress";
 import Logo from "../components/UI/Logo";
-import { useTypeSelector } from "../hooks/useTypeReduxHooks";
+import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import QuizAnswers from "../components/QuizAnswers";
+import Button from "../components/UI/Button";
+import { clearQuiz } from "../store/reducers/QuizSlice";
 
 const QuizResults = () => {
   const { id, name, questions, right_answers } = useTypeSelector(
     (state) => state.quizReducer
   );
   const navigate = useNavigate();
+  const dispatch = useTypeDispatch();
+  const quizHandler = () => {
+    dispatch(clearQuiz());
+    navigate(`/quizzes`);
+  };
   return (
     <div className={styles["quiz-results"]}>
       <Logo />
@@ -32,6 +39,11 @@ const QuizResults = () => {
       <Accordion header={<div className={styles.answers}>Summary</div>}>
         <QuizAnswers />
       </Accordion>
+      <div className={styles["another-quiz"]}>
+        <Button mode="secondary" onClick={quizHandler}>
+          Take Another Quiz
+        </Button>
+      </div>
     </div>
   );
 };

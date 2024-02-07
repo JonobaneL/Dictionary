@@ -2,6 +2,15 @@
 
 .quiz {
   padding: 2rem 1.3rem;
+
+  .back {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.3rem;
+    color: $clr-primary;
+    cursor: pointer;
+  }
   &-name {
     font-family: $ff-accent;
     padding-bottom: 0.5rem;

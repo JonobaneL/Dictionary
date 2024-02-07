@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
+import React from "react";
 
-const ActiveNavCircle = () => {
+type CircleProps = {
+  icon?: React.ReactNode;
+};
+
+const ActiveNavCircle = ({ icon }: CircleProps) => {
   return (
     <motion.div
       layoutId="circle"
@@ -11,11 +16,16 @@ const ActiveNavCircle = () => {
         translate: "-50% -50%",
         width: "2.2rem",
         height: "2.2rem",
-        background: "#fff",
+        background: "#fcf9f8",
         borderRadius: "50%",
-        zIndex: "-1",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: "2",
       }}
-    />
+    >
+      {icon}
+    </motion.div>
   );
 };
 

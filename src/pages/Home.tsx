@@ -1,5 +1,5 @@
 import styles from "../assets/styles/pages/Home.module.scss";
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo1.svg";
 import searching from "../assets/images/searching.svg";
 import Button from "../components/UI/Button";
 import HomeAdvantages from "../components/HomeAdvantages";

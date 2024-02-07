@@ -35,6 +35,7 @@ const PuzzleResults = () => {
       <TaskRetake
         progress={progress.length}
         maxValue={puzzleLevel}
+        type="puzzle"
         callback={() =>
           navigate("/word-puzzle", { state: { puzzleID: puzzleID } })
         }

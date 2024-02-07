@@ -52,6 +52,16 @@ const quizSlice = createSlice({
     addUserAnswer(state, action) {
       state.user_answers = [...state.user_answers, action.payload];
     },
+    clearQuiz(state) {
+      // state.id = null;
+      // state.name = "";
+      // state.question_index = 0;
+      // state.answers = [];
+      // state.questions = [];
+      // state.user_answers = [];
+      // state.right_answers = 0;
+      state = initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -76,5 +86,5 @@ const quizSlice = createSlice({
   },
 });
 
-export const { nextQuestion, addUserAnswer } = quizSlice.actions;
+export const { nextQuestion, addUserAnswer, clearQuiz } = quizSlice.actions;
 export default quizSlice.reducer;

@@ -1,11 +1,11 @@
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo1.svg";
 
 const Logo = () => {
   return (
     <img
       style={{
         display: "block",
-        width: "60%",
+        width: "52%",
         marginInline: "auto",
         marginBottom: "1.3rem",
       }}

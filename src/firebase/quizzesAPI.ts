@@ -6,6 +6,8 @@ import {
   getDocs,
   query,
   where,
+  limit,
+  orderBy,
 } from "firebase/firestore";
 import { firestoreDB } from ".";
 
@@ -21,6 +23,20 @@ export const getQuizzes = (category: string | null) => {
   const quizzesRef = query(collectionRef, where("category", "==", category));
   return getDocs(quizzesRef);
 };
+
+export const getQuizzes1 = (category: string | null, itemsLimit: number) => {
+  const collectionRef = collection(firestoreDB, "quizzes");
+  if (category == null) {
+    const queryRef = query(collectionRef, limit(itemsLimit));
+    return getDocs(queryRef);
+  }
+  const quizzesRef = query(
+    collectionRef,
+    where("category", "==", category),
+    limit(itemsLimit)
+  );
+  return getDocs(quizzesRef);
+};
 export const getQuiz = (quizID: string | undefined) => {
   const collectionRef = collection(firestoreDB, "quizzes");
   const docRef = doc(collectionRef, quizID);
@@ -30,38 +46,15 @@ export const getQuiz = (quizID: string | undefined) => {
 //finish quiz
 export const addQuiz = () => {
   const quiz = {
-    name: `Quiz Yourself On Can Vs. Could!`,
-    category: "Commonly Confused Words",
+    name: ``,
+    category: "",
     questions: [
       {
-        question: "True or False? COULD is the past tense form of CAN.",
-        options: ["True", "False"],
-      },
-      {
-        question:
-          "Fill in the blank: Cheetahs ______ run faster than lions can.",
-        options: ["can", "could"],
-      },
-      {
-        question: "Which form is used for the subjunctive mood?",
-        options: ["can", "could"],
-      },
-      {
-        question: "When asking for permission, which is more formal?",
-        options: ["can", "could"],
-      },
-      {
-        question:
-          "Fill in the blank: Do you think Batman ________ beat Superman in basketball if they were real?",
-        options: ["can", "could"],
-      },
-      {
-        question:
-          "Which of the following auxiliary verbs have similar conjugations to CAN?",
-        options: ["will", "shall", "all the of above"],
+        question: "",
+        options: ["", "", ""],
       },
     ],
-    answers: ["true", "can", "could", "could", "could", "all the of above"],
+    answers: [""],
   };
   const collectionRef = collection(firestoreDB, "quizzes");
   return addDoc(collectionRef, quiz);

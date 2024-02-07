@@ -19,11 +19,15 @@ const puzzlePersistConfig = {
   key: "puzzle",
   storage,
 };
+const quizPersistConfig = {
+  key: "quiz",
+  storage,
+};
 
 const rootReducer = combineReducers({
   userReducer: userReducer,
   puzzleReducer: persistReducer(puzzlePersistConfig, puzzleReducer),
-  quizReducer: quizReducer,
+  quizReducer: persistReducer(quizPersistConfig, quizReducer),
 });
 
 const store = configureStore({
