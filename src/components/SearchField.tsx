@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../assets/styles/components/SearchField.module.scss";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { useInterval } from "../hooks/useInterval";
@@ -25,16 +25,16 @@ const SearchField = ({
           setIsFocused(true);
           setSearchStatus(true);
         }}
-        onBlur={() => {
-          setIsFocused(false);
-          onChange("");
-          setSearchStatus(false);
-        }}
+        // onBlur={() => {
+        //   setIsFocused(false);
+        //   onChange("");
+        //   setSearchStatus(false);
+        // }}
         className={styles.search__field}
         type="text"
       />
       <div className={styles.search__icon}>
-        <HiMiniMagnifyingGlass />
+        <HiMiniMagnifyingGlass color="#3f707d" size="100%" />
       </div>
       {!isFocused && value.length == 0 ? (
         <ul className={styles["words-list"]}>

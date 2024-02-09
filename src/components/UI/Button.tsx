@@ -20,7 +20,12 @@ const Button = ({
   return (
     <button
       {...props}
-      style={{ height: height, width: width, justifySelf: align }}
+      style={{
+        height: height,
+        width: width,
+        justifySelf: align,
+        margin: `${align == "center" ? "0 auto" : "0"}`,
+      }}
       className={`${styles.button} ${styles[mode]}`}
     >
       {children}

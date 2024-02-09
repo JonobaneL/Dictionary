@@ -7,15 +7,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.3rem;
     .logo {
-      width: 200px;
+      width: 52%;
       cursor: pointer;
     }
     .slogan {
       font-size: $fs-800;
       width: 100%;
-      margin: 2rem 0 0 0;
       line-height: 120%;
       font-weight: 500;
       color: $clr-text;

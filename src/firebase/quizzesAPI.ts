@@ -8,8 +8,10 @@ import {
   where,
   limit,
   orderBy,
+  startAfter,
 } from "firebase/firestore";
 import { firestoreDB } from ".";
+import { FirestoreDocType } from "./userAPI";
 
 export const getQuizzesCategories = () => {
   const collectionRef = collection(firestoreDB, "quiz_categories");
@@ -23,20 +25,33 @@ export const getQuizzes = (category: string | null) => {
   const quizzesRef = query(collectionRef, where("category", "==", category));
   return getDocs(quizzesRef);
 };
-
-export const getQuizzes1 = (category: string | null, itemsLimit: number) => {
+const generateQuizzesQuery = (category: string | null) => {
   const collectionRef = collection(firestoreDB, "quizzes");
   if (category == null) {
-    const queryRef = query(collectionRef, limit(itemsLimit));
+    return collectionRef;
+  }
+  const quizzesRef = query(collectionRef, where("category", "==", category));
+  return quizzesRef;
+};
+export const getQuizzes1 = (
+  category: string | null,
+  itemsLimit: number,
+  lastDoc: FirestoreDocType | undefined
+) => {
+  const quizzesRef = generateQuizzesQuery(category);
+  const queryRef = query(quizzesRef, limit(itemsLimit));
+  if (!lastDoc) {
     return getDocs(queryRef);
   }
-  const quizzesRef = query(
-    collectionRef,
-    where("category", "==", category),
+  console.log("continue func");
+  const startAfterQuery = query(
+    queryRef,
+    startAfter(lastDoc),
     limit(itemsLimit)
   );
-  return getDocs(quizzesRef);
+  return getDocs(startAfterQuery);
 };
+
 export const getQuiz = (quizID: string | undefined) => {
   const collectionRef = collection(firestoreDB, "quizzes");
   const docRef = doc(collectionRef, quizID);

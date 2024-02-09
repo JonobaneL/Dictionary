@@ -41,7 +41,18 @@ a:hover {
   text-decoration: none;
 }
 /* lot of questions */
-/* html {
-  overflow: auto;
+html {
+  overflow-y: scroll;
   scrollbar-gutter: stable;
-} */
+}
+body::-webkit-scrollbar {
+  width: 0.6em;
+}
+body::-webkit-scrollbar-track {
+  background: #fcf9f8;
+}
+body::-webkit-scrollbar-thumb {
+  background: #3f707d;
+  border-radius: 10rem;
+  border: 1px solid #fcf9f8;
+}

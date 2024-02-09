@@ -15,7 +15,9 @@
     padding: 1rem;
     border-radius: 2rem;
     justify-content: space-between;
-    background-color: $clr-primary;
+    background: rgba(63, 112, 125, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
       rgba(0, 0, 0, 0.23) 0px 3px 6px;
