@@ -9,7 +9,6 @@
   grid-template-columns: 100%;
   color: $clr-surface;
   margin-bottom: 1rem;
-  position: relative;
 
   h3 {
     font-size: $fs-600;
@@ -18,8 +17,8 @@
     font-weight: 500;
     margin-bottom: 1rem;
   }
-  .search-wrapper {
+  .search {
     width: 100%;
-    z-index: 102;
+    position: relative;
   }
 }

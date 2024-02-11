@@ -6,10 +6,10 @@ import { SearchFieldProps } from "../models/SearchFieldProps";
 
 const SearchField = ({
   value,
+  status,
   onChange,
   setSearchStatus,
 }: SearchFieldProps) => {
-  const [isFocused, setIsFocused] = useState(false);
   const words = ["Example", "Apple", "Tree", "Understand", "Happy"];
   const [wordIndex, setWordIndex] = useState(0);
   const indexHandler = () => {
@@ -22,21 +22,15 @@ const SearchField = ({
         value={value}
         onChange={(e) => onChange(e?.target?.value)}
         onFocus={() => {
-          setIsFocused(true);
           setSearchStatus(true);
         }}
-        // onBlur={() => {
-        //   setIsFocused(false);
-        //   onChange("");
-        //   setSearchStatus(false);
-        // }}
         className={styles.search__field}
         type="text"
       />
       <div className={styles.search__icon}>
         <HiMiniMagnifyingGlass color="#3f707d" size="100%" />
       </div>
-      {!isFocused && value.length == 0 ? (
+      {!status && value.length == 0 ? (
         <ul className={styles["words-list"]}>
           {words.map((item, index) => (
             <li

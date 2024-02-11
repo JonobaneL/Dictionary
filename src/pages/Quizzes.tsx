@@ -16,8 +16,8 @@ const Quizzes = () => {
   const [limit, setLimit] = useState(5);
   const category = searchParam.get("category");
 
-  const [isLoading, _, quizzes, docs] = useQuizzes(category, limit);
-  console.log(docs);
+  const [isLoading, _, quizzes] = useQuizzes(category, limit);
+  console.log(quizzes.length);
   //add pagination to quizzes
   return (
     <div className={styles.quizzes}>

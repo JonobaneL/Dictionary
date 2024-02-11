@@ -41,5 +41,4 @@ export type WordsSearchResultProps = {
         total: number;
       }
     | undefined;
-  state: boolean;
 };

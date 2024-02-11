@@ -36,14 +36,37 @@ const generateQuizzesQuery = (category: string | null) => {
 export const getQuizzes1 = (
   category: string | null,
   itemsLimit: number,
-  lastDoc: FirestoreDocType | undefined
+  lastDoc: FirestoreDocType | null
 ) => {
   const quizzesRef = generateQuizzesQuery(category);
   const queryRef = query(quizzesRef, limit(itemsLimit));
-  if (!lastDoc) {
+  console.log(lastDoc?.id);
+
+  if (!lastDoc?.id) {
+    console.log("fetch function");
     return getDocs(queryRef);
   }
-  console.log("continue func");
+  // console.log(category);
+  const startAfterQuery = query(
+    queryRef,
+    startAfter(lastDoc),
+    limit(itemsLimit)
+  );
+  return getDocs(startAfterQuery);
+};
+export const getQuizzes2 = (
+  category: string | null,
+  itemsLimit: number,
+  lastDoc: FirestoreDocType | null
+) => {
+  const quizzesRef = generateQuizzesQuery(category);
+  const queryRef = query(quizzesRef, limit(itemsLimit));
+  console.log(lastDoc);
+
+  if (!lastDoc?.id) {
+    return getDocs(queryRef);
+  }
+  console.log("continue");
   const startAfterQuery = query(
     queryRef,
     startAfter(lastDoc),

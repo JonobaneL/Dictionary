@@ -8,7 +8,7 @@ export const searchResultWrapperVariants = {
 };
 export const searchResultsVariants = {
   visible: {
-    y: 20,
+    y: 0,
     opacity: 1,
   },
   hidden: {
