@@ -29,6 +29,8 @@ const DashboardSearch = ({
       setQuery("");
     }
   };
+  const isSearchResultsOpen =
+    searchStatus && words?.total && query && isLoading == false;
   useEventListener("click", (e) => handler(e));
   return (
     <div className={styles["dashboard-search"]}>
@@ -41,9 +43,7 @@ const DashboardSearch = ({
           setSearchStatus={setSearchStatus}
         />
         <AnimatePresence initial={false}>
-          {searchStatus && query && isLoading == false && (
-            <WordsSearchResult words={words} />
-          )}
+          {isSearchResultsOpen && <WordsSearchResult words={words} />}
         </AnimatePresence>
       </div>
     </div>

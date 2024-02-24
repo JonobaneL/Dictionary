@@ -22,10 +22,12 @@ const TaskRetake = ({ progress, maxValue, callback, type }: RetakeProps) => {
   return (
     <div className={styles.retake}>
       <p className={styles.phrase}>{phrase}</p>
-      <button className={styles.btn} onClick={retakeHandler}>
-        <p>Retake</p>
-        <HiMiniArrowPath size="1.5rem" color="#3f707d" />
-      </button>
+      {progress < maxValue && (
+        <button className={styles.btn} onClick={retakeHandler}>
+          <p>Retake</p>
+          <HiMiniArrowPath size="1.5rem" color="#3f707d" />
+        </button>
+      )}
     </div>
   );
 };

@@ -7,21 +7,18 @@ import Button from "../components/UI/Button";
 import { nav } from "../data/navbarMenu";
 import { IconContext } from "react-icons";
 import ActiveNavCircle from "../components/UI/ActiveNavCircle";
-import {
-  addQuiz,
-  getQuizzes,
-  getQuizzes1,
-  getQuizzes2,
-} from "../firebase/quizzesAPI";
 import { useAsync } from "../hooks/useAsync";
 import { QuestionType, QuizType } from "../models/QuizTypes";
 import QuizzesList from "../components/QuizzesList";
 import Loader from "../components/UI/Loader";
 import { FirestoreDocType } from "../firebase/userAPI";
-import { useQuizzes } from "../hooks/useLimitQuery";
-import { HiMiniMagnifyingGlass } from "react-icons/hi2";
-import { useEventListener } from "../hooks/useEventListener";
-import { EventType } from "firebase/database";
+import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
+import { fetchQuizzes, setLimit } from "../store/reducers/QuizzesSlice";
+import { addNotification } from "../store/reducers/NotificationsSlice";
+import { FaRegStar, FaStar } from "react-icons/fa";
+import Rate from "../components/UI/Rate";
+import { finishQuiz } from "../store/reducers/QuizSlice";
+import { finishPuzzle } from "../store/reducers/puzzleSlice";
 
 // type NavProps
 // const NavLink = ({}:NavProps)=>{
@@ -36,44 +33,17 @@ type QuizRes = {
   questions: QuestionType[];
   answers: string[];
 };
+
 const TestPage = () => {
-  const [limit, setLimit] = useState(5);
-  const [category, setCategory] = useState<string | null>(null);
-
-  // const [isLoading, _, quizzes] = useQuizzes(null, limit);
-  // const [isLoading, _, quizzes] = useAsync<QuizType[]>(
-  //   () => getQuizzes2(category, limit),
-  //   [limit, category],
-  //   "firebase"
-  // );
-  const [quizzes, setQuizzes] = useState<QuizType[]>([]);
-  const [lastDoc, setLastDoc] = useState<FirestoreDocType | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const limitStep = 5;
-  const changeCategory = (c: string | null) => {
-    setCategory(c);
-    setLimit(5);
-    setLastDoc(null);
-    setQuizzes([]);
-  };
-
-  const fetchQuizzes = async () => {
-    setIsLoading(true);
-    const response = await getQuizzes2(category, limitStep, lastDoc);
-    setLastDoc(response.docs[response.docs.length - 1]);
-    const list: QuizType[] = [];
-    response.forEach((item: FirestoreDocType) => {
-      const i: any = item.data();
-      const quiz: QuizType = Object.assign({ id: item.id }, i);
-      list.push(quiz);
-    });
-    setQuizzes((p) => [...p, ...list]);
-    setIsLoading(false);
-  };
-  useEffect(() => {
-    fetchQuizzes();
-  }, [limit, category]);
+  const [rate, setRate] = useState(0);
+  const dispatch = useTypeDispatch();
   // useEventListener("click", (e) => handler(e));
+  const quizHandler = () => {
+    dispatch(finishQuiz("someID"));
+  };
+  const puzzleHandler = () => {
+    dispatch(finishPuzzle("someID"));
+  };
   return (
     <div className={styles["test-page"]}>
       <h1>Lorem ipsum</h1>
@@ -85,22 +55,20 @@ const TestPage = () => {
       </p>
       <br />
       <br />
-
-      {/* <h3>{quizzes?.length}</h3> */}
-      <br />
-      <QuizzesList isLoading={isLoading} quizzes={quizzes} />
-      {isLoading && <Loader type="small" />}
-      <br />
-      {quizzes?.length == limit && (
-        <button onClick={() => setLimit((p) => p + 5)}>Change Limit</button>
-      )}
-      <br />
-      <button onClick={() => changeCategory("Food & Drink")}>Food</button>
-      <br />
-      <button onClick={() => changeCategory("Literature")}>Literature</button>
-      <br />
-      <button onClick={() => changeCategory(null)}>Show All</button>
-      <br />
+      <Button
+        mode="primary"
+        width="50%"
+        onClick={() => dispatch(finishQuiz("quizID"))}
+      >
+        Quiz
+      </Button>
+      <Button
+        mode="primary"
+        width="50%"
+        onClick={() => dispatch(finishPuzzle("puzzleID"))}
+      >
+        puzzle
+      </Button>
     </div>
   );
 };

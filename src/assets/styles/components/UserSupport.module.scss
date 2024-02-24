@@ -1,0 +1,22 @@
+@import "../variables";
+
+.support {
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  border-top: 1px solid $clr-accent;
+
+  .title {
+    font-family: $ff-accent;
+    color: $clr-primary;
+    font-size: $fs-700;
+    margin-bottom: 0.5rem;
+  }
+  .option {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    border-bottom: 1px solid $clr-secondary;
+    &-name {
+      color: $clr-text;
+    }
+  }
+}

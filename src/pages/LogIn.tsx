@@ -3,8 +3,10 @@ import LogInForm from "../components/LogInForm";
 import { motion } from "framer-motion";
 import { routesVariants } from "../motionVariants/RoutesVariants";
 import Logo from "../components/UI/Logo";
+import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
+  const navigate = useNavigate();
   return (
     <motion.div
       className={styles["log-in"]}
@@ -18,7 +20,7 @@ const LogIn = () => {
       <LogInForm />
       <div className={styles["sign-up"]}>
         <p>Don't have an account?</p>
-        <button>Sign Up</button>
+        <button onClick={() => navigate("/sign-up")}>Sign Up</button>
       </div>
     </motion.div>
   );

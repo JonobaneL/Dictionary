@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
   const { user, isLoading } = useTypeSelector((state) => state.userReducer);
 
   if (isLoading === false)
-    return user.uid ? <Outlet /> : <Navigate to="/log-in" />;
+    return user.id ? <Outlet /> : <Navigate to="/log-in" />;
 
   return <Loader type="standart" />;
 };

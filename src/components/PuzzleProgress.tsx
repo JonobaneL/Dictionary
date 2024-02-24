@@ -3,7 +3,7 @@ import { useTypeSelector } from "../hooks/useTypeReduxHooks";
 import ProgressBar from "./UI/ProgressBar";
 
 const PuzzleProgress = () => {
-  const { progress, words, puzzleLevel } = useTypeSelector(
+  const { progress, puzzleLevel } = useTypeSelector(
     (state) => state.puzzleReducer
   );
   return (
@@ -11,7 +11,7 @@ const PuzzleProgress = () => {
       <h4>
         {progress?.length}/{puzzleLevel}
       </h4>
-      <ProgressBar maxValue={words?.length || 0} progress={progress.length} />
+      <ProgressBar maxValue={puzzleLevel || 0} progress={progress.length} />
     </div>
   );
 };

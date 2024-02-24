@@ -5,14 +5,11 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase";
-import { addNewUser } from "../../firebase/userAPI";
+import { addNewUser, getUserInfo } from "../../firebase/userAPI";
+import { UserDetails } from "../../models/UserDetailsType";
 
-type User = {
-  uid: string | null;
-  email: string | null;
-};
 type initialStateProps = {
-  user: User;
+  user: UserDetails;
   isLoading: boolean;
   error: string | null;
 };
@@ -23,12 +20,32 @@ type UserProps = {
 };
 
 const initialState: initialStateProps = {
-  user: { email: null, uid: null },
+  user: {
+    id: null,
+    name: "",
+    email: null,
+    quizzes: [],
+    puzzles: [],
+    words: [],
+  },
   isLoading: true,
   error: null,
 };
-
-export const logInUser = createAsyncThunk<User, UserProps>(
+//delete code above later
+// export const logInUser = createAsyncThunk<User, UserProps>(
+//   "user/log-in",
+//   async (props, { rejectWithValue }) => {
+//     const res = await signInWithEmailAndPassword(
+//       auth,
+//       props.email,
+//       props.password
+//     );
+//     if (!res.user) return rejectWithValue("no such user");
+//     const userEmail = res.user.email || null;
+//     return { email: userEmail, uid: res.user.uid };
+//   }
+// );
+export const logInUser = createAsyncThunk<UserDetails, UserProps>(
   "user/log-in",
   async (props, { rejectWithValue }) => {
     const res = await signInWithEmailAndPassword(
@@ -36,9 +53,10 @@ export const logInUser = createAsyncThunk<User, UserProps>(
       props.email,
       props.password
     );
+    const userRes = await getUserInfo(res.user.uid);
+    const userDetails = userRes.data() as UserDetails;
     if (!res.user) return rejectWithValue("no such user");
-    const userEmail = res.user.email || null;
-    return { email: userEmail, uid: res.user.uid };
+    return { ...userDetails, id: res.user.uid };
   }
 );
 
@@ -47,7 +65,7 @@ export const signUpUser = createAsyncThunk<void, UserProps>(
   async ({ email, password, name }, { rejectWithValue }) => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      await addNewUser({ uid: res.user.uid, email, name: name || "" });
+      await addNewUser({ email, name: name || "" }, res.user.uid);
     } catch (err) {
       rejectWithValue("user isnt created");
     }
@@ -70,7 +88,7 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user.email = action.payload.email;
-      state.user.uid = action.payload.uid;
+      state.user.id = action.payload.uid;
       state.isLoading = action.payload.isLoading;
       state.error = action.payload.error;
     },

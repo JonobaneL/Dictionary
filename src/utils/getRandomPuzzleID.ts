@@ -6,7 +6,8 @@ const generatePuzzleIndex = (
   completedPuzzles: string[] | null
 ) => {
   let id = Math.floor(Math.random() * puzzles.length);
-  while (puzzleID === puzzles[id]) {
+  // let id = 0;
+  while (puzzleID === puzzles[id] && completedPuzzles?.includes(puzzles[id])) {
     id = Math.floor(Math.random() * puzzles.length);
   }
   return puzzles[id];
@@ -14,7 +15,8 @@ const generatePuzzleIndex = (
 
 export const getRandomPuzzleID = async (
   currentID: string | undefined,
-  puzzleID: string | null
+  puzzleID: string | null,
+  completedPuzzles: string[]
 ) => {
   //add 2 condition like currentPuzzleID and id of puzzle that already completed
   if (currentID) return currentID;
@@ -23,7 +25,7 @@ export const getRandomPuzzleID = async (
     if (res.size > 0) {
       let puzzles: string[] = [];
       res.forEach((item) => puzzles.push(item.id));
-      const randomID = generatePuzzleIndex(puzzles, puzzleID, null);
+      const randomID = generatePuzzleIndex(puzzles, puzzleID, completedPuzzles);
       return randomID;
     }
   } catch (err) {

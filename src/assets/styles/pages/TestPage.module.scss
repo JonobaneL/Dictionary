@@ -7,48 +7,10 @@
     line-height: 130%;
     letter-spacing: 0.1rem;
   }
-  .dashboard-search {
-    background: $clr-primary;
-    padding: 1rem;
-    border-radius: 0.65rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    h3 {
-      color: $clr-surface;
-      font-size: $fs-600;
-      font-family: $ff-accent;
-      letter-spacing: 0.015rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-    .search {
-      position: relative;
-      .search-field {
-        background-color: $clr-surface;
-        display: grid;
-        grid-template-columns: 1fr 1.8rem;
-        padding: 0.3rem 0.4rem;
-        border-radius: 7px;
-        input {
-          background: transparent;
-          font-size: $fs-500;
-          font-weight: 500;
-        }
-      }
-      .search-results {
-        position: absolute;
-        width: 100%;
-        margin-top: 0.5rem;
-        border-radius: 0.4rem;
-        background-color: $clr-surface;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-          rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-        .list {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.2rem;
-          padding: 1rem;
-        }
-      }
-    }
+  .rate {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    // gap: 4px;
   }
 }

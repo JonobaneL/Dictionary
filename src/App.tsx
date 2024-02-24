@@ -6,6 +6,7 @@ import { useTypeDispatch } from "./hooks/useTypeReduxHooks";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { setUser } from "./store/reducers/userSlice";
+import Notification from "./components/UI/Notification";
 
 function App() {
   const dispatch = useTypeDispatch();
@@ -30,6 +31,7 @@ function App() {
           <DictioanryRoutes />
         </PageWrapper>
       </BrowserRouter>
+      <Notification />
     </div>
   );
 }

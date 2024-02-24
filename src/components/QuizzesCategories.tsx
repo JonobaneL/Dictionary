@@ -6,6 +6,8 @@ import { useAsync } from "../hooks/useAsync";
 import { getQuizzesCategories } from "../firebase/quizzesAPI";
 import Loader from "./UI/Loader";
 import CategoriesList from "./CategoriesList";
+import { useTypeDispatch } from "../hooks/useTypeReduxHooks";
+import { clearQuizzes } from "../store/reducers/QuizzesSlice";
 import { useSearchParams } from "react-router-dom";
 
 type Category = {
@@ -22,13 +24,15 @@ const QuizzesCategories = () => {
     [],
     "firebase"
   );
+  const dispatch = useTypeDispatch();
+  const showAllHandler = () => {
+    dispatch(clearQuizzes());
+    setSearchParams(undefined);
+  };
   return (
     <div className={styles.categories}>
       {category != undefined && (
-        <button
-          className={styles.clear}
-          onClick={() => setSearchParams(undefined)}
-        >
+        <button className={styles.clear} onClick={showAllHandler}>
           Show All
         </button>
       )}

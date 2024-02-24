@@ -36,6 +36,7 @@ const QuizResults = () => {
         callback={() => navigate(`/quizzes/${id}`)}
         type="quiz"
       />
+
       <Accordion header={<div className={styles.answers}>Summary</div>}>
         <QuizAnswers />
       </Accordion>

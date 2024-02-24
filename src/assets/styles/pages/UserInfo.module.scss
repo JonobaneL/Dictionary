@@ -1,0 +1,15 @@
+@import "../variables";
+.user {
+  padding: 2rem 1.3rem;
+  .user-info {
+    .title {
+      color: $clr-primary;
+      font-family: $ff-accent;
+      font-size: 2.2rem;
+    }
+    .slogan {
+      color: $clr-text;
+      margin-bottom: 1.5rem;
+    }
+  }
+}

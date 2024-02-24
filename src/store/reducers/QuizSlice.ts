@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { QuestionType, QuizType } from "../../models/QuizTypes";
 import { getQuiz } from "../../firebase/quizzesAPI";
+import { updateUserQuizzes } from "../../firebase/userAPI";
+import { useTypeSelector } from "../../hooks/useTypeReduxHooks";
+import { RootStore } from "../store";
 
 type InitialProps = {
   isLoading: boolean;
@@ -25,7 +28,6 @@ const initialState: InitialProps = {
 export const getQuizInfo = createAsyncThunk<QuizType, string | undefined>(
   "quiz/getQuiz",
   async (quizID, { rejectWithValue }) => {
-    console.log(quizID, "thunk");
     const res = await getQuiz(quizID);
     const quiz = res.data();
     if (!quiz) return rejectWithValue("no such quiz");
@@ -38,6 +40,23 @@ export const getQuizInfo = createAsyncThunk<QuizType, string | undefined>(
     };
   }
 );
+export const finishQuiz = createAsyncThunk<void, string, { state: RootStore }>(
+  "quiz/finishQuiz",
+  async (quizID, { rejectWithValue, getState }) => {
+    const state = getState();
+    const { user } = state.userReducer;
+    const { right_answers, answers } = state.quizReducer;
+    try {
+      if (right_answers === answers?.length) {
+        await updateUserQuizzes(user?.uid || "", quizID);
+      }
+    } catch (err) {
+      console.error(err);
+      return rejectWithValue(err);
+    }
+  }
+);
+// export const updateUserDetails = createAsyncThunk<void,string>('')
 
 const quizSlice = createSlice({
   name: "quiz",
@@ -47,7 +66,8 @@ const quizSlice = createSlice({
       const index = state.question_index;
       if (state.user_answers[index] == state.answers[index])
         state.right_answers += 1;
-      state.question_index += 1;
+      if (state.question_index < state.questions.length)
+        state.question_index += 1;
     },
     addUserAnswer(state, action) {
       state.user_answers = [...state.user_answers, action.payload];
@@ -74,7 +94,6 @@ const quizSlice = createSlice({
       })
       .addCase(getQuizInfo.rejected, (state) => {
         state.isLoading = false;
-        console.log("some error");
       });
   },
 });

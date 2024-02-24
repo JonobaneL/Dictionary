@@ -1,0 +1,32 @@
+@import "../variables";
+
+.words-progress {
+  background-image: url("/src/assets/images/progress-back6.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  width: calc(100% + 2.6rem);
+  height: 4.5rem;
+  margin: 0 -1.3rem 1.5rem -1.3rem;
+  padding: 0 1.3rem;
+  display: flex;
+  align-items: center;
+  h3 {
+    color: $clr-primary;
+    font-family: $ff-accent;
+    font-size: $fs-700;
+  }
+}
+.completed {
+  margin-top: 1rem;
+  h3 {
+    margin-bottom: 0.3rem;
+    color: $clr-primary;
+    font-family: $ff-accent;
+    font-size: $fs-700;
+  }
+  .progress {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

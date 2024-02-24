@@ -15,6 +15,7 @@ import userReducer from "./reducers/userSlice";
 import puzzleReducer from "./reducers/puzzleSlice";
 import quizReducer from "./reducers/QuizSlice";
 import quizzesReducer from "./reducers/QuizzesSlice";
+import NotificationReducer from "./reducers/NotificationsSlice";
 
 const puzzlePersistConfig = {
   key: "puzzle",
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   puzzleReducer: persistReducer(puzzlePersistConfig, puzzleReducer),
   quizReducer: persistReducer(quizPersistConfig, quizReducer),
   quizzesReducer: quizzesReducer,
+  NotificationReducer: NotificationReducer,
 });
 
 const store = configureStore({

@@ -1,8 +1,6 @@
-import { useState } from "react";
 import styles from "../assets/styles/components/PuzzlePanel.module.scss";
 import { TiArrowShuffle } from "react-icons/ti";
 import { IoArrowBack } from "react-icons/io5";
-import Notification from "./UI/Notification";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import {
   addWordLetter,
@@ -10,6 +8,7 @@ import {
   removeWordLetter,
   shuffleLetters,
 } from "../store/reducers/puzzleSlice";
+import { addNotification } from "../store/reducers/NotificationsSlice";
 //split component
 const PuzzlePanel = () => {
   const { progress, words, letters, wordLetters } = useTypeSelector(
@@ -17,18 +16,18 @@ const PuzzlePanel = () => {
   );
   const dispatch = useTypeDispatch();
   const word = wordLetters.reduce((prev, item) => prev + letters[item], "");
-  const [notification, setNotification] = useState<string | null>(null);
   const wordHandler = (letter: number) => dispatch(addWordLetter(letter));
   const shuffleEvent = () => dispatch(shuffleLetters());
   const checkWord = () => {
     const wordExist = words?.includes(word);
     const progressExist = progress.includes(word);
+    const time = 1;
     const notificationMessage = progressExist
-      ? "Already found"
+      ? { type: "info", content: "Already found", time }
       : !wordExist
-      ? "Not on the list"
-      : "Way to go!";
-    setNotification(notificationMessage);
+      ? { type: "warning", content: "Not on the list", time }
+      : { type: "success", content: "Way to go!", time };
+    dispatch(addNotification(notificationMessage));
     dispatch(checkPuzzleWord(word));
   };
   const removeLetter = () => {
@@ -63,11 +62,6 @@ const PuzzlePanel = () => {
           <IoArrowBack size="1.5rem" color="#3f707d" />
         </button>
       </div>
-      <Notification
-        notification={notification}
-        handler={setNotification}
-        closeTime={1}
-      />
     </div>
   );
 };

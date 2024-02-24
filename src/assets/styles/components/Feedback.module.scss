@@ -1,0 +1,29 @@
+@import "../variables";
+.feedback {
+  .title {
+    color: $clr-primary;
+    margin-bottom: 1rem;
+  }
+  .rate {
+    margin-bottom: 0.5rem;
+  }
+  .lable {
+    color: $clr-primary;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .input {
+    width: 100%;
+    height: 5rem;
+    padding: 0.2rem;
+    resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    background: $clr-surface;
+    &:focus {
+      border: 2px solid $clr-secondary;
+    }
+  }
+}

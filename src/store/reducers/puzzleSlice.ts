@@ -6,6 +6,8 @@ import {
   PuzzleConditions,
   initialStateProps,
 } from "../../models/PuzzleTypes";
+import { updateUserPuzzles } from "../../firebase/userAPI";
+import { RootStore } from "../store";
 
 const initialState: initialStateProps = {
   puzzleID: null,
@@ -19,11 +21,14 @@ const initialState: initialStateProps = {
 
 export const setPuzzleConditions = createAsyncThunk<
   PuzzleConditions,
-  CondionsProps
+  CondionsProps,
+  { state: RootStore }
 >(
   "puzzle/getConditions",
-  async ({ currentID, puzzleID }, { rejectWithValue }) => {
-    const rand = await getRandomPuzzleID(currentID, puzzleID);
+  async ({ currentID, puzzleID }, { rejectWithValue, getState }) => {
+    const state = getState();
+    const { user } = state.userReducer;
+    const rand = await getRandomPuzzleID(currentID, puzzleID, user.puzzles);
     const res = await getPuzzleConditions(rand);
     const condions = res.data();
     if (!condions) return rejectWithValue("no such puzzle");
@@ -34,6 +39,20 @@ export const setPuzzleConditions = createAsyncThunk<
     };
   }
 );
+export const finishPuzzle = createAsyncThunk<
+  void,
+  string,
+  { state: RootStore }
+>("quiz/finishPuzzle", async (puzzleID, { rejectWithValue, getState }) => {
+  const state = getState();
+  const { user } = state.userReducer;
+  try {
+    await updateUserPuzzles(user?.id, puzzleID);
+  } catch (err) {
+    console.log(err);
+    return rejectWithValue(err);
+  }
+});
 
 const puzzleSlice = createSlice({
   name: "wordPuzzle",
