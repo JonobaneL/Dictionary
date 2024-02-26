@@ -11,16 +11,18 @@ import { removeNotification } from "../../store/reducers/NotificationsSlice";
 const Notification = () => {
   const notification = useTypeSelector((state) => state.NotificationReducer);
   const dispatch = useTypeDispatch();
-  // const closeTime = 2;
+  const closeTime = notification?.time || 2;
 
   useEffect(() => {
     const time = setTimeout(() => {
+      console.log(notification?.time);
       dispatch(removeNotification());
-    }, notification?.time || 1 * 1000);
+    }, closeTime * 1000);
+
     return () => {
       clearTimeout(time);
     };
-  }, [notification]);
+  }, [notification?.content, notification?.type]);
   return ReactDom.createPortal(
     <AnimatePresence initial={false}>
       {notification && (

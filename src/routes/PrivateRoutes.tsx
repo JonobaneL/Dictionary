@@ -4,7 +4,6 @@ import Loader from "../components/UI/Loader";
 
 const PrivateRoutes = () => {
   const { user, isLoading } = useTypeSelector((state) => state.userReducer);
-
   if (isLoading === false)
     return user.id ? <Outlet /> : <Navigate to="/log-in" />;
 

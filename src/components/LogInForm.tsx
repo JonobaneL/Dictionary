@@ -8,6 +8,8 @@ import { logInUser } from "../store/reducers/userSlice";
 import { useNavigate } from "react-router-dom";
 import { checkFormValid } from "../utils/checkFormValid";
 import ValidatedField from "./UI/ValidatedField";
+import { addNotification } from "../store/reducers/NotificationsSlice";
+import { logInMessage } from "../data/notificationMessages";
 
 const LogInForm = () => {
   const email = useInput("", { isEmpty: true, isEmail: true });
@@ -21,8 +23,14 @@ const LogInForm = () => {
   const { isLoading } = useTypeSelector((state) => state.userReducer);
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(logInUser({ email: email.value, password: password.value }));
-    navigate("/dashboard");
+    try {
+      const res = await dispatch(
+        logInUser({ email: email.value, password: password.value })
+      ).unwrap();
+      if (res.id) navigate("/dashboard");
+    } catch (error) {
+      dispatch(addNotification(logInMessage));
+    }
   };
   const isFormDisabled = checkFormValid([
     email.isValid,

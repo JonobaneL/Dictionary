@@ -19,6 +19,8 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import Rate from "../components/UI/Rate";
 import { finishQuiz } from "../store/reducers/QuizSlice";
 import { finishPuzzle } from "../store/reducers/puzzleSlice";
+import FullPageModal from "../components/UI/FullPageModal";
+import QuizResults from "../components/QuizResults.tsx";
 
 // type NavProps
 // const NavLink = ({}:NavProps)=>{
@@ -44,6 +46,7 @@ const TestPage = () => {
   const puzzleHandler = () => {
     dispatch(finishPuzzle("someID"));
   };
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className={styles["test-page"]}>
       <h1>Lorem ipsum</h1>
@@ -54,21 +57,16 @@ const TestPage = () => {
         quos vel quaerat.
       </p>
       <br />
+      <Button mode="primary" onClick={() => setIsOpen(true)}>
+        Open
+      </Button>
       <br />
-      <Button
-        mode="primary"
-        width="50%"
-        onClick={() => dispatch(finishQuiz("quizID"))}
-      >
-        Quiz
-      </Button>
-      <Button
-        mode="primary"
-        width="50%"
-        onClick={() => dispatch(finishPuzzle("puzzleID"))}
-      >
-        puzzle
-      </Button>
+      <FullPageModal status={isOpen}>
+        <Button mode="primary" onClick={() => setIsOpen(false)}>
+          Close
+        </Button>
+        <QuizResults />
+      </FullPageModal>
     </div>
   );
 };

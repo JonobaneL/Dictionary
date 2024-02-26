@@ -31,32 +31,32 @@ const initialState: initialStateProps = {
   isLoading: true,
   error: null,
 };
-//delete code above later
-// export const logInUser = createAsyncThunk<User, UserProps>(
-//   "user/log-in",
-//   async (props, { rejectWithValue }) => {
-//     const res = await signInWithEmailAndPassword(
-//       auth,
-//       props.email,
-//       props.password
-//     );
-//     if (!res.user) return rejectWithValue("no such user");
-//     const userEmail = res.user.email || null;
-//     return { email: userEmail, uid: res.user.uid };
-//   }
-// );
 export const logInUser = createAsyncThunk<UserDetails, UserProps>(
   "user/log-in",
   async (props, { rejectWithValue }) => {
-    const res = await signInWithEmailAndPassword(
-      auth,
-      props.email,
-      props.password
-    );
-    const userRes = await getUserInfo(res.user.uid);
+    try {
+      const res = await signInWithEmailAndPassword(
+        auth,
+        props.email,
+        props.password
+      );
+      const userRes = await getUserInfo(res.user.uid);
+      const userDetails = userRes.data() as UserDetails;
+      return { ...userDetails, id: res.user.uid };
+    } catch (err) {
+      return rejectWithValue("no such user");
+    }
+  }
+);
+
+export const fetchUserInfo = createAsyncThunk<UserDetails, string | null>(
+  "user/fetch-user-info",
+  async (userID, { rejectWithValue }) => {
+    if (userID == null) return initialState.user;
+    const userRes = await getUserInfo(userID);
+    if (!userRes) return rejectWithValue("No such user");
     const userDetails = userRes.data() as UserDetails;
-    if (!res.user) return rejectWithValue("no such user");
-    return { ...userDetails, id: res.user.uid };
+    return { ...userDetails, id: userID };
   }
 );
 
@@ -89,8 +89,6 @@ const userSlice = createSlice({
     setUser(state, action) {
       state.user.email = action.payload.email;
       state.user.id = action.payload.uid;
-      state.isLoading = action.payload.isLoading;
-      state.error = action.payload.error;
     },
   },
   extraReducers: (builder) => {
@@ -101,6 +99,21 @@ const userSlice = createSlice({
       })
       .addCase(logInUser.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(logInUser.rejected, (state) => {
+        state.isLoading = false;
+        state.error = "error";
+      })
+      .addCase(fetchUserInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchUserInfo.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchUserInfo.rejected, (state) => {
+        state.error = "something went wrong";
         state.isLoading = false;
       });
   },

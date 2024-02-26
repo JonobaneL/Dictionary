@@ -101,12 +101,12 @@ const puzzleSlice = createSlice({
       })
       .addCase(setPuzzleConditions.fulfilled, (state, action) => {
         const { words, letters, puzzleID } = action.payload;
-        state.isLoading = false;
         state.letters = letters;
         state.words = words;
         state.puzzleID = puzzleID;
         const level = words ? Math.floor(words.length / 2) : 0;
         state.puzzleLevel = level > 30 ? 30 : level;
+        state.isLoading = false;
       })
       .addCase(setPuzzleConditions.rejected, (state) => {
         state.isLoading = false;

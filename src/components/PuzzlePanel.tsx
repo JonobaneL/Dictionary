@@ -9,6 +9,11 @@ import {
   shuffleLetters,
 } from "../store/reducers/puzzleSlice";
 import { addNotification } from "../store/reducers/NotificationsSlice";
+import {
+  correctMessage,
+  foundedMessage,
+  notInListMessage,
+} from "../data/notificationMessages";
 //split component
 const PuzzlePanel = () => {
   const { progress, words, letters, wordLetters } = useTypeSelector(
@@ -21,12 +26,11 @@ const PuzzlePanel = () => {
   const checkWord = () => {
     const wordExist = words?.includes(word);
     const progressExist = progress.includes(word);
-    const time = 1;
     const notificationMessage = progressExist
-      ? { type: "info", content: "Already found", time }
+      ? foundedMessage
       : !wordExist
-      ? { type: "warning", content: "Not on the list", time }
-      : { type: "success", content: "Way to go!", time };
+      ? notInListMessage
+      : correctMessage;
     dispatch(addNotification(notificationMessage));
     dispatch(checkPuzzleWord(word));
   };

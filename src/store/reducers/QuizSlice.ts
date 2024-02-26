@@ -48,7 +48,7 @@ export const finishQuiz = createAsyncThunk<void, string, { state: RootStore }>(
     const { right_answers, answers } = state.quizReducer;
     try {
       if (right_answers === answers?.length) {
-        await updateUserQuizzes(user?.uid || "", quizID);
+        await updateUserQuizzes(user?.id || "", quizID);
       }
     } catch (err) {
       console.error(err);
@@ -56,7 +56,6 @@ export const finishQuiz = createAsyncThunk<void, string, { state: RootStore }>(
     }
   }
 );
-// export const updateUserDetails = createAsyncThunk<void,string>('')
 
 const quizSlice = createSlice({
   name: "quiz",
