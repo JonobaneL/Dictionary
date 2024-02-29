@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { QuestionType, QuizType } from "../../models/QuizTypes";
 import { getQuiz } from "../../firebase/quizzesAPI";
 import { updateUserQuizzes } from "../../firebase/userAPI";
-import { useTypeSelector } from "../../hooks/useTypeReduxHooks";
 import { RootStore } from "../store";
 
 type InitialProps = {

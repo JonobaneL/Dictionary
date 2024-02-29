@@ -13,6 +13,6 @@ export type PuzzleConditions = {
   puzzleID: string;
 };
 export type CondionsProps = {
-  currentID: string | undefined;
+  currentID: string | null;
   puzzleID: string | null;
 };

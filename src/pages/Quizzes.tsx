@@ -18,7 +18,7 @@ const Quizzes = () => {
   const category = searchParam.get("category");
   useEffect(() => {
     dispatch(clearQuizzes());
-    dispatch(fetchQuizzes(category));
+    dispatch(fetchQuizzes(category)).catch(err=>console.log(err));
   }, [category]);
   return (
     <div className={styles.quizzes}>

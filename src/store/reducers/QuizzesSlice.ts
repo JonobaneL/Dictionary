@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { QuizType } from "../../models/QuizTypes";
 import { FirestoreDocType } from "../../firebase/userAPI";
 import { getQuizzes } from "../../firebase/quizzesAPI";
-import { useTypeSelector } from "../../hooks/useTypeReduxHooks";
+import { RootStore } from "../store";
 
 type InitialStateProps = {
   isLoading: boolean;
@@ -24,12 +24,11 @@ type FetchResponse = {
   doc: FirestoreDocType | null;
 };
 
-export const fetchQuizzes = createAsyncThunk<FetchResponse, string | null>(
+export const fetchQuizzes = createAsyncThunk<FetchResponse, string | null,{ state: RootStore }>(
   "quizzes/fetchQuizzes",
-  async (category, { rejectWithValue }) => {
-    const { limitStep, lastDoc } = useTypeSelector(
-      (state) => state.quizzesReducer
-    );
+  async (category, { rejectWithValue,getState }) => {
+    const state = getState();
+    const {limitStep,lastDoc} = state.quizzesReducer
     const list: QuizType[] = [];
     try {
       const response = await getQuizzes(category, limitStep, lastDoc);

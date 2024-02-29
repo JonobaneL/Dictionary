@@ -2,11 +2,19 @@
 
 .wrapper {
   position: fixed;
-  inset: 0;
-  //   background: rgba($color: #000000, $alpha: 0.3);
-  overflow-y: scroll;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
   .modal {
     @include mixins.content;
-    padding: 2rem 1.3rem;
+    padding: 2rem 1.3rem 5rem 1.3rem;
+    box-shadow: none;
   }
 }

@@ -1,28 +1,32 @@
 import styles from "../assets/styles/pages/WordPuzzle.module.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PuzzlePanel from "../components/PuzzlePanel";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
-import { setPuzzleConditions } from "../store/reducers/puzzleSlice";
+import {
+  clearPuzzleProgress,
+  setPuzzleConditions,
+} from "../store/reducers/puzzleSlice";
 import Loader from "../components/UI/Loader";
 import PuzzleProgress from "../components/PuzzleProgress";
 import PuzzleWords from "../components/PuzzleWords";
 import PuzzleRules from "../components/PuzzleRules";
-import { useLocation } from "react-router-dom";
 import Logo from "../components/UI/Logo";
 import EndPuzzleBtn from "../components/EndPuzzleBtn";
+import FullPageModal from "../components/UI/FullPageModal";
+import PuzzleResults from "./PuzzleResults";
 
 const WordPuzzle = () => {
   const dispatch = useTypeDispatch();
+  const [results, setResults] = useState(false);
   const { isLoading, progress, puzzleID, puzzleLevel } = useTypeSelector(
     (state) => state.puzzleReducer
   );
-  const location = useLocation();
-  const currentID = location.state ? location.state.puzzleID : undefined;
-
+  const [currentID, setCurrentID] = useState<string | null>(puzzleID);
   useEffect(() => {
+    dispatch(clearPuzzleProgress());
     dispatch(setPuzzleConditions({ currentID, puzzleID }));
-  }, []);
-
+  }, [currentID]);
+  console.log(currentID);
   return (
     <div className={styles["word-puzzle"]}>
       <Logo />
@@ -37,6 +41,7 @@ const WordPuzzle = () => {
           <PuzzlePanel />
           <div className={styles.end}>
             <EndPuzzleBtn
+              setResults={setResults}
               puzzleID={puzzleID || ""}
               level={puzzleLevel}
               progress={progress.length}
@@ -46,6 +51,9 @@ const WordPuzzle = () => {
           <PuzzleRules />
         </>
       )}
+      <FullPageModal status={results}>
+        <PuzzleResults rememberID={setCurrentID} setResults={setResults} />
+      </FullPageModal>
     </div>
   );
 };

@@ -41,7 +41,7 @@ a:hover {
   text-decoration: none;
 }
 /* lot of questions */
-html {
+body {
   overflow-y: scroll;
   scrollbar-gutter: stable;
 }

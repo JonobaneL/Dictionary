@@ -6,20 +6,20 @@ const generatePuzzleIndex = (
   completedPuzzles: string[] | null
 ) => {
   let id = Math.floor(Math.random() * puzzles.length);
-  // let id = 0;
-  while (puzzleID === puzzles[id] && completedPuzzles?.includes(puzzles[id])) {
+
+  while (puzzleID === puzzles[id] || completedPuzzles?.includes(puzzles[id])) {
     id = Math.floor(Math.random() * puzzles.length);
   }
   return puzzles[id];
 };
 
 export const getRandomPuzzleID = async (
-  currentID: string | undefined,
+  currentID: string | null,
   puzzleID: string | null,
   completedPuzzles: string[]
 ) => {
   //add 2 condition like currentPuzzleID and id of puzzle that already completed
-  if (currentID) return currentID;
+  if (currentID && !completedPuzzles.includes(currentID)) return currentID;
   try {
     const res = await getAllPuzzles();
     if (res.size > 0) {
