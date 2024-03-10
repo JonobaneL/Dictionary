@@ -18,9 +18,7 @@ const Feedback = () => {
     setFeedback("");
     setRate(0);
     await addFeedback(user.email, feedback, rate);
-    dispatch(
-      addNotification({ type: "success", content: "Thank you!", time: 1.5 })
-    );
+    dispatch(addNotification({ type: "success", content: "Thank you!" }));
   };
   return (
     <div className={styles.feedback}>

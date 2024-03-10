@@ -7,7 +7,15 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { firestoreDB } from ".";
+import { auth, firestoreDB } from ".";
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  updateEmail,
+  updatePassword,
+} from "firebase/auth";
 
 type UserProps = {
   name: string;
@@ -19,6 +27,7 @@ export const addNewUser = (user: UserProps, uid: string) => {
     ...user,
     puzzles: [],
     quizzes: [],
+    words: [],
   });
 };
 
@@ -50,6 +59,39 @@ export const updateUserPuzzles = (userID: string | null, puzzleID: string) => {
   return updateDoc(userRef, {
     puzzles: arrayUnion(puzzleID),
   });
+};
+export const resetUserPassword = (email: string) => {
+  return sendPasswordResetEmail(auth, email);
+};
+export const updateNickname = (userID: string | null, nickname: string) => {
+  const userRef = doc(firestoreDB, "users", userID || "");
+  return updateDoc(userRef, {
+    name: nickname,
+  });
+};
+export const updateUserEmail = (email: string) => {
+  if (auth.currentUser) {
+    return updateEmail(auth.currentUser, email);
+  }
+};
+// console.log(auth.currentUser);
+export const updateUserPassword = (newPassword: string) => {
+  if (auth.currentUser) {
+    return updatePassword(auth.currentUser, newPassword);
+  }
+};
+export const reauthenticateUser = (oldPassword: string) => {
+  const user = auth.currentUser;
+  const credential = EmailAuthProvider.credential(
+    user?.email || "",
+    oldPassword
+  );
+  if (user) return reauthenticateWithCredential(user, credential);
+};
+export const emailVerification = () => {
+  if (auth.currentUser) {
+    return sendEmailVerification(auth.currentUser);
+  }
 };
 
 export type FirestoreDocType = Awaited<ReturnType<typeof getDoc>>;

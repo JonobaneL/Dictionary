@@ -1,12 +1,13 @@
-import styles from "../assets/styles/pages/PuzzleResults.module.scss";
-import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
-import Button from "../components/UI/Button";
-import Accordion from "../components/UI/Accordion";
-import WordsList from "../components/UI/WordsList";
-import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
-import TaskRetake from "../components/TaskRetake";
-import Logo from "../components/UI/Logo";
-import CircleProgress from "../components/UI/CircleProgress";
+import styles from "../assets/styles/components/PuzzleResults.module.scss";
+import { useTypeSelector } from "../hooks/useTypeReduxHooks";
+import Button from "./UI/Button";
+import Accordion from "./UI/Accordion";
+import WordsList from "./UI/WordsList";
+import TaskRetake from "./TaskRetake";
+import Logo from "./UI/Logo";
+import CircleProgress from "./UI/CircleProgress";
+import { getRandomPuzzleID } from "../utils/getRandomPuzzleID";
+import { closeModalEvent } from "../utils/closeModalEvent";
 
 type ResultsProps = {
   setResults: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,18 +18,15 @@ const PuzzleResults = ({ setResults, rememberID }: ResultsProps) => {
   const { progress, puzzleLevel, words, puzzleID } = useTypeSelector(
     (state) => state.puzzleReducer
   );
-  const dispatch = useTypeDispatch();
-
-  const gameHandler = () => {
-    dispatch(clearPuzzleProgress());
-    rememberID(null);
-    setResults(false);
-    window.scrollTo(0, 0);
+  const { user } = useTypeSelector((state) => state.userReducer);
+  const gameHandler = async () => {
+    const rand = await getRandomPuzzleID(puzzleID, user.puzzles);
+    rememberID(rand);
+    closeModalEvent(setResults);
   };
   const retakeHandler = () => {
     rememberID(puzzleID);
-    setResults(false);
-    window.scrollTo(0, 0);
+    closeModalEvent(setResults);
   };
   return (
     <div className={styles["puzzle-results"]}>

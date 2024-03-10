@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getPuzzleConditions } from "../../firebase/puzzleAPI";
-import { getRandomPuzzleID } from "../../utils/getRandomPuzzleID";
 import {
   CondionsProps,
   PuzzleConditions,
@@ -8,6 +7,7 @@ import {
 } from "../../models/PuzzleTypes";
 import { updateUserPuzzles } from "../../firebase/userAPI";
 import { RootStore } from "../store";
+import { getRandomPuzzleID } from "../../utils/getRandomPuzzleID";
 
 const initialState: initialStateProps = {
   puzzleID: null,
@@ -25,11 +25,14 @@ export const setPuzzleConditions = createAsyncThunk<
   { state: RootStore }
 >(
   "puzzle/getConditions",
-  async ({ currentID, puzzleID }, { rejectWithValue, getState }) => {
-    const state = getState();
-    const { user } = state.userReducer;
-    const rand = await getRandomPuzzleID(currentID, puzzleID, user.puzzles);
-    const res = await getPuzzleConditions(rand);
+  async ({ currentID }, { rejectWithValue, getState, dispatch }) => {
+    const { userReducer } = getState();
+    dispatch(clearPuzzleProgress());
+    let rand = null;
+    if (currentID == null) {
+      rand = await getRandomPuzzleID(currentID, userReducer.user.puzzles);
+    }
+    const res = await getPuzzleConditions(rand || currentID || "");
     const condions = res.data();
     if (!condions) return rejectWithValue("no such puzzle");
     return {

@@ -4,12 +4,7 @@ import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { useInterval } from "../hooks/useInterval";
 import { SearchFieldProps } from "../models/SearchFieldProps";
 
-const SearchField = ({
-  value,
-  status,
-  onChange,
-  setSearchStatus,
-}: SearchFieldProps) => {
+const SearchField = ({ value, status, onChange }: SearchFieldProps) => {
   const words = ["Example", "Apple", "Tree", "Understand", "Happy"];
   const [wordIndex, setWordIndex] = useState(0);
   const indexHandler = () => {
@@ -21,9 +16,6 @@ const SearchField = ({
       <input
         value={value}
         onChange={(e) => onChange(e?.target?.value)}
-        onFocus={() => {
-          setSearchStatus(true);
-        }}
         className={styles.search__field}
         type="text"
       />

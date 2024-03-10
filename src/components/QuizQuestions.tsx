@@ -2,8 +2,9 @@ import styles from "../assets/styles/components/QuizQuestions.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTypeSelector } from "../hooks/useTypeReduxHooks";
 import QuestionOption from "./QuestionOption";
+import { setResultType } from "../models/QuizTypes";
 
-const QuizQuestions = () => {
+const QuizQuestions = ({ setResults }: setResultType) => {
   const { question_index, questions } = useTypeSelector(
     (state) => state.quizReducer
   );
@@ -21,7 +22,11 @@ const QuizQuestions = () => {
           <h4>{questions[question_index]?.question}</h4>
           <ul className={styles.options}>
             {questions[question_index]?.options.map((option, optionIndex) => (
-              <QuestionOption key={optionIndex} option={option} />
+              <QuestionOption
+                key={optionIndex}
+                option={option}
+                setResults={setResults}
+              />
             ))}
           </ul>
         </motion.div>

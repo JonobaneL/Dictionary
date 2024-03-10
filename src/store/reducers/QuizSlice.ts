@@ -1,20 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { QuestionType, QuizType } from "../../models/QuizTypes";
+import { InitialQuizProps, QuizType } from "../../models/QuizTypes";
 import { getQuiz } from "../../firebase/quizzesAPI";
 import { updateUserQuizzes } from "../../firebase/userAPI";
 import { RootStore } from "../store";
 
-type InitialProps = {
-  isLoading: boolean;
-  id: string | null;
-  name: string;
-  question_index: number;
-  user_answers: string[];
-  answers: string[];
-  questions: QuestionType[];
-  right_answers: number;
-};
-const initialState: InitialProps = {
+const initialState: InitialQuizProps = {
   isLoading: false,
   id: null,
   name: "",
@@ -26,7 +16,8 @@ const initialState: InitialProps = {
 };
 export const getQuizInfo = createAsyncThunk<QuizType, string | undefined>(
   "quiz/getQuiz",
-  async (quizID, { rejectWithValue }) => {
+  async (quizID, { rejectWithValue, dispatch }) => {
+    dispatch(clearQuiz());
     const res = await getQuiz(quizID);
     const quiz = res.data();
     if (!quiz) return rejectWithValue("no such quiz");
@@ -71,7 +62,18 @@ const quizSlice = createSlice({
       state.user_answers = [...state.user_answers, action.payload];
     },
     clearQuiz(state) {
-      state = initialState;
+      state.id = null;
+      state.name = "";
+      state.question_index = 0;
+      state.answers = [];
+      state.questions = [];
+      state.user_answers = [];
+      state.right_answers = 0;
+    },
+    clearQuizProgress(state) {
+      state.user_answers = [];
+      state.question_index = 0;
+      state.right_answers = 0;
     },
   },
   extraReducers: (builder) => {
@@ -96,5 +98,6 @@ const quizSlice = createSlice({
   },
 });
 
-export const { nextQuestion, addUserAnswer, clearQuiz } = quizSlice.actions;
+export const { nextQuestion, addUserAnswer, clearQuiz, clearQuizProgress } =
+  quizSlice.actions;
 export default quizSlice.reducer;

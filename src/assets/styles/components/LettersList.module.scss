@@ -1,0 +1,35 @@
+@import "../variables";
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.3rem;
+  margin: 0.3rem 0;
+  .letter {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: $clr-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &.active {
+      background-color: $clr-primary;
+      p {
+        color: $clr-surface;
+      }
+      &:hover {
+        background: $clr-primary;
+      }
+    }
+    &:hover {
+      background: #cdd3e5;
+    }
+    p {
+      text-transform: uppercase;
+      color: $clr-primary;
+      font-size: $fs-700;
+      font-weight: 600;
+    }
+  }
+}

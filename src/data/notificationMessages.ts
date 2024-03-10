@@ -3,7 +3,6 @@ import { NotificationType } from "../store/reducers/NotificationsSlice";
 export const logInMessage = {
   type: "error",
   content: "Wrong email or password",
-  time: 2,
 } as NotificationType;
 export const foundedMessage = {
   type: "info",

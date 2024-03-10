@@ -9,10 +9,6 @@ type ModalProps = {
 };
 
 const FullPageModal = ({ status, children }: ModalProps) => {
-  document.body.style.overflowY = "unset";
-  if (status) {
-    document.body.style.overflowY = "hidden";
-  }
   return ReactDom.createPortal(
     <AnimatePresence initial={false}>
       {status && (

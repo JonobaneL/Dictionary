@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import SearchField from "./SearchField";
 import { useSearchWord } from "../hooks/useSearchWord";
 import { useReques } from "../hooks/useRequest";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import WordsSearchResult from "./WordsSearchResult";
 import { useEventListener } from "../hooks/useEventListener";
 
@@ -21,10 +21,10 @@ const DashboardSearch = ({
   const { isLoading, words } = useSearchWord(request);
   const searchRef = useRef<HTMLDivElement>(null);
   const handler = (e: Event) => {
-    if (
-      !searchRef.current?.contains(e.target as Node) && //is it rigth to do like this?
-      searchStatus == true
-    ) {
+    const condition = searchRef.current?.contains(e.target as Node);
+    if (condition) {
+      setSearchStatus(true);
+    } else {
       setSearchStatus(false);
       setQuery("");
     }
@@ -36,12 +36,7 @@ const DashboardSearch = ({
     <div className={styles["dashboard-search"]}>
       <h3>Journey Through Language: Find, Understand, and Learn</h3>
       <div className={styles.search} ref={searchRef}>
-        <SearchField
-          value={query}
-          onChange={setQuery}
-          status={searchStatus}
-          setSearchStatus={setSearchStatus}
-        />
+        <SearchField value={query} onChange={setQuery} status={searchStatus} />
         <AnimatePresence initial={false}>
           {isSearchResultsOpen && <WordsSearchResult words={words} />}
         </AnimatePresence>

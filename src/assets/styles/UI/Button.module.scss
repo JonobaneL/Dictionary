@@ -7,18 +7,28 @@
   border: none;
   border-radius: 12px;
   font-weight: 500;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
   cursor: pointer;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: translate 0.2s ease-in-out;
   &.primary {
-    background: $clr-primary;
+    // background: $clr-primary;
+    background: rgba(63, 112, 125, 0.85);
+    border: 1px solid rgba(63, 112, 125, 0.3);
     color: #fff;
     &:hover {
       translate: 0 -3px;
     }
   }
   &.secondary {
-    background: $clr-secondary;
+    // background: $clr-secondary;
+    background: rgba(218, 223, 236, 0.9);
+    border: 1px solid rgba(218, 223, 236, 0.3);
     color: $clr-text;
     &:hover {
       translate: 0 -3px;

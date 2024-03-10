@@ -1,0 +1,15 @@
+@import "../variables";
+
+.vocabulary {
+  padding: 2rem 1.3rem;
+  .title {
+    color: $clr-primary;
+    font-family: $ff-accent;
+    font-size: 2rem;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  .empty {
+    line-height: 140%;
+  }
+}

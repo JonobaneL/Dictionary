@@ -7,11 +7,12 @@ import { motion } from "framer-motion";
 import Loader from "../components/UI/Loader";
 import UserSupport from "../components/UserSupport";
 import UserAchievements from "../components/UserAchievements";
+import UserSettings from "../components/UserSettings";
+import VerificationMessage from "../components/UI/VerificationMessage";
 
 const UserInfo = () => {
   const dispatch = useTypeDispatch();
   const { isLoading, user } = useTypeSelector((state) => state.userReducer);
-
   return (
     <motion.div
       initial="initial"
@@ -26,23 +27,27 @@ const UserInfo = () => {
       ) : (
         <div className={styles["user-info"]}>
           <h1 className={styles.title}>Hi {user?.name}</h1>
+          <h3 className={styles.email}>{user.email}</h3>
           <p className={styles.slogan}>
             Ready to continue your learning journey? Dive into quizzes, conquer
             word puzzles, and expand your vocabulary to new heights!
           </p>
+          {!user.emailVerified && <VerificationMessage />}
           <UserAchievements />
         </div>
       )}
       <UserSupport />
-      <Button
-        mode="secondary"
-        width="50%"
-        height="2.5rem"
-        align="center"
-        onClick={() => dispatch(signOutUser())}
-      >
-        Log Out
-      </Button>
+      <div className={styles["button-bar"]}>
+        <UserSettings />
+        <Button
+          mode="secondary"
+          width="50%"
+          height="2.5rem"
+          onClick={() => dispatch(signOutUser())}
+        >
+          Log Out
+        </Button>
+      </div>
     </motion.div>
   );
 };

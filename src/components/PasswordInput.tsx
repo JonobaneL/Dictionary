@@ -15,9 +15,13 @@ type PasswordProps = {
     onBlur: () => void;
     isDurty: boolean;
   };
+  placeholder?: string;
 };
 
-const PasswordInput = ({ password }: PasswordProps) => {
+const PasswordInput = ({
+  password,
+  placeholder = "Password",
+}: PasswordProps) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true);
   return (
     <ValidathioMessage
@@ -30,7 +34,7 @@ const PasswordInput = ({ password }: PasswordProps) => {
           onChange={(e) => password.onChange(e)}
           onBlur={() => password.onBlur()}
           fieldIcon={<CgKeyhole size="1.5rem" color="#3f707d" />}
-          placeholder="Password"
+          placeholder={placeholder}
           type={isPasswordHidden ? "password" : "text"}
         />
         <div className={styles.icon}>

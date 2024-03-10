@@ -5,4 +5,5 @@ export type UserDetails = {
   quizzes: string[];
   puzzles: string[];
   words: string[];
+  emailVerified: boolean;
 };

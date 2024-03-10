@@ -1,0 +1,13 @@
+@import "../variables";
+
+.message {
+  padding: 0.8rem;
+  background: $clr-secondary;
+  border-radius: 0.2rem;
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;
+  border-left: 0.22rem solid $clr-accent;
+  font-weight: 500;
+  text-wrap: balance;
+  cursor: default;
+}

@@ -20,7 +20,6 @@ export const useAsync = <T>(
       .then((data) => {
         if (type === "firebase") {
           if (data.forEach) {
-            // console.log(data.size);
             const res: any[] = [];
             data.forEach((item: FirestoreDocType) => {
               const doc = Object.assign({}, item?.data());

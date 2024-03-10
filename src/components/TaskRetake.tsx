@@ -1,6 +1,4 @@
 import styles from "../assets/styles/components/PuzzleRetake.module.scss";
-import { useTypeDispatch } from "../hooks/useTypeReduxHooks";
-import { clearPuzzleProgress } from "../store/reducers/puzzleSlice";
 import { HiMiniArrowPath } from "react-icons/hi2";
 import { retakePhrase } from "../utils/retakePhrase";
 
@@ -12,11 +10,9 @@ type RetakeProps = {
 };
 
 const TaskRetake = ({ progress, maxValue, callback, type }: RetakeProps) => {
-  const dispatch = useTypeDispatch();
   const phrase = retakePhrase(progress, maxValue, type);
 
   const retakeHandler = () => {
-    dispatch(clearPuzzleProgress());
     callback();
   };
   return (

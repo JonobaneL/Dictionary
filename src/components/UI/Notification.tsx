@@ -11,13 +11,14 @@ import { removeNotification } from "../../store/reducers/NotificationsSlice";
 const Notification = () => {
   const notification = useTypeSelector((state) => state.NotificationReducer);
   const dispatch = useTypeDispatch();
-  const closeTime = notification?.time || 2;
+  const closeTime = notification?.time || 1.5;
+  const dalayTime = notification?.delay || 0;
 
   useEffect(() => {
     const time = setTimeout(() => {
-      console.log(notification?.time);
+      // console.log(notification?.time);
       dispatch(removeNotification());
-    }, closeTime * 1000);
+    }, (closeTime + dalayTime) * 1000);
 
     return () => {
       clearTimeout(time);
@@ -38,7 +39,10 @@ const Notification = () => {
               className={`${styles.progress} ${styles[notification.type]}`}
               initial={{ width: "100%" }}
               animate={{ width: 0 }}
-              transition={{ duration: notification?.time || 1, delay: 0.2 }}
+              transition={{
+                duration: notification?.time || 1,
+                delay: dalayTime,
+              }}
             />
           </motion.div>
         </motion.div>

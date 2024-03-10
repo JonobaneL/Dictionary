@@ -12,7 +12,12 @@ function App() {
   const dispatch = useTypeDispatch();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      dispatch(fetchUserInfo(user?.uid || null));
+      dispatch(
+        fetchUserInfo({
+          userID: user?.uid || null,
+          emailVerified: user?.emailVerified || false,
+        })
+      );
     });
     return unsubscribe;
   }, []);

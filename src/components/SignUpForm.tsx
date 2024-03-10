@@ -9,6 +9,7 @@ import { useInput } from "../hooks/useInput";
 import PasswordInput from "./PasswordInput";
 import { signUpUser } from "../store/reducers/userSlice";
 import ValidatedField from "./UI/ValidatedField";
+import { emailVerification } from "../firebase/userAPI";
 
 const SignUpForm = () => {
   const nickName = useInput("", { isEmpty: true, minLength: 3 }, "Nickname");
@@ -36,6 +37,7 @@ const SignUpForm = () => {
         name: nickName.value,
       })
     );
+    await emailVerification();
     navigate("/dashboard");
   };
 
@@ -52,7 +54,6 @@ const SignUpForm = () => {
         placeholder="Email address"
       />
       <PasswordInput password={password} />
-
       <div className={styles.submit}>
         <Button mode="primary" type="submit" disabled={isFromDisabled}>
           Sign Up

@@ -17,5 +17,5 @@ export const useInput = (
   const onBlur = () => {
     setIsDurty(true);
   };
-  return { value, onChange, onBlur, isDurty, ...valid };
+  return { value, onChange, onBlur, isDurty, ...valid, setValue };
 };

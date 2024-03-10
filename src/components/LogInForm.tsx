@@ -5,7 +5,7 @@ import { LuUserCircle } from "react-icons/lu";
 import PasswordInput from "./PasswordInput";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import { logInUser } from "../store/reducers/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { checkFormValid } from "../utils/checkFormValid";
 import ValidatedField from "./UI/ValidatedField";
 import { addNotification } from "../store/reducers/NotificationsSlice";
@@ -27,7 +27,7 @@ const LogInForm = () => {
       const res = await dispatch(
         logInUser({ email: email.value, password: password.value })
       ).unwrap();
-      if (res.id) navigate("/dashboard");
+      if (res) navigate("/dashboard");
     } catch (error) {
       dispatch(addNotification(logInMessage));
     }
@@ -45,7 +45,9 @@ const LogInForm = () => {
         placeholder="Email address"
       />
       <PasswordInput password={password} />
-      <span className={styles.forgot}>Forgot Password?</span>
+      <Link className={styles.forgot} to="/password-reset">
+        Forgot Password?
+      </Link>
       <Button
         mode="primary"
         width="60%"

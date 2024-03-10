@@ -4,10 +4,12 @@ import Logo from "../components/UI/Logo";
 import Loader from "../components/UI/Loader";
 import QuizQuestions from "../components/QuizQuestions";
 import QuizProgress from "../components/QuizProgress";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import { getQuizInfo } from "../store/reducers/QuizSlice";
 import { IoIosArrowBack } from "react-icons/io";
+import FullPageModal from "../components/UI/FullPageModal";
+import QuizResults from "../components/QuizResults";
 
 const Quiz = () => {
   const { quizID } = useParams();
@@ -15,6 +17,7 @@ const Quiz = () => {
   const { isLoading, name, questions } = useTypeSelector(
     (state) => state.quizReducer
   );
+  const [results, setResults] = useState(false);
   useEffect(() => {
     dispatch(getQuizInfo(quizID));
   }, []);
@@ -32,9 +35,12 @@ const Quiz = () => {
         <>
           <h2 className={styles["quiz-name"]}>{name}</h2>
           <QuizProgress size={questions.length || 0} />
-          <QuizQuestions />
+          <QuizQuestions setResults={setResults} />
         </>
       )}
+      <FullPageModal status={results}>
+        <QuizResults setResults={setResults} />
+      </FullPageModal>
     </div>
   );
 };

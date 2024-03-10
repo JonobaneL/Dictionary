@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../assets/styles/pages/TestPage.module.scss";
-
 import { AnimatePresence, mix, motion, progress, wrap } from "framer-motion";
 import Button from "../components/UI/Button";
-
 import { nav } from "../data/navbarMenu";
 import { IconContext } from "react-icons";
 import ActiveNavCircle from "../components/UI/ActiveNavCircle";
@@ -11,7 +9,11 @@ import { useAsync } from "../hooks/useAsync";
 import { QuestionType, QuizType } from "../models/QuizTypes";
 import QuizzesList from "../components/QuizzesList";
 import Loader from "../components/UI/Loader";
-import { FirestoreDocType } from "../firebase/userAPI";
+import {
+  FirestoreDocType,
+  emailVerification,
+  resetUserPassword,
+} from "../firebase/userAPI";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import { fetchQuizzes, setLimit } from "../store/reducers/QuizzesSlice";
 import { addNotification } from "../store/reducers/NotificationsSlice";
@@ -21,32 +23,18 @@ import { finishQuiz } from "../store/reducers/QuizSlice";
 import { finishPuzzle } from "../store/reducers/puzzleSlice";
 import FullPageModal from "../components/UI/FullPageModal";
 import QuizResults from "../components/QuizResults.tsx";
-
-// type NavProps
-// const NavLink = ({}:NavProps)=>{
-
-// }
-
-//const [isLoading,_,quizzes] = useAsync(getQuizzes,[],'firebase');
-//const [quizzesList,setQuizzesList] = useState(quizzes)
-type QuizRes = {
-  name: string;
-  category: string;
-  questions: QuestionType[];
-  answers: string[];
-};
+import Field from "../components/UI/Field.tsx";
+import { IoMdKey } from "react-icons/io";
+import { useEventListener } from "../hooks/useEventListener.ts";
+import UserSettings from "../components/UserSettings.tsx";
+import ModalWindow from "../components/UI/ModalWindow.tsx";
+import { getCategoryVocabulary } from "../firebase/vocabularyAPI.ts";
 
 const TestPage = () => {
-  const [rate, setRate] = useState(0);
-  const dispatch = useTypeDispatch();
   // useEventListener("click", (e) => handler(e));
-  const quizHandler = () => {
-    dispatch(finishQuiz("someID"));
-  };
-  const puzzleHandler = () => {
-    dispatch(finishPuzzle("someID"));
-  };
-  const [isOpen, setIsOpen] = useState(false);
+  //email has to pass verification
+  const [modalStatus, setStatus] = useState(false);
+
   return (
     <div className={styles["test-page"]}>
       <h1>Lorem ipsum</h1>
@@ -57,16 +45,11 @@ const TestPage = () => {
         quos vel quaerat.
       </p>
       <br />
-      <Button mode="primary" onClick={() => setIsOpen(true)}>
-        Open
+      <br />
+      <Button mode="secondary" onClick={() => console.log("click")}>
+        verify
       </Button>
       <br />
-      <FullPageModal status={isOpen}>
-        <Button mode="primary" onClick={() => setIsOpen(false)}>
-          Close
-        </Button>
-        <QuizResults />
-      </FullPageModal>
     </div>
   );
 };

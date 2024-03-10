@@ -1,0 +1,9 @@
+.categories-nav {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: right;
+  gap: 0.4rem;
+  .arrow {
+    cursor: pointer;
+  }
+}

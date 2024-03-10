@@ -18,6 +18,10 @@ type UserProps = {
   password: string;
   name?: string;
 };
+type FetchProps = {
+  userID: string | null;
+  emailVerified: boolean;
+};
 
 const initialState: initialStateProps = {
   user: {
@@ -27,11 +31,13 @@ const initialState: initialStateProps = {
     quizzes: [],
     puzzles: [],
     words: [],
+    emailVerified: false,
   },
   isLoading: true,
   error: null,
 };
-export const logInUser = createAsyncThunk<UserDetails, UserProps>(
+
+export const logInUser = createAsyncThunk<string, UserProps>(
   "user/log-in",
   async (props, { rejectWithValue }) => {
     try {
@@ -40,23 +46,21 @@ export const logInUser = createAsyncThunk<UserDetails, UserProps>(
         props.email,
         props.password
       );
-      const userRes = await getUserInfo(res.user.uid);
-      const userDetails = userRes.data() as UserDetails;
-      return { ...userDetails, id: res.user.uid };
+      return res.user.uid;
     } catch (err) {
       return rejectWithValue("no such user");
     }
   }
 );
 
-export const fetchUserInfo = createAsyncThunk<UserDetails, string | null>(
+export const fetchUserInfo = createAsyncThunk<UserDetails, FetchProps>(
   "user/fetch-user-info",
-  async (userID, { rejectWithValue }) => {
+  async ({ userID, emailVerified }, { rejectWithValue }) => {
     if (userID == null) return initialState.user;
     const userRes = await getUserInfo(userID);
     if (!userRes) return rejectWithValue("No such user");
     const userDetails = userRes.data() as UserDetails;
-    return { ...userDetails, id: userID };
+    return { ...userDetails, id: userID, emailVerified };
   }
 );
 
@@ -67,7 +71,7 @@ export const signUpUser = createAsyncThunk<void, UserProps>(
       const res = await createUserWithEmailAndPassword(auth, email, password);
       await addNewUser({ email, name: name || "" }, res.user.uid);
     } catch (err) {
-      rejectWithValue("user isnt created");
+      rejectWithValue("user isnt signed-up");
     }
   }
 );
@@ -77,7 +81,7 @@ export const signOutUser = createAsyncThunk<void, undefined>(
     try {
       await signOut(auth);
     } catch (err) {
-      rejectWithValue(`User wasn't sign out`);
+      rejectWithValue(`User wasn't signed out`);
     }
   }
 );
@@ -93,18 +97,6 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(logInUser.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(logInUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(logInUser.rejected, (state) => {
-        state.isLoading = false;
-        state.error = "error";
-      })
       .addCase(fetchUserInfo.pending, (state) => {
         state.isLoading = true;
       })

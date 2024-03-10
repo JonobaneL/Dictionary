@@ -49,20 +49,3 @@ export const getQuiz = (quizID: string | undefined) => {
   const docRef = doc(collectionRef, quizID);
   return getDoc(docRef);
 };
-
-//finish quiz
-export const addQuiz = () => {
-  const quiz = {
-    name: ``,
-    category: "",
-    questions: [
-      {
-        question: "",
-        options: ["", "", ""],
-      },
-    ],
-    answers: [""],
-  };
-  const collectionRef = collection(firestoreDB, "quizzes");
-  return addDoc(collectionRef, quiz);
-};

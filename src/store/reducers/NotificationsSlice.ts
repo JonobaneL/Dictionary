@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export type NotificationType = {
   type: "success" | "error" | "warning" | "info";
   content: string;
-  time: number;
+  time?: number;
+  delay?: number;
 };
 type PayloadPops = {
   payload: NotificationType;
