@@ -10,6 +10,8 @@ import { getQuizInfo } from "../store/reducers/QuizSlice";
 import { IoIosArrowBack } from "react-icons/io";
 import FullPageModal from "../components/UI/FullPageModal";
 import QuizResults from "../components/QuizResults";
+import { routesVariants } from "../motionVariants/RoutesVariants";
+import { motion } from "framer-motion";
 
 const Quiz = () => {
   const { quizID } = useParams();
@@ -22,7 +24,14 @@ const Quiz = () => {
     dispatch(getQuizInfo(quizID));
   }, []);
   return (
-    <div className={styles.quiz}>
+    <motion.div
+      className={styles.quiz}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.2 }}
+      variants={routesVariants}
+    >
       <Logo />
       <Link to="/quizzes" className={styles.back}>
         <IoIosArrowBack size="1.5rem" color="#3f707d" />
@@ -41,7 +50,7 @@ const Quiz = () => {
       <FullPageModal status={results}>
         <QuizResults setResults={setResults} />
       </FullPageModal>
-    </div>
+    </motion.div>
   );
 };
 

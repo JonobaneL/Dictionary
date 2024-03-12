@@ -8,6 +8,8 @@ import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
 import { fetchQuizzes, clearQuizzes } from "../store/reducers/QuizzesSlice";
 import { useSearchParams } from "react-router-dom";
 import ShowMoreBtn from "../components/ShowMoreBtn";
+import { motion } from "framer-motion";
+import { routesVariants } from "../motionVariants/RoutesVariants";
 
 const Quizzes = () => {
   const dispatch = useTypeDispatch();
@@ -18,10 +20,17 @@ const Quizzes = () => {
   const category = searchParam.get("category");
   useEffect(() => {
     dispatch(clearQuizzes());
-    dispatch(fetchQuizzes(category)).catch(err=>console.log(err));
+    dispatch(fetchQuizzes(category));
   }, [category]);
   return (
-    <div className={styles.quizzes}>
+    <motion.div
+      className={styles.quizzes}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.2 }}
+      variants={routesVariants}
+    >
       <Logo />
       <p className={styles.title}>
         Discover, Learn, and Challenge Yourself: Explore Our Exciting Quizzes
@@ -36,7 +45,7 @@ const Quizzes = () => {
         {isLoading && <Loader type="small" />}
       </div>
       {quizzes.length == limit && <ShowMoreBtn category={category} />}
-    </div>
+    </motion.div>
   );
 };
 

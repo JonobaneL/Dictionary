@@ -5,6 +5,8 @@ import Logo from "../components/UI/Logo";
 import Loader from "../components/UI/Loader";
 import { useVocabulary } from "../hooks/useVocabulary";
 import VocabularyParts from "../components/VocabularyParts";
+import { routesVariants } from "../motionVariants/RoutesVariants";
+import { motion } from "framer-motion";
 
 const Vocabulary = () => {
   const [searchParams] = useSearchParams();
@@ -13,7 +15,14 @@ const Vocabulary = () => {
   const part = searchParams.get("partOfSpeech");
   const [isLoading, words] = useVocabulary(level, category, part);
   return (
-    <div className={styles.vocabulary}>
+    <motion.div
+      className={styles.vocabulary}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.2 }}
+      variants={routesVariants}
+    >
       <Logo />
       <h1 className={styles.title}>{category || level} Vocabulary List</h1>
       <VocabularyParts />
@@ -30,7 +39,7 @@ const Vocabulary = () => {
           )}
         </>
       )}
-    </div>
+    </motion.div>
   );
 };
 

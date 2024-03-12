@@ -15,7 +15,6 @@ import {
   resetUserPassword,
 } from "../firebase/userAPI";
 import { useTypeDispatch, useTypeSelector } from "../hooks/useTypeReduxHooks";
-import { fetchQuizzes, setLimit } from "../store/reducers/QuizzesSlice";
 import { addNotification } from "../store/reducers/NotificationsSlice";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rate from "../components/UI/Rate";

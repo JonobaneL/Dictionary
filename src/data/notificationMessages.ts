@@ -19,3 +19,9 @@ export const correctMessage = {
   content: "Way to go!",
   time: 1,
 } as NotificationType;
+export const checkEmailMessage = {
+  type: "success",
+  content: "Check your email",
+  time: 2,
+  delay: 0.4, //it doesnt work correct
+} as NotificationType;

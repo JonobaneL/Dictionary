@@ -1,27 +1,31 @@
 import { useParams } from "react-router-dom";
 import styles from "../assets/styles/pages/WordDetails.module.scss";
 import { FaRegStar } from "react-icons/fa";
-import { HiMiniSpeakerWave } from "react-icons/hi2";
 import Tabs from "../components/UI/Tabs";
 import { getWordDetails } from "../API/wordAPI";
 import { wordDetailsTabs } from "../data/tabs";
-import { memo, useRef } from "react";
+import { memo } from "react";
 import WordDefinitions from "../components/WordDefinitions";
 import WordThesaurus from "../components/WordThesaurus";
 import Loader from "../components/UI/Loader";
 import WordExamples from "../components/WordExamples";
+import { routesVariants } from "../motionVariants/RoutesVariants";
+import { motion } from "framer-motion";
+import WordAudio from "../components/WordAudio";
 
 const WordDetails = memo(() => {
   const { word } = useParams();
-  const audioRef = useRef<HTMLAudioElement>(null);
   const { isLoading, wordDetails } = getWordDetails(word);
-  const audioEvent = () => {
-    audioRef?.current?.play();
-  };
-  document.body.style.overflow = "visible";
   if (isLoading) return <Loader type="standart" />;
   return (
-    <div className={styles["word-details"]}>
+    <motion.div
+      className={styles["word-details"]}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.2 }}
+      variants={routesVariants}
+    >
       <div className={styles["word-section"]}>
         <div className={styles.word}>
           <h1>{wordDetails?.word}</h1>
@@ -32,16 +36,9 @@ const WordDetails = memo(() => {
         </div>
         <div className={styles["word-nav"]}>
           {wordDetails?.phonetics[0]?.audio && (
-            <>
-              <HiMiniSpeakerWave
-                onClick={audioEvent}
-                size="1.5rem"
-                color="#fcf9f8"
-                className={styles.icon}
-              />
-              <audio ref={audioRef} src={wordDetails?.phonetics[0]?.audio} />
-            </>
+            <WordAudio audio={wordDetails?.phonetics[0]?.audio} />
           )}
+          {/* think about this feature */}
           <FaRegStar size="1.4rem" color="#fcf9f8" className={styles.icon} />
         </div>
       </div>
@@ -52,7 +49,7 @@ const WordDetails = memo(() => {
           <WordExamples word={wordDetails?.word || ""} />
         </Tabs>
       </div>
-    </div>
+    </motion.div>
   );
 });
 

@@ -8,6 +8,9 @@ import { resetUserPassword } from "../firebase/userAPI";
 import { useTypeDispatch } from "../hooks/useTypeReduxHooks";
 import { addNotification } from "../store/reducers/NotificationsSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { routesVariants } from "../motionVariants/RoutesVariants";
+import { motion } from "framer-motion";
+import { checkEmailMessage } from "../data/notificationMessages";
 
 const PasswordReset = () => {
   const email = useInput("", { isEmpty: true, isEmail: true });
@@ -19,20 +22,20 @@ const PasswordReset = () => {
       navigate("/log-in");
       await resetUserPassword(email.value);
       email.setValue("");
-      dispatch(
-        addNotification({
-          type: "success",
-          content: "Check your email",
-          time: 2,
-          delay: 0.4, //it doesnt work correct
-        })
-      );
+      dispatch(addNotification(checkEmailMessage));
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <div className={styles["password-reset"]}>
+    <motion.div
+      className={styles["password-reset"]}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.2 }}
+      variants={routesVariants}
+    >
       <Link to="/dashboard">
         <Logo />
       </Link>
@@ -50,7 +53,7 @@ const PasswordReset = () => {
           Send Email
         </Button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

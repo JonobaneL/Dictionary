@@ -11,6 +11,8 @@ import Logo from "../components/UI/Logo";
 import EndPuzzleBtn from "../components/EndPuzzleBtn";
 import FullPageModal from "../components/UI/FullPageModal";
 import PuzzleResults from "../components/PuzzleResults";
+import { motion } from "framer-motion";
+import { routesVariants } from "../motionVariants/RoutesVariants";
 
 const WordPuzzle = () => {
   const dispatch = useTypeDispatch();
@@ -23,7 +25,14 @@ const WordPuzzle = () => {
     dispatch(setPuzzleConditions({ currentID, puzzleID }));
   }, [currentID]);
   return (
-    <div className={styles["word-puzzle"]}>
+    <motion.div
+      className={styles["word-puzzle"]}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.2 }}
+      variants={routesVariants}
+    >
       <Logo />
       <h2 className={styles.title}>Word Puzzle</h2>
       {isLoading ? (
@@ -44,7 +53,7 @@ const WordPuzzle = () => {
       <FullPageModal status={results}>
         <PuzzleResults rememberID={setCurrentID} setResults={setResults} />
       </FullPageModal>
-    </div>
+    </motion.div>
   );
 };
 

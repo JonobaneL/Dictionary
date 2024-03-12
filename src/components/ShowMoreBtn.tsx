@@ -1,5 +1,5 @@
 import Button from "./UI/Button";
-import { fetchQuizzes, setLimit } from "../store/reducers/QuizzesSlice";
+import { fetchQuizzes, increaseLimit } from "../store/reducers/QuizzesSlice";
 import { useTypeDispatch } from "../hooks/useTypeReduxHooks";
 
 type ShowMoreProps = {
@@ -9,7 +9,7 @@ type ShowMoreProps = {
 const ShowMoreBtn = ({ category }: ShowMoreProps) => {
   const dispatch = useTypeDispatch();
   const changeLimit = () => {
-    dispatch(setLimit());
+    dispatch(increaseLimit());
     dispatch(fetchQuizzes(category));
   };
   return (

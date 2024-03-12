@@ -1,5 +1,4 @@
 import {
-  addDoc,
   collection,
   doc,
   getDoc,
@@ -25,7 +24,13 @@ export const generateQuizzesQuery = (category: string | null) => {
   const quizzesRef = query(collectionRef, where("category", "==", category));
   return quizzesRef;
 };
-
+export const getLastDoc = (docID: string | null) => {
+  if (docID) {
+    const docRef = doc(firestoreDB, "quizzes", docID);
+    return getDoc(docRef);
+  }
+  return null;
+};
 export const getQuizzes = (
   category: string | null,
   itemsLimit: number,
