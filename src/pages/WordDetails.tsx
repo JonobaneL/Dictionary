@@ -39,7 +39,7 @@ const WordDetails = memo(() => {
             <WordAudio audio={wordDetails?.phonetics[0]?.audio} />
           )}
           {/* think about this feature */}
-          <FaRegStar size="1.4rem" color="#fcf9f8" className={styles.icon} />
+          {/* <FaRegStar size="1.4rem" color="#fcf9f8" className={styles.icon} /> */}
         </div>
       </div>
       <div style={{ paddingInline: "1.3rem" }}>

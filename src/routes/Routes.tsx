@@ -15,7 +15,7 @@ const Quizzes = lazy(() => import("../pages/Quizzes"));
 const Quiz = lazy(() => import("../pages/Quiz"));
 const PasswordReset = lazy(() => import("../pages/PasswordReset"));
 const Vocabulary = lazy(() => import("../pages/Vocabulary"));
-const TestPage = lazy(() => import("../pages/TestPage"));
+const Remind = lazy(() => import("../pages/Remind"));
 
 const DictioanryRoutes = () => {
   const location = useLocation();
@@ -35,8 +35,8 @@ const DictioanryRoutes = () => {
             <Route path="/quizzes" element={<Quizzes />} />
             <Route path="/quizzes/:quizID" element={<Quiz />} />
             <Route path="/vocabulary-list" element={<Vocabulary />} />
+            <Route path="/remind" element={<Remind />} />
           </Route>
-          <Route path="/test" element={<TestPage />} />
         </Routes>
       </AnimatePresence>
     </Suspense>

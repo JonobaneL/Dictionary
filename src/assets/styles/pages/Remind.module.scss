@@ -1,0 +1,9 @@
+@import "../variables";
+.remind {
+  padding: 2rem 1.3rem;
+  h1 {
+    color: $clr-primary;
+    text-align: center;
+    font-family: $ff-accent;
+  }
+}
