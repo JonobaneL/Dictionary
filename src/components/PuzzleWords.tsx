@@ -2,12 +2,10 @@ import { PiListMagnifyingGlassBold } from "react-icons/pi";
 import styles from "../assets/styles/components/PuzzleWords.module.scss";
 import Accordion from "./UI/Accordion";
 import { useTypeSelector } from "../hooks/useTypeReduxHooks";
-import { useNavigate } from "react-router-dom";
 import WordsList from "./UI/WordsList";
 
 const PuzzleWords = () => {
   const { progress } = useTypeSelector((state) => state.puzzleReducer);
-  const navigate = useNavigate();
   return (
     <div className={styles["words-found"]}>
       <Accordion

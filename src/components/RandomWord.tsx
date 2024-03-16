@@ -1,13 +1,9 @@
 import styles from "../assets/styles/components/RandomWord.module.scss";
-import { WordProps } from "../models/RandomWordProps";
 import { getRandomWord } from "../utils/getRandomWord";
 import Loader from "./UI/Loader";
 
 const RandomWord = () => {
-  //uncoment code below to exit test mode
-  // const { isLoading, randomWord } = getRandomWord();
-  const isLoading = false;
-  const randomWord: WordProps = { word: "Test Mode" };
+  const { isLoading, randomWord } = getRandomWord();
   return (
     <div className={styles["random-word"]}>
       <h3>Random Word</h3>

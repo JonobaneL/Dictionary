@@ -1,0 +1,10 @@
+@import "../variables";
+
+.search-results {
+  padding: 2rem 1.3rem;
+  .title {
+    color: $clr-primary;
+    font-family: $ff-accent;
+    margin-bottom: 1rem;
+  }
+}

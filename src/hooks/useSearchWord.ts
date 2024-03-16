@@ -2,14 +2,14 @@ import axios from "axios";
 import { useAsync } from "./useAsync";
 import { WordsResponse } from "../models/SearchedWordsTypes";
 
-export const useSearchWord = (request: string) => {
+export const useSearchWord = (request: string, limit: string = "10") => {
   const getWordsResponse = async () => {
     const options = {
       method: "GET",
       url: "https://wordsapiv1.p.rapidapi.com/words/",
       params: {
         letterPattern: `^${request}`,
-        limit: "10",
+        limit: limit,
         page: "1",
       },
       headers: {

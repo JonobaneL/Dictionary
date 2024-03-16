@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import styles from "../assets/styles/pages/WordDetails.module.scss";
-import { FaRegStar } from "react-icons/fa";
 import Tabs from "../components/UI/Tabs";
 import { getWordDetails } from "../API/wordAPI";
 import { wordDetailsTabs } from "../data/tabs";
@@ -38,8 +37,6 @@ const WordDetails = memo(() => {
           {wordDetails?.phonetics[0]?.audio && (
             <WordAudio audio={wordDetails?.phonetics[0]?.audio} />
           )}
-          {/* think about this feature */}
-          {/* <FaRegStar size="1.4rem" color="#fcf9f8" className={styles.icon} /> */}
         </div>
       </div>
       <div style={{ paddingInline: "1.3rem" }}>

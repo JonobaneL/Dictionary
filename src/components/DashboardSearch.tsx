@@ -17,7 +17,7 @@ const DashboardSearch = ({
   setSearchStatus,
 }: DashboardSearchProps) => {
   const [query, setQuery] = useState("");
-  const request = useReques(query);
+  const request = useReques(query.toLocaleLowerCase());
   const { isLoading, words } = useSearchWord(request);
   const searchRef = useRef<HTMLDivElement>(null);
   const handler = (e: Event) => {
